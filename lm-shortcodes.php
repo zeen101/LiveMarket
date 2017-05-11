@@ -42,9 +42,11 @@ if ( !function_exists( 'do_livemarket' ) ) {
 		} else {
 			$advertisement = get_livemarket_advertisement( $store );
 			if ( !empty( $advertisement->success ) && !empty( $advertisement->data ) ) {
-				$results = '<h3>' . $advertisement->data->title . '</h3>';
+				$results  = '<div class="livemarket-content">';
+				$results .= '<h3>' . $advertisement->data->title . '</h3>';
 				$results .= $advertisement->data->content;
 				$results .= '<a href="' . $advertisement->data->url . '">Click here</a>';
+				$results .= '</div>';
 			} else {
 				return '<h1 class="error">' . __( 'Unable to find marketplace store.', 'livemarket' ) . '</h1>';
 			}

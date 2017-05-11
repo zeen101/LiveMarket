@@ -123,6 +123,7 @@ if ( ! class_exists( 'LiveMarket' ) ) {
 		function frontend_scripts() {
 			
 			wp_enqueue_style( 'livemarket', LIVEMARKET_URL . '/css/livemarket.css', '', LIVEMARKET_VERSION );
+			wp_enqueue_script( 'livemarket_js', LIVEMARKET_URL . 'js/livemarket.js', array( 'jquery' ), LIVEMARKET_VERSION );
 			
 		}
 		
@@ -225,15 +226,10 @@ if ( ! class_exists( 'LiveMarket' ) ) {
                         <table id="livemarket_administrator_options" class="form-table">
                         
                         	<tr>
-                                <th><?php _e( 'API Key', 'livemarket' ); ?></th>
-                                <td><input type="text" id="api_key" class="regular-text" name="api_key" value="<?php echo htmlspecialchars( stripcslashes( $settings['api_key'] ) ); ?>" /></td>
-                            </tr>
-                            
-                        	<tr>
-                                <th><?php _e( 'Live Market Page', 'issuem-leaky-paywall' ); ?></th>
+                                <th><?php _e( 'Access Token', 'livemarket' ); ?></th>
                                 <td>
-								<?php echo wp_dropdown_pages( array( 'name' => 'livemarket_page', 'echo' => 0, 'show_option_none' => __( '&mdash; Select &mdash;' ), 'option_none_value' => '0', 'selected' => $settings['livemarket_page'] ) ); ?>
-                                <p class="description"><?php printf( __( 'Add this shortcode to your Live Market page: %s', 'livemarket' ), '[livemarket]' ); ?></p>
+	                                <input type="text" id="api_key" class="regular-text" name="api_key" value="<?php echo htmlspecialchars( stripcslashes( $settings['api_key'] ) ); ?>" />
+	                                <p class="description"><?php printf( __( 'Register or sign into <a href="http://my.livemarket.pub">LiveMarket</a> to setup your first Publication and get your API key.', 'livemarket' ), '[livemarket]' ); ?></p>
                                 </td>
                             </tr>
                             
@@ -243,27 +239,37 @@ if ( ! class_exists( 'LiveMarket' ) ) {
 		                        if ( empty( $settings['publication_id'] ) && !empty( $publications->data ) ) {
 			                        $settings['publication_id'] = $publications->data[0]->id;
 		                        }
-	                        }
-                            ?>
-                            
-                        	<tr>
-                                <th><?php _e( 'Live Market Publication', 'issuem-leaky-paywall' ); ?></th>
-                                <td>
-                                <?php 
-	                                if ( !empty( $publications->data ) ) {
-		                                echo '<select name="publication_id" id="publication_id">';
-		                                foreach( $publications->data as $publication ) {
-			                                echo '<option value="' . $publication->id . '" ' . selected( $settings['publication_id'], $publication->id, true ) . '>' . $publication->name . '</option>';
+		                        ?>
+	                            
+	                        	<tr>
+	                                <th><?php _e( 'Live Market Page', 'issuem-leaky-paywall' ); ?></th>
+	                                <td>
+									<?php echo wp_dropdown_pages( array( 'name' => 'livemarket_page', 'echo' => 0, 'show_option_none' => __( '&mdash; Select &mdash;' ), 'option_none_value' => '0', 'selected' => $settings['livemarket_page'] ) ); ?>
+	                                <p class="description"><?php printf( __( 'Add this shortcode to your Live Market page: %s', 'livemarket' ), '[livemarket]' ); ?></p>
+	                                </td>
+	                            </tr>
+	                            
+	                        	<tr>
+	                                <th><?php _e( 'Live Market Publication', 'issuem-leaky-paywall' ); ?></th>
+	                                <td>
+	                                <?php 
+		                                if ( !empty( $publications->data ) ) {
+			                                echo '<select name="publication_id" id="publication_id">';
+			                                foreach( $publications->data as $publication ) {
+				                                echo '<option value="' . $publication->id . '" ' . selected( $settings['publication_id'], $publication->id, true ) . '>' . $publication->name . '</option>';
+			                                }
+			                                echo '</select>';
+		                                } else {
+			                                echo '<p>' . __( 'Please sign into <a href="http://my.livemarket.pub">LiveMarket</a> to setup your first Publication.', 'livemarket' );
 		                                }
-		                                echo '</select>';
-	                                } else {
-		                                echo '<p>' . __( 'Please sign into <a href="http://my.livemarket.pub">LiveMarket</a> to setup your first Publication.', 'livemarket' );
-	                                }
-	                            ?>
-                                </td>
-                            </tr>
-
-                            <?php wp_nonce_field( 'livemarket_settings', 'livemarket_settings_nonce' ); ?>
+		                            ?>
+	                                </td>
+	                            </tr>
+	                            
+	                            <?php
+	                        }
+	                            
+							wp_nonce_field( 'livemarket_settings', 'livemarket_settings_nonce' ); ?>
 
                         </table>
 	                        
