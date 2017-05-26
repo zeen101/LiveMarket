@@ -51,6 +51,7 @@ class LiveMarket_Advertisements extends WP_Widget {
 		extract( $instance );
 	
 		$settings = get_livemarket_settings();
+		$dateformat = get_option( 'date_format' );
 		
 		if ( empty( $settings['api_key'] ) ) {
 			return '<h1 class="error">' . __( 'You Must Enter a Valid Live Market API Key in the Live Market Plugin', 'livemarket' ) . '</h1>';
@@ -61,10 +62,14 @@ class LiveMarket_Advertisements extends WP_Widget {
 			$out = '<ul>';
 			foreach( $advertisements->data as $advertisement ) {
 				if ( get_option( 'permalink_structure' ) ) {
-					$out .= '<li><a href="' . get_permalink( $settings['livemarket_page'] ) . $advertisement->id . '">' . $advertisement->title . '</a></li>';
+					$link = get_permalink( $settings['livemarket_page'] ) . $advertisement->id;
 				} else {
-					$out .= '<li><a href="' . get_permalink( $settings['livemarket_page'] ) . '?store=' . $advertisement->id . '">' . $advertisement->title . '</a></li>';
+					$link = get_permalink( $settings['livemarket_page'] ) . '?store=' . $advertisement->id;
 				}
+				$out .= '<li>';
+				$out .= '<a href="' . $link . '">' . $advertisement->title . '</a> ';
+				$out .= '<span class="livemarket_date">' . date_i18n( $dateformat, strtotime( get_date_from_gmt( $advertisement->created_at ) ) ) . '</span>';
+				$out .= '</li>';
 			}
 			$out .= '</ul>';
 		} else {
