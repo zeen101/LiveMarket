@@ -29,19 +29,18 @@ if ( !function_exists( 'do_livemarket' ) ) {
 			$advertisements = get_livemarket_advertisements();
 			if ( !empty( $advertisements->success ) && !empty( $advertisements->data ) ) {
 				$results  = '<div class="livemarket_list">';
-				$results .= '<ul>';
 				foreach( $advertisements->data as $advertisement ) {
 					if ( get_option( 'permalink_structure' ) ) {
 						$link = get_permalink( $settings['livemarket_page'] ) . $advertisement->id;
 					} else {
 						$link = get_permalink( $settings['livemarket_page'] ) . '?store=' . $advertisement->id;
 					}
-					$results .= '<li>';
-					$results .= '<a href="' . $link . '">' . $advertisement->title . '</a> ';
-					$results .= '<span class="livemarket_date">' . date_i18n( $dateformat, strtotime( get_date_from_gmt( $advertisement->created_at ) ) ) . '</span>';
-					$results .= '</li>';
+					$results .= '<p>';
+					$results .= '<span class="livemarket_title"><a href="' . $link . '">' . $advertisement->title . '</a></span><br />';
+					$results .= '<span class="livemarket_meta livemarket_companyname">' . __( 'by', 'livemarket' ). ' ' . $advertisement->displayname . '</span>';
+					$results .= '<span class="livemarket_meta livemarket_date"> - ' . date_i18n( $dateformat, strtotime( get_date_from_gmt( $advertisement->created_at ) ) ) . '</span>';
+					$results .= '</p>';
 				}
-				$results .= '</ul>';
 				$results .= '</div>';
 			} else {
 				return '<h1 class="error">' . __( 'Unable to find marketplace stores.', 'livemarket' ) . '</h1>';
@@ -51,9 +50,10 @@ if ( !function_exists( 'do_livemarket' ) ) {
 			if ( !empty( $advertisement->success ) && !empty( $advertisement->data ) ) {
 				$results  = '<div class="livemarket_content">';
 				$results .= '<h3>' . $advertisement->data->title . '</h3>';
-				$results .= '<span class="livemarket_date">' . date_i18n( $dateformat, strtotime( get_date_from_gmt( $advertisement->data->created_at ) ) ) . '</span>';
+				$results .= '<p><span class="livemarket_meta livemarket_companyname">' . __( 'by', 'livemarket' ). ' ' . $advertisement->data->displayname . '</span>';
+				$results .= '<span class="livemarket_meta livemarket_date"> - ' . date_i18n( $dateformat, strtotime( get_date_from_gmt( $advertisement->data->created_at ) ) ) . '</span></p>';
 				$results .= $advertisement->data->content;
-				$results .= '<h3><a href="' . $advertisement->data->url . '">Find out More</a><h3>';
+				$results .= '<p class="livemarket-more-button-wrapper"><a href="' . $advertisement->data->url . '" class="livemarket-more-button">' . __( 'Find Out More', 'livemarket' ) . '</a></p>';
 				$results .= '</div>';
 			} else {
 				return '<h1 class="error">' . __( 'Unable to find marketplace store.', 'livemarket' ) . '</h1>';

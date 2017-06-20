@@ -59,19 +59,26 @@ class LiveMarket_Advertisements extends WP_Widget {
 
 		$advertisements = get_livemarket_advertisements();
 		if ( !empty( $advertisements->success ) && !empty( $advertisements->data ) ) {
-			$out = '<ul>';
+			$out  = '<div class="livemarket_list">';
+			$count = 0;
 			foreach( $advertisements->data as $advertisement ) {
+				$count++;
 				if ( get_option( 'permalink_structure' ) ) {
 					$link = get_permalink( $settings['livemarket_page'] ) . $advertisement->id;
 				} else {
 					$link = get_permalink( $settings['livemarket_page'] ) . '?store=' . $advertisement->id;
 				}
-				$out .= '<li>';
-				$out .= '<a href="' . $link . '">' . $advertisement->title . '</a> ';
-				$out .= '<span class="livemarket_date">' . date_i18n( $dateformat, strtotime( get_date_from_gmt( $advertisement->created_at ) ) ) . '</span>';
-				$out .= '</li>';
+				$out .= '<p>';
+				$out .= '<span class="livemarket_title><a href="' . $link . '">' . $advertisement->title . '</a></span><br />';
+				$out .= '<span class="livemarket_meta livemarket_companyname">' . __( 'by', 'livemarket' ). ' ' . $advertisement->displayname . '</span> ';
+				$out .= '<span class="livemarket_meta livemarket_date"> - ' . date_i18n( $dateformat, strtotime( get_date_from_gmt( $advertisement->created_at ) ) ) . '</span>';
+				$out .= '</p>';
+				if ( 12 <= $count ) {
+					break;
+				}
 			}
-			$out .= '</ul>';
+			$out .= '<p><a href="' . get_permalink( $settings['livemarket_page'] ) . '">' . __( 'See All Promotions', 'livemarket' ) . '</a></p>';
+			$out .= '</div>';
 		} else {
 			$out = '<h1 class="error">' . __( 'Unable to find marketplace stores.', 'livemarket' ) . '</h1>';
 		}
