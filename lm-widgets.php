@@ -69,7 +69,7 @@ class LiveMarket_Advertisements extends WP_Widget {
 					$link = get_permalink( $settings['livemarket_page'] ) . '?store=' . $advertisement->id;
 				}
 				$out .= '<p>';
-				$out .= '<span class="livemarket_title><a href="' . $link . '">' . $advertisement->title . '</a></span><br />';
+				$out .= '<span class="livemarket_title"><a href="' . $link . '">' . $advertisement->title . '</a></span><br />';
 				$out .= '<span class="livemarket_meta livemarket_companyname">' . __( 'by', 'livemarket' ). ' ' . $advertisement->displayname . '</span> ';
 				$out .= '<span class="livemarket_meta livemarket_date"> - ' . date_i18n( $dateformat, strtotime( get_date_from_gmt( $advertisement->created_at ) ) ) . '</span>';
 				$out .= '</p>';
