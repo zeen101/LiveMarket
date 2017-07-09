@@ -51,37 +51,15 @@ class LiveMarket_Advertisements extends WP_Widget {
 		extract( $instance );
 	
 		$settings = get_livemarket_settings();
-		$dateformat = get_option( 'date_format' );
 		
 		if ( empty( $settings['api_key'] ) ) {
 			return '<h1 class="error">' . __( 'You Must Enter a Valid Live Market API Key in the Live Market Plugin', 'livemarket' ) . '</h1>';
 		}
+		
+		$page = apply_filters( 'livemarket_widget_advertisements_page', 0 ); //0 is the first page
+		$limit = apply_filters( 'livemarket_widget_advertisements_limit', 10 ); //Get 10 advertisements
 
-		$advertisements = get_livemarket_advertisements();
-		if ( !empty( $advertisements->success ) && !empty( $advertisements->data ) ) {
-			$out  = '<div class="livemarket_list">';
-			$count = 0;
-			foreach( $advertisements->data as $advertisement ) {
-				$count++;
-				if ( get_option( 'permalink_structure' ) ) {
-					$link = get_permalink( $settings['livemarket_page'] ) . $advertisement->id;
-				} else {
-					$link = get_permalink( $settings['livemarket_page'] ) . '?store=' . $advertisement->id;
-				}
-				$out .= '<p>';
-				$out .= '<span class="livemarket_title"><a href="' . $link . '">' . $advertisement->title . '</a></span><br />';
-				$out .= '<span class="livemarket_meta livemarket_companyname">' . __( 'by', 'livemarket' ). ' ' . $advertisement->displayname . '</span> ';
-				$out .= '<span class="livemarket_meta livemarket_date"> - ' . date_i18n( $dateformat, strtotime( get_date_from_gmt( $advertisement->created_at ) ) ) . '</span>';
-				$out .= '</p>';
-				if ( 12 <= $count ) {
-					break;
-				}
-			}
-			$out .= '<p><a href="' . get_permalink( $settings['livemarket_page'] ) . '">' . __( 'See All Promotions', 'livemarket' ) . '</a></p>';
-			$out .= '</div>';
-		} else {
-			$out = '<h1 class="error">' . __( 'Unable to find marketplace stores.', 'livemarket' ) . '</h1>';
-		}
+		$out = formatted_livemarket_advertisements( $page, $limit );
 		
 		if ( ! empty( $out ) ) {
 			

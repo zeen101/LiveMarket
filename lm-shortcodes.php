@@ -23,32 +23,20 @@ if ( !function_exists( 'do_livemarket' ) ) {
 			return '<h1 class="error">' . __( 'You Must Enter a Valid Live Market API Key in the Live Market Plugin', 'livemarket' ) . '</h1>';
 		}
 		
-		$store = get_query_var( 'store' );
+		$advertisement_id = get_query_var( 'store' );
 		
-		if ( empty( $store ) ) {
-			$advertisements = get_livemarket_advertisements();
-			if ( !empty( $advertisements->success ) && !empty( $advertisements->data ) ) {
-				$results  = '<div class="livemarket_list">';
-				foreach( $advertisements->data as $advertisement ) {
-					if ( get_option( 'permalink_structure' ) ) {
-						$link = get_permalink( $settings['livemarket_page'] ) . $advertisement->id;
-					} else {
-						$link = get_permalink( $settings['livemarket_page'] ) . '?store=' . $advertisement->id;
-					}
-					$results .= '<p>';
-					$results .= '<span class="livemarket_title"><a href="' . $link . '">' . $advertisement->title . '</a></span><br />';
-					$results .= '<span class="livemarket_meta livemarket_companyname">' . __( 'by', 'livemarket' ). ' ' . $advertisement->displayname . '</span>';
-					$results .= '<span class="livemarket_meta livemarket_date"> - ' . date_i18n( $dateformat, strtotime( get_date_from_gmt( $advertisement->created_at ) ) ) . '</span>';
-					$results .= '</p>';
-				}
-				$results .= '</div>';
-			} else {
-				return '<h1 class="error">' . __( 'Unable to find marketplace stores.', 'livemarket' ) . '</h1>';
-			}
+		if ( empty( $advertisement_id ) ) {
+			$page = apply_filters( 'livemarket_shortcode_advertisements_page', 0 ); //0 is the first page
+			$limit = apply_filters( 'livemarket_shortcode_advertisements_limit', 10 ); //Get 10 advertisements
+	
+			$results  =  '<div class="livemarket_list">';
+			$results .=  formatted_livemarket_advertisements( $page, $limit );
+			$results .=  '</div>';
 		} else {
-			$advertisement = get_livemarket_advertisement( $store );
+			$advertisement = get_livemarket_advertisement( $advertisement_id );
 			if ( !empty( $advertisement->success ) && !empty( $advertisement->data ) ) {
-				$results  = '<div class="livemarket_content">';
+				$return = livemarket_track_impression( $advertisement_id );
+				$results  = '<div class="livemarket_content" data-id="' . $advertisement_id . '">';
 				$results .= '<h3>' . $advertisement->data->title . '</h3>';
 				$results .= '<p><span class="livemarket_meta livemarket_companyname">' . __( 'by', 'livemarket' ). ' ' . $advertisement->data->displayname . '</span>';
 				$results .= '<span class="livemarket_meta livemarket_date"> - ' . date_i18n( $dateformat, strtotime( get_date_from_gmt( $advertisement->data->created_at ) ) ) . '</span></p>';

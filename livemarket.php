@@ -42,6 +42,7 @@ function livemarket_plugins_loaded() {
 		global $livemarket;
 		$livemarket = new LiveMarket();
 		
+		require_once( 'lm-ajax.php' );
 		require_once( 'lm-functions.php' );
 		require_once( 'lm-api.php' );
 		require_once( 'lm-shortcodes.php' );
