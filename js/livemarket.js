@@ -19,7 +19,7 @@ $livemarket_jquery( document ).ready( function($) {
 	    var url = $(this).attr( 'href' ); 
 	    window.open( url, '_blank' );
 	});
-	$( '.livemarket_list' ).on( 'click', '.newer a, .older a', function(e) {
+	$( '.livemarket_list' ).on( 'click', '.more a', function(e) {
 	    e.preventDefault();
 		var data = {
 			'action': 'livemarket_list',
@@ -32,7 +32,8 @@ $livemarket_jquery( document ).ready( function($) {
 			data: data,
 			dataType: 'JSON',
 			success: function( response ) {
-				$( 'div.livemarket_list' ).html( response.data.html );
+				$( 'div.livemarket_list .more' ).remove();
+				$( 'div.livemarket_list' ).append( response.data.html );
 			},
 			error: function( errorThrown ) {
 				console.log( errorThrown );

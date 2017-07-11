@@ -88,7 +88,7 @@ if ( !function_exists( 'get_livemarket_advertisement' ) ) {
 	
 }
 	
-if ( !function_exists( 'livemarket_track_impression' ) ) {
+if ( !function_exists( 'livemarket_track_impressions' ) ) {
 
 	/**
 	 * zeen101's Live Market API for tracking impressions
@@ -97,7 +97,33 @@ if ( !function_exists( 'livemarket_track_impression' ) ) {
 	 *
 	 * @return mixed Value set for the issuem options.
 	 */
-	function livemarket_track_impression( $advertisement_id, $data = array() ) {
+	function livemarket_track_impressions( $advertisement_ids = array(), $data = array() ) {
+	
+		$settings = get_livemarket_settings();
+		
+		$args = array(
+			'headers' => array(
+				'Authorization' => 'Bearer ' . $settings['api_key'],
+			),
+			'body' => array( 'advertisements' => $advertisement_ids )
+		);
+		$results = wp_remote_post( LIVEMARKET_API_URL . 'publication/' . $settings['publication_id'] . '/advertisement/impressions', $args );
+		$body = wp_remote_retrieve_body( $results );
+		return json_decode( $body );
+		
+	}
+}
+	
+if ( !function_exists( 'livemarket_track_view' ) ) {
+
+	/**
+	 * zeen101's Live Market API for tracking views
+	 *
+	 * @since 1.0.0
+	 *
+	 * @return mixed Value set for the issuem options.
+	 */
+	function livemarket_track_view( $advertisement_id, $data = array() ) {
 	
 		$settings = get_livemarket_settings();
 		
@@ -107,8 +133,11 @@ if ( !function_exists( 'livemarket_track_impression' ) ) {
 			),
 			'body' => $data
 		);
-		$results = wp_remote_post( LIVEMARKET_API_URL . 'publication/' . $settings['publication_id'] . '/advertisement/' . $advertisement_id . '/impression', $args );
+		$results = wp_remote_post( LIVEMARKET_API_URL . 'publication/' . $settings['publication_id'] . '/advertisement/' . $advertisement_id . '/view', $args );
 		$body = wp_remote_retrieve_body( $results );
+		$f = fopen( 'output.txt', 'w' );
+		fwrite( $f, $body );
+		fclose( $f );
 		return json_decode( $body );
 		
 	}

@@ -25,17 +25,14 @@ if ( !function_exists( 'do_livemarket' ) ) {
 		
 		$advertisement_id = get_query_var( 'store' );
 		
-		if ( empty( $advertisement_id ) ) {
-			$page = apply_filters( 'livemarket_shortcode_advertisements_page', 0 ); //0 is the first page
-			$limit = apply_filters( 'livemarket_shortcode_advertisements_limit', 10 ); //Get 10 advertisements
-	
+		if ( empty( $advertisement_id ) ) {	
 			$results  =  '<div class="livemarket_list">';
-			$results .=  formatted_livemarket_advertisements( $page, $limit );
+			$results .=  shortcode_formatted_livemarket_advertisements();
 			$results .=  '</div>';
 		} else {
 			$advertisement = get_livemarket_advertisement( $advertisement_id );
 			if ( !empty( $advertisement->success ) && !empty( $advertisement->data ) ) {
-				$return = livemarket_track_impression( $advertisement_id );
+				$return = livemarket_track_view( $advertisement_id );
 				$results  = '<div class="livemarket_content" data-id="' . $advertisement_id . '">';
 				$results .= '<h3>' . $advertisement->data->title . '</h3>';
 				$results .= '<p><span class="livemarket_meta livemarket_companyname">' . __( 'by', 'livemarket' ). ' ' . $advertisement->data->displayname . '</span>';

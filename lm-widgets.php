@@ -56,10 +56,7 @@ class LiveMarket_Advertisements extends WP_Widget {
 			return '<h1 class="error">' . __( 'You Must Enter a Valid Live Market API Key in the Live Market Plugin', 'livemarket' ) . '</h1>';
 		}
 		
-		$page = apply_filters( 'livemarket_widget_advertisements_page', 0 ); //0 is the first page
-		$limit = apply_filters( 'livemarket_widget_advertisements_limit', 10 ); //Get 10 advertisements
-
-		$out = formatted_livemarket_advertisements( $page, $limit );
+		$out = widget_formatted_livemarket_advertisements();
 		
 		if ( ! empty( $out ) ) {
 			

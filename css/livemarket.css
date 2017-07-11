@@ -34,14 +34,6 @@
 	font-size: .8em;
 }
 
-.livemarket_list .newer {
-	float: left;
-}
-
-.livemarket_list .older {
-	float: right;
-}
-
 .livemarket_list .hidden {
 	display: none;
 }

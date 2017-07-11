@@ -122,7 +122,7 @@ if ( ! class_exists( 'LiveMarket' ) ) {
 		 */
 		function frontend_scripts() {
 			
-			wp_enqueue_style( 'livemarket', LIVEMARKET_URL . '/css/livemarket.css', '', LIVEMARKET_VERSION );
+			wp_enqueue_style( 'livemarket', LIVEMARKET_URL . 'css/livemarket.css', '', LIVEMARKET_VERSION );
 			wp_enqueue_script( 'livemarket', LIVEMARKET_URL . 'js/livemarket.js', array( 'jquery' ), LIVEMARKET_VERSION );
 			wp_localize_script( 'livemarket', 'livemarket_ajax', 
 				array( 

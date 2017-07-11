@@ -54,6 +54,28 @@ if ( !function_exists( 'default_livemarket_content_filter' ) ) {
 	
 }
 
+if ( !function_exists( 'widget_formatted_livemarket_advertisements' ) ) {
+	
+	function widget_formatted_livemarket_advertisements() {
+		$page = apply_filters( 'livemarket_widget_advertisements_page', 0 ); //0 is the first page
+		$limit = apply_filters( 'livemarket_widget_advertisements_limit', 10 ); //Get 10 advertisements
+		
+		return formatted_livemarket_advertisements( $page, $limit, true, false );
+	}
+	
+}
+
+if ( !function_exists( 'shortcode_formatted_livemarket_advertisements' ) ) {
+	
+	function shortcode_formatted_livemarket_advertisements() {
+		$page = apply_filters( 'livemarket_shortcode_advertisements_page', 0 ); //0 is the first page
+		$limit = apply_filters( 'livemarket_shortcode_advertisements_limit', 10 ); //Get 10 advertisements
+		
+		return formatted_livemarket_advertisements( $page, $limit, false, true );
+	}
+	
+}
+
 if ( !function_exists( 'formatted_livemarket_advertisements' ) ) {
 
 	/**
@@ -64,7 +86,7 @@ if ( !function_exists( 'formatted_livemarket_advertisements' ) ) {
 	 *
 	 * @return string new content.
 	 */
-	function formatted_livemarket_advertisements( $page = 0, $limit = 10 ) {
+	function formatted_livemarket_advertisements( $page = 0, $limit = 10, $widget = false, $shortcode = false ) {
 		
 		$settings = get_livemarket_settings();
 		$dateformat = get_option( 'date_format' );
@@ -74,6 +96,7 @@ if ( !function_exists( 'formatted_livemarket_advertisements' ) ) {
 		if ( !empty( $advertisements->success ) && !empty( $advertisements->data ) ) {
 			$return  = '';
 			foreach( $advertisements->data->advertisements as $advertisement ) {
+				$track_ids[] = $advertisement->id;
 				if ( get_option( 'permalink_structure' ) ) {
 					$link = get_permalink( $settings['livemarket_page'] ) . $advertisement->id;
 				} else {
@@ -85,20 +108,21 @@ if ( !function_exists( 'formatted_livemarket_advertisements' ) ) {
 				$return .= '<span class="livemarket_meta livemarket_date"> - ' . date_i18n( $dateformat, strtotime( get_date_from_gmt( $advertisement->created_at ) ) ) . '</span>';
 				$return .= '</p>';
 			}
+			if ( !empty( $track_ids ) ) {
+				livemarket_track_impressions( $track_ids );
+			}
+			
 			$return .= '<p>';
-			$prev_page = $page - 1;
-			$next_page = $page + 1;
-			if ( 0 < $page ) {
-				$return .= '<span class="newer"><a href="#" data-page="' . $prev_page . '" data-limit="' . $limit . '">' . __( 'Newer', 'livemarket' ) . '</a></span>';
-			} else {
-				$return .= '<span class="newer"><a class="hidden" href="#" data-page="0" data-limit="' . $limit . '">' . __( 'Newer', 'livemarket' ) . '</a></span>';
+			if ( $widget ) {
+				$return .= '<span class="all"><a href="' . get_permalink( $settings['livemarket_page'] ) . '">' . __( 'View All', 'livemarket' ) . '</a></span>';
 			}
-			if ( 10 < $advertisements->data->total && ( $next_page * $limit < $advertisements->data->total ) ) {
-				$return .= '<span class="older"><a href="#" data-page="' . $next_page . '" data-limit="' . $limit . '">' . __( 'Older', 'livemarket' ) . '</a></span>';
-			} else {
-				$return .= '<span class="older"><a class="hidden" href="#" data-page="' . $next_page . '" data-limit="' . $limit . '">' . __( 'Older', 'livemarket' ) . '</a></span>';
+			
+			if ( $shortcode ) {
+				$next_page = $page + 1;
+				if ( $limit < $advertisements->data->total && ( $next_page * $limit < $advertisements->data->total ) ) {
+					$return .= '<span class="more"><a href="#" data-page="' . $next_page . '" data-limit="' . $limit . '">' . __( 'View More', 'livemarket' ) . '</a></span>';
+				}
 			}
-		
 			$return .= '</p>';
 		} else {
 			$return = '<h1 class="error">' . __( 'Unable to find marketplace stores.', 'livemarket' ) . '</h1>';
