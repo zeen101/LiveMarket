@@ -56,7 +56,11 @@ class LiveMarket_Advertisements extends WP_Widget {
 			return '<h1 class="error">' . __( 'You Must Enter a Valid Live Market API Key in the Live Market Plugin', 'livemarket' ) . '</h1>';
 		}
 		
-		$out = widget_formatted_livemarket_advertisements();
+		$out = widget_formatted_livemarket_advertisements( 0, $instance['limit'] ); //Page, Limit
+		
+		if ( !empty( $instance['show_signup'] ) ) {
+			$out .= widget_formatted_livemarket_advertisement_signup_link();
+		}
 		
 		if ( ! empty( $out ) ) {
 			
@@ -83,8 +87,15 @@ class LiveMarket_Advertisements extends WP_Widget {
 	 */
 	function update( $new_instance, $old_instance ) {
 		
-		$instance          = $old_instance;	
-		$instance['title'] = $new_instance['title'];
+		$instance                = $old_instance;	
+		$instance['title']       = $new_instance['title'];
+		if ( 1 > $new_instance['limit'] ) {
+			$new_instance['limit'] = 1;
+		} else if ( 50 < $new_instance['limit'] ) {
+			$new_instance['limit'] = 50;
+		}
+		$instance['limit']       = $new_instance['limit'];
+		$instance['show_signup'] = (bool)$new_instance['show_signup'];
 		return $instance;
 		
 	}
@@ -106,15 +117,24 @@ class LiveMarket_Advertisements extends WP_Widget {
         	
 		//Defaults
 		$defaults = array(
-			'title' => 'Live Market',
+			'title'       => 'Live Market',
+			'limit'       => 10,
+			'show_signup' => true,
 		);
-		
-		extract( wp_parse_args( $instance, $defaults ) );
+		$instance = wp_parse_args( $instance, $defaults );
 		
 		?>
 		<p>
         	<label for="<?php echo $this->get_field_id('title'); ?>"><?php _e( 'Title:', 'livemarket' ); ?></label>
-            <input class="widefat" id="<?php echo $this->get_field_id('title'); ?>" name="<?php echo $this->get_field_name('title'); ?>" type="text" value="<?php echo esc_attr( strip_tags( $title ) ); ?>" />
+            <input class="widefat" id="<?php echo $this->get_field_id('title'); ?>" name="<?php echo $this->get_field_name('title'); ?>" type="text" value="<?php echo esc_attr( strip_tags( $instance['title'] ) ); ?>" />
+        </p>
+		<p>
+        	<label for="<?php echo $this->get_field_id('limit'); ?>"><?php _e( 'Limit (50 max):', 'livemarket' ); ?></label>
+            <input class="widefat" id="<?php echo $this->get_field_id('limit'); ?>" name="<?php echo $this->get_field_name('limit'); ?>" type="number" value="<?php echo esc_attr( strip_tags( $instance['limit'] ) ); ?>" min="1" max="50" />
+        </p>
+		<p>
+        	<label for="<?php echo $this->get_field_id('show_signup'); ?>"><?php _e( 'Show Signup Link:', 'livemarket' ); ?></label>
+            <input id="<?php echo $this->get_field_id('show_signup'); ?>" name="<?php echo $this->get_field_name('show_signup'); ?>" type="checkbox" <?php checked( $instance['show_signup'] ); ?>" />
         </p>
         <?php
 	

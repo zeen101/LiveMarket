@@ -23,12 +23,23 @@ if ( !function_exists( 'do_livemarket' ) ) {
 			return '<h1 class="error">' . __( 'You Must Enter a Valid Live Market API Key in the Live Market Plugin', 'livemarket' ) . '</h1>';
 		}
 		
+		$defaults = array(
+			'limit'       => 10,
+			'show_signup' => true,
+		);
+		$atts = shortcode_atts( $defaults, $atts );
+		
 		$advertisement_id = get_query_var( 'store' );
 		
 		if ( empty( $advertisement_id ) ) {	
 			$results  =  '<div class="livemarket_list">';
-			$results .=  shortcode_formatted_livemarket_advertisements();
+			$results .=  shortcode_formatted_livemarket_advertisements( 0, $atts['limit'] ); //Page, Limit
 			$results .=  '</div>';
+			if ( !empty( $atts['show_signup'] ) ) {
+				$results .=  '<div class="livemarket_signup_link">';
+				$results .= shortcode_formatted_livemarket_advertisement_signup_link();
+				$results .=  '</div>';
+			}
 		} else {
 			$advertisement = get_livemarket_advertisement( $advertisement_id );
 			if ( !empty( $advertisement->success ) && !empty( $advertisement->data ) ) {

@@ -56,24 +56,42 @@ if ( !function_exists( 'default_livemarket_content_filter' ) ) {
 
 if ( !function_exists( 'widget_formatted_livemarket_advertisements' ) ) {
 	
-	function widget_formatted_livemarket_advertisements() {
-		$page = apply_filters( 'livemarket_widget_advertisements_page', 0 ); //0 is the first page
-		$limit = apply_filters( 'livemarket_widget_advertisements_limit', 10 ); //Get 10 advertisements
+	function widget_formatted_livemarket_advertisements( $page = 0, $limit = 10 ) {
+		$page = apply_filters( 'livemarket_widget_advertisements_page', $page ); //0 is the first page
+		$limit = apply_filters( 'livemarket_widget_advertisements_limit', $limit ); //Get 10 advertisements
 		
 		return formatted_livemarket_advertisements( $page, $limit, true, false );
 	}
 	
 }
 
+if ( !function_exists( 'widget_formatted_livemarket_advertisement_signup_link' ) ) {
+	
+	function widget_formatted_livemarket_advertisement_signup_link() {
+		$settings = get_livemarket_settings();
+		$text = apply_filters( 'livemarket_widget_advertisements_signup_link_text', sprintf( __( 'Advertise with %s', 'livemarket' ), get_bloginfo( 'name' ) ) );
+		return '<a href="https://my.livemarket.pub/publication/' . $settings['publication_id'] . '/advertise/" target="_blank">' . $text . '</a>';
+	}
+}
+
 if ( !function_exists( 'shortcode_formatted_livemarket_advertisements' ) ) {
 	
-	function shortcode_formatted_livemarket_advertisements() {
-		$page = apply_filters( 'livemarket_shortcode_advertisements_page', 0 ); //0 is the first page
-		$limit = apply_filters( 'livemarket_shortcode_advertisements_limit', 10 ); //Get 10 advertisements
+	function shortcode_formatted_livemarket_advertisements( $page = 0, $limit = 10 ) {
+		$page = apply_filters( 'livemarket_shortcode_advertisements_page', $page  ); //0 is the first page
+		$limit = apply_filters( 'livemarket_shortcode_advertisements_limit', $limit ); //Get 10 advertisements
 		
 		return formatted_livemarket_advertisements( $page, $limit, false, true );
 	}
 	
+}
+
+if ( !function_exists( 'shortcode_formatted_livemarket_advertisement_signup_link' ) ) {
+	
+	function shortcode_formatted_livemarket_advertisement_signup_link() {
+		$settings = get_livemarket_settings();
+		$text = apply_filters( 'livemarket_shortcode_advertisements_signup_link_text', sprintf( __( 'Advertise with %s', 'livemarket' ), get_bloginfo( 'name' ) ) );
+		return '<a href="https://my.livemarket.pub/publication/' . $settings['publication_id'] . '/advertise/" target="_blank">' . $text . '</a>';
+	}
 }
 
 if ( !function_exists( 'formatted_livemarket_advertisements' ) ) {
