@@ -261,6 +261,7 @@ if ( ! class_exists( 'LiveMarket' ) ) {
 	                                <?php 
 		                                if ( !empty( $publications->data ) ) {
 			                                echo '<select name="publication_id" id="publication_id">';
+							echo '<option value="0" ' . selected( $settings['publication_id'], 0, true ) . '>' . __( 'Select Your Publication', 'livemarket' ) . '</option>';
 			                                foreach( $publications->data as $publication ) {
 				                                echo '<option value="' . $publication->id . '" ' . selected( $settings['publication_id'], $publication->id, true ) . '>' . $publication->name . '</option>';
 			                                }
