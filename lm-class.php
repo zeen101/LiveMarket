@@ -232,9 +232,9 @@ if ( ! class_exists( 'LiveMarket' ) ) {
                         <table id="livemarket_administrator_options" class="form-table">
                         
                         	<tr>
-                                <th><?php _e( 'Access Token', 'livemarket' ); ?></th>
+                                <th><?php _e( 'API Token', 'livemarket' ); ?></th>
                                 <td>
-	                                <input type="text" id="api_key" class="regular-text" name="api_key" value="<?php echo htmlspecialchars( stripcslashes( $settings['api_key'] ) ); ?>" />
+	                                <input type="text" id="api_key" class="large-text" name="api_key" value="<?php echo htmlspecialchars( stripcslashes( $settings['api_key'] ) ); ?>" />
 	                                <p class="description"><?php printf( __( 'Register or sign into <a href="http://my.livemarket.pub">LiveMarket</a> to setup your first Publication and get your API key.', 'livemarket' ), '[livemarket]' ); ?></p>
                                 </td>
                             </tr>
