@@ -24,12 +24,11 @@ add_action( 'wp_ajax_nopriv_livemarket_list', 'ajax_get_livemarket_advertisement
 function ajax_livemarket_track_click() {
 	check_ajax_referer( 'livemarket-nonce', 'nonce' );
 
-	$id = intval( $_REQUEST['id'] );
+	$slug = sanitize_text_field( $_REQUEST['slug'] );
 	$target = esc_url( $_REQUEST['target'] );
 	$anchor = sanitize_text_field( $_REQUEST['anchor'] );
 	
-	$return = livemarket_track_click( $id, array( 'target' => $target, 'anchor' => $anchor ) );
-	error_log( print_r( $return, true ) );
+	$return = livemarket_track_click( $slug, array( 'target' => $target, 'anchor' => $anchor ) );
 	wp_send_json_success();
 }
 add_action( 'wp_ajax_livemarket_track_click', 'ajax_livemarket_track_click' );

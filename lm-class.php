@@ -59,7 +59,7 @@ if ( ! class_exists( 'LiveMarket' ) ) {
 			$settings = $this->get_settings();
 			$newrules = array();
 			$post = get_post( $settings['livemarket_page'] );
-			$newrules['(' . $post->post_name . ')/(\d*)$'] = 'index.php?pagename=$matches[1]&store=$matches[2]';
+			$newrules['(' . $post->post_name . ')/(.*)(/.*)?$'] = 'index.php?pagename=$matches[1]&store=$matches[2]';
 			return $newrules + $rules;
 		}
 		

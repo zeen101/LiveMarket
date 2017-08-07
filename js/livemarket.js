@@ -6,7 +6,7 @@ $livemarket_jquery( document ).ready( function($) {
 		var data = {
 			'action': 'livemarket_track_click',
 			'nonce': livemarket_ajax.security,
-			'id': $( '.livemarket_content' ).data( 'id' ),
+			'slug': $( '.livemarket_content' ).data( 'slug' ),
 			'target': $( this ).attr( 'href' ),
 			'anchor': $( this ).text()
 		};

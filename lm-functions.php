@@ -116,9 +116,9 @@ if ( !function_exists( 'formatted_livemarket_advertisements' ) ) {
 			foreach( $advertisements->data->advertisements as $advertisement ) {
 				$track_ids[] = $advertisement->id;
 				if ( get_option( 'permalink_structure' ) ) {
-					$link = get_permalink( $settings['livemarket_page'] ) . $advertisement->id;
+					$link = rtrim( get_permalink( $settings['livemarket_page'] ), '/' ) . '/' . $advertisement->slug;
 				} else {
-					$link = get_permalink( $settings['livemarket_page'] ) . '?store=' . $advertisement->id;
+					$link = rtrim( get_permalink( $settings['livemarket_page'] ), '/' ) . '/' . '?store=' . $advertisement->slug;
 				}
 				$return .= '<p>';
 				$return .= '<span class="livemarket_title"><a href="' . $link . '">' . $advertisement->title . '</a></span><br />';

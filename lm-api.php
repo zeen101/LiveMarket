@@ -71,7 +71,7 @@ if ( !function_exists( 'get_livemarket_advertisement' ) ) {
 	 *
 	 * @return mixed Value set for the issuem options.
 	 */
-	function get_livemarket_advertisement( $advertisement_id ) {
+	function get_livemarket_advertisement( $advertisement_slug ) {
 	
 		$settings = get_livemarket_settings();
 		
@@ -80,7 +80,7 @@ if ( !function_exists( 'get_livemarket_advertisement' ) ) {
 				'Authorization' => 'Bearer ' . $settings['api_key'],
 			)
 		);
-		$results = wp_remote_get( LIVEMARKET_API_URL . 'publication/' . $settings['publication_id'] . '/advertisement/' . $advertisement_id, $args );
+		$results = wp_remote_get( LIVEMARKET_API_URL . 'publication/' . $settings['publication_id'] . '/advertisement/' . $advertisement_slug, $args );
 		$body = wp_remote_retrieve_body( $results );
 		return json_decode( $body );
 		
@@ -123,7 +123,7 @@ if ( !function_exists( 'livemarket_track_view' ) ) {
 	 *
 	 * @return mixed Value set for the issuem options.
 	 */
-	function livemarket_track_view( $advertisement_id, $data = array() ) {
+	function livemarket_track_view( $advertisement_slug, $data = array() ) {
 	
 		$settings = get_livemarket_settings();
 		
@@ -133,7 +133,7 @@ if ( !function_exists( 'livemarket_track_view' ) ) {
 			),
 			'body' => $data
 		);
-		$results = wp_remote_post( LIVEMARKET_API_URL . 'publication/' . $settings['publication_id'] . '/advertisement/' . $advertisement_id . '/view', $args );
+		$results = wp_remote_post( LIVEMARKET_API_URL . 'publication/' . $settings['publication_id'] . '/advertisement/' . $advertisement_slug . '/view', $args );
 		$body = wp_remote_retrieve_body( $results );
 		$f = fopen( 'output.txt', 'w' );
 		fwrite( $f, $body );
@@ -152,7 +152,7 @@ if ( !function_exists( 'livemarket_track_click' ) ) {
 	 *
 	 * @return mixed Value set for the issuem options.
 	 */
-	function livemarket_track_click( $advertisement_id, $data = array() ) {
+	function livemarket_track_click( $advertisement_slug, $data = array() ) {
 		
 		$settings = get_livemarket_settings();
 		
@@ -162,7 +162,7 @@ if ( !function_exists( 'livemarket_track_click' ) ) {
 			),
 			'body' => $data
 		);
-		$results = wp_remote_post( LIVEMARKET_API_URL . 'publication/' . $settings['publication_id'] . '/advertisement/' . $advertisement_id . '/click', $args );
+		$results = wp_remote_post( LIVEMARKET_API_URL . 'publication/' . $settings['publication_id'] . '/advertisement/' . $advertisement_slug . '/click', $args );
 		$body = wp_remote_retrieve_body( $results );
 		return json_decode( $body );
 		

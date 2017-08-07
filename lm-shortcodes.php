@@ -29,9 +29,9 @@ if ( !function_exists( 'do_livemarket' ) ) {
 		);
 		$atts = shortcode_atts( $defaults, $atts );
 		
-		$advertisement_id = get_query_var( 'store' );
+		$advertisement_slug = get_query_var( 'store' );
 		
-		if ( empty( $advertisement_id ) ) {	
+		if ( empty( $advertisement_slug ) ) {	
 			$results  =  '<div class="livemarket_list">';
 			$results .=  shortcode_formatted_livemarket_advertisements( 0, $atts['limit'] ); //Page, Limit
 			$results .=  '</div>';
@@ -41,10 +41,10 @@ if ( !function_exists( 'do_livemarket' ) ) {
 				$results .=  '</div>';
 			}
 		} else {
-			$advertisement = get_livemarket_advertisement( $advertisement_id );
+			$advertisement = get_livemarket_advertisement( $advertisement_slug );
 			if ( !empty( $advertisement->success ) && !empty( $advertisement->data ) ) {
-				$return = livemarket_track_view( $advertisement_id );
-				$results  = '<div class="livemarket_content" data-id="' . $advertisement_id . '">';
+				$return = livemarket_track_view( $advertisement->data->slug );
+				$results  = '<div class="livemarket_content" data-slug="' . $advertisement->data->slug . '">';
 				$results .= '<h3>' . $advertisement->data->title . '</h3>';
 				$results .= '<p><span class="livemarket_meta livemarket_companyname">' . __( 'by', 'livemarket' ). ' ' . $advertisement->data->displayname . '</span>';
 				$results .= '<span class="livemarket_meta livemarket_date"> - ' . date_i18n( $dateformat, strtotime( get_date_from_gmt( $advertisement->data->created_at ) ) ) . '</span></p>';
