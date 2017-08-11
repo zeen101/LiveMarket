@@ -1,8 +1,8 @@
 <?php
 /**
- * Registers zeen101's Live Market class
+ * Registers zeen101's LiveMarket class
  *
- * @package zeen101's Live Market
+ * @package zeen101's LiveMarket
  * @since 1.0.0
  */
 
@@ -74,7 +74,7 @@ if ( ! class_exists( 'LiveMarket' ) ) {
 		 */
 		function admin_menu() {
 					
-			add_menu_page( __( 'Live Market', 'livemarket' ), __( 'Live Market', 'livemarket' ), apply_filters( 'manage_livemarket_settings', 'manage_options' ), 'livemarket', array( $this, 'settings_page' ), LIVEMARKET_URL . '/images/livemarket-16x16.png' );
+			add_menu_page( __( 'LiveMarket', 'livemarket' ), __( 'Live Market', 'livemarket' ), apply_filters( 'manage_livemarket_settings', 'manage_options' ), 'livemarket', array( $this, 'settings_page' ), LIVEMARKET_URL . '/images/livemarket-16x16.png' );
 			
 			add_submenu_page( 'livemarket', __( 'Settings', 'livemarket' ), __( 'Settings', 'livemarket' ), apply_filters( 'manage_livemarket_settings', 'manage_options' ), 'livemarket', array( $this, 'settings_page' ) );			
 		}
@@ -134,7 +134,7 @@ if ( ! class_exists( 'LiveMarket' ) ) {
 		}
 		
 		/**
-		 * Get zeen101's Live Market options
+		 * Get zeen101's LiveMarket options
 		 *
 		 * @since 1.0.0
 		 */
@@ -154,7 +154,7 @@ if ( ! class_exists( 'LiveMarket' ) ) {
 		}
 		
 		/**
-		 * Update zeen101's Live Market options
+		 * Update zeen101's LiveMarket options
 		 *
 		 * @since 1.0.0
 		 */
@@ -166,7 +166,7 @@ if ( ! class_exists( 'LiveMarket' ) ) {
 		}
 		
 		/**
-		 * Create and Display Live Market settings page
+		 * Create and Display LiveMarket settings page
 		 *
 		 * @since 1.0.0
 		 */
@@ -217,7 +217,7 @@ if ( ! class_exists( 'LiveMarket' ) ) {
             
                 <form id="issuem" method="post" action="">
             
-                    <h1 style='margin-bottom: 2px;' ><?php _e( "Live Market", 'livemarket' ); ?></h1>
+                    <h1 style='margin-bottom: 2px;' ><?php _e( "LiveMarket", 'livemarket' ); ?></h1>
   		
 					<?php do_action('livemarket_before_settings' ); ?>
                     
@@ -248,15 +248,15 @@ if ( ! class_exists( 'LiveMarket' ) ) {
 		                        ?>
 	                            
 	                        	<tr>
-	                                <th><?php _e( 'Live Market Page', 'issuem-leaky-paywall' ); ?></th>
+	                                <th><?php _e( 'LiveMarket Page', 'issuem-leaky-paywall' ); ?></th>
 	                                <td>
 									<?php echo wp_dropdown_pages( array( 'name' => 'livemarket_page', 'echo' => 0, 'show_option_none' => __( '&mdash; Select &mdash;' ), 'option_none_value' => '0', 'selected' => $settings['livemarket_page'] ) ); ?>
-	                                <p class="description"><?php printf( __( 'Add this shortcode to your Live Market page: %s', 'livemarket' ), '[livemarket]' ); ?></p>
+	                                <p class="description"><?php printf( __( 'Add this shortcode to your LiveMarket page: %s', 'livemarket' ), '[livemarket]' ); ?></p>
 	                                </td>
 	                            </tr>
 	                            
 	                        	<tr>
-	                                <th><?php _e( 'Live Market Publication', 'issuem-leaky-paywall' ); ?></th>
+	                                <th><?php _e( 'LiveMarket Publication', 'issuem-leaky-paywall' ); ?></th>
 	                                <td>
 	                                <?php 
 		                                if ( !empty( $publications->data ) ) {

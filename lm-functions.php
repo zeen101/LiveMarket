@@ -1,8 +1,8 @@
 <?php
 /**
- * Registers zeen101's Live Market Functions
+ * Registers zeen101's LiveMarket Functions
  *
- * @package zeen101's Live Market
+ * @package zeen101's LiveMarket
  * @since 1.0.0
  */
 	
@@ -28,7 +28,7 @@ if ( !function_exists( 'get_livemarket_settings' ) ) {
 if ( !function_exists( 'default_livemarket_content_filter' ) ) {
 
 	/**
-	 * Default content filter, adds the Live Market shortcode to the page set
+	 * Default content filter, adds the LiveMarket shortcode to the page set
 	 * if that page has no content.
 	 *
 	 * @since 1.0.0
@@ -97,7 +97,7 @@ if ( !function_exists( 'shortcode_formatted_livemarket_advertisement_signup_link
 if ( !function_exists( 'formatted_livemarket_advertisements' ) ) {
 
 	/**
-	 * Default content filter, adds the Live Market shortcode to the page set
+	 * Default content filter, adds the LiveMarket shortcode to the page set
 	 * if that page has no content.
 	 *
 	 * @since 1.0.0

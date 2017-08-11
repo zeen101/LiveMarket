@@ -1,13 +1,13 @@
 <?php
 /**
- * Main PHP file used to for initial calls to zeen101's Live Market classes and functions.
+ * Main PHP file used to for initial calls to zeen101's LiveMarket classes and functions.
  *
- * @package zeen101's Live Market
+ * @package zeen101's LiveMarket
  * @since 1.0.0
  */
  
 /*
-Plugin Name: Live Market
+Plugin Name: LiveMarket
 Plugin URI: https://livemarket.pub/
 Description: 
 Author: zeen101 Development Team
@@ -17,7 +17,7 @@ Tags:
 Text Domain: livemarket
 */
 	
-define( 'LIVEMARKET_NAME', 			'Live Market for WordPress' );
+define( 'LIVEMARKET_NAME', 			'LiveMarket for WordPress' );
 define( 'LIVEMARKET_SLUG', 			'livemarket' );
 define( 'LIVEMARKET_VERSION',		'1.0.0' );
 define( 'LIVEMARKET_DB_VERSION',	'1.0.0' );
@@ -28,7 +28,7 @@ define( 'LIVEMARKET_REL_DIR',		dirname( LIVEMARKET_BASENAME ) );
 define( 'LIVEMARKET_API_URL',		'http://my.livemarket.pub/api/' );
 
 /**
- * Instantiate Live Market class, require helper files
+ * Instantiate LiveMarket class, require helper files
  *
  * @since 1.0.0
  */
@@ -36,7 +36,7 @@ function livemarket_plugins_loaded() {
 	
 	require_once( 'lm-class.php' );
 
-	// Instantiate the Live Market class
+	// Instantiate the LiveMarket class
 	if ( class_exists( 'LiveMarket' ) ) {
 		
 		global $livemarket;

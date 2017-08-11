@@ -1,8 +1,8 @@
 <?php
 /**
- * Registers zeen101's Live Market Ajax Functions
+ * Registers zeen101's LiveMarket Ajax Functions
  *
- * @package zeen101's Live Market
+ * @package zeen101's LiveMarket
  * @since 1.0.0
  */
  

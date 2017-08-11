@@ -1,15 +1,15 @@
 <?php
 /**
- * Registers zeen101's Live Market API Functions
+ * Registers zeen101's LiveMarket API Functions
  *
- * @package zeen101's Live Market
+ * @package zeen101's LiveMarket
  * @since 1.0.0
  */
 	
 if ( !function_exists( 'get_livemarket_publications' ) ) {
 
 	/**
-	 * zeen101's Live Market API for retrieving all the user's publications
+	 * zeen101's LiveMarket API for retrieving all the user's publications
 	 *
 	 * @since 1.0.0
 	 *
@@ -35,7 +35,7 @@ if ( !function_exists( 'get_livemarket_publications' ) ) {
 if ( !function_exists( 'get_livemarket_advertisements' ) ) {
 
 	/**
-	 * zeen101's Live Market API for retrieving all a publications advertisements
+	 * zeen101's LiveMarket API for retrieving all a publications advertisements
 	 *
 	 * @since 1.0.0
 	 *
@@ -65,7 +65,7 @@ if ( !function_exists( 'get_livemarket_advertisements' ) ) {
 if ( !function_exists( 'get_livemarket_advertisement' ) ) {
 
 	/**
-	 * zeen101's Live Market API for retrieving a specific advertisement
+	 * zeen101's LiveMarket API for retrieving a specific advertisement
 	 *
 	 * @since 1.0.0
 	 *
@@ -91,7 +91,7 @@ if ( !function_exists( 'get_livemarket_advertisement' ) ) {
 if ( !function_exists( 'livemarket_track_impressions' ) ) {
 
 	/**
-	 * zeen101's Live Market API for tracking impressions
+	 * zeen101's LiveMarket API for tracking impressions
 	 *
 	 * @since 1.0.0
 	 *
@@ -117,7 +117,7 @@ if ( !function_exists( 'livemarket_track_impressions' ) ) {
 if ( !function_exists( 'livemarket_track_view' ) ) {
 
 	/**
-	 * zeen101's Live Market API for tracking views
+	 * zeen101's LiveMarket API for tracking views
 	 *
 	 * @since 1.0.0
 	 *
@@ -146,7 +146,7 @@ if ( !function_exists( 'livemarket_track_view' ) ) {
 if ( !function_exists( 'livemarket_track_click' ) ) {
 
 	/**
-	 * zeen101's Live Market API for tracking clicks
+	 * zeen101's LiveMarket API for tracking clicks
 	 *
 	 * @since 1.0.0
 	 *

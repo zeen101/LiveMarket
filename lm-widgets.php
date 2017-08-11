@@ -1,8 +1,8 @@
 <?php
 /**
- * Registers zeen101's Live Market Widgets
+ * Registers zeen101's LiveMarket Widgets
  *
- * @package zeen101's Live Market
+ * @package zeen101's LiveMarket
  * @since 1.0.0
  */
  
@@ -53,7 +53,7 @@ class LiveMarket_Advertisements extends WP_Widget {
 		$settings = get_livemarket_settings();
 		
 		if ( empty( $settings['api_key'] ) ) {
-			return '<h1 class="error">' . __( 'You Must Enter a Valid Live Market API Key in the Live Market Plugin', 'livemarket' ) . '</h1>';
+			return '<h1 class="error">' . __( 'You Must Enter a Valid LiveMarket API Key in the Live Market Plugin', 'livemarket' ) . '</h1>';
 		}
 		
 		$out = widget_formatted_livemarket_advertisements( 0, $instance['limit'] ); //Page, Limit
@@ -112,12 +112,12 @@ class LiveMarket_Advertisements extends WP_Widget {
 		$settings = get_livemarket_settings();
 		
 		if ( empty( $settings['api_key'] ) ) {
-			echo '<h1 class="error">' . __( 'You Must Enter a Valid Live Market API Key in the Live Market Plugin', 'livemarket' ) . '</h1>';
+			echo '<h1 class="error">' . __( 'You Must Enter a Valid LiveMarket API Key in the Live Market Plugin', 'livemarket' ) . '</h1>';
 		}
         	
 		//Defaults
 		$defaults = array(
-			'title'       => 'Live Market',
+			'title'       => 'LiveMarket',
 			'limit'       => 10,
 			'show_signup' => true,
 		);

@@ -1,8 +1,8 @@
 <?php
 /**
- * Registers zeen101's Live Market Shortcodes
+ * Registers zeen101's LiveMarket Shortcodes
  *
- * @package zeen101's Live Market
+ * @package zeen101's LiveMarket
  * @since 1.0.0
  */
 	
@@ -20,7 +20,7 @@ if ( !function_exists( 'do_livemarket' ) ) {
 		$dateformat = get_option( 'date_format' );
 		
 		if ( empty( $settings['api_key'] ) ) {
-			return '<h1 class="error">' . __( 'You Must Enter a Valid Live Market API Key in the Live Market Plugin', 'livemarket' ) . '</h1>';
+			return '<h1 class="error">' . __( 'You Must Enter a Valid LiveMarket API Key in the Live Market Plugin', 'livemarket' ) . '</h1>';
 		}
 		
 		$defaults = array(
