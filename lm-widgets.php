@@ -53,7 +53,7 @@ class LiveMarket_Advertisements extends WP_Widget {
 		$settings = get_livemarket_settings();
 		
 		if ( empty( $settings['api_key'] ) ) {
-			return '<h1 class="error">' . __( 'You Must Enter a Valid LiveMarket API Key in the Live Market Plugin', 'livemarket' ) . '</h1>';
+			return '<h1 class="error">' . __( 'You Must Enter a Valid LiveMarket API Token in the Live Market Plugin', 'livemarket' ) . '</h1>';
 		}
 		
 		$out = widget_formatted_livemarket_advertisements( 0, $instance['limit'] ); //Page, Limit
@@ -112,7 +112,7 @@ class LiveMarket_Advertisements extends WP_Widget {
 		$settings = get_livemarket_settings();
 		
 		if ( empty( $settings['api_key'] ) ) {
-			echo '<h1 class="error">' . __( 'You Must Enter a Valid LiveMarket API Key in the Live Market Plugin', 'livemarket' ) . '</h1>';
+			echo '<h1 class="error">' . __( 'You Must Enter a Valid LiveMarket API Token in the Live Market Plugin', 'livemarket' ) . '</h1>';
 		}
         	
 		//Defaults

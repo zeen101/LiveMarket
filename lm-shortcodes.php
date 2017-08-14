@@ -20,7 +20,7 @@ if ( !function_exists( 'do_livemarket' ) ) {
 		$dateformat = get_option( 'date_format' );
 		
 		if ( empty( $settings['api_key'] ) ) {
-			return '<h1 class="error">' . __( 'You Must Enter a Valid LiveMarket API Key in the Live Market Plugin', 'livemarket' ) . '</h1>';
+			return '<h1 class="error">' . __( 'You Must Enter a Valid LiveMarket API Token in the Live Market Plugin', 'livemarket' ) . '</h1>';
 		}
 		
 		$defaults = array(
