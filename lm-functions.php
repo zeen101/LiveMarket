@@ -70,7 +70,7 @@ if ( !function_exists( 'widget_formatted_livemarket_advertisement_signup_link' )
 	function widget_formatted_livemarket_advertisement_signup_link() {
 		$settings = get_livemarket_settings();
 		$text = apply_filters( 'livemarket_widget_advertisements_signup_link_text', sprintf( __( 'Advertise with %s', 'livemarket' ), get_bloginfo( 'name' ) ) );
-		return '<a href="https://my.livemarket.pub/publication/' . $settings['publication_id'] . '/advertise/" target="_blank">' . $text . '</a>';
+		return '<p class="livemarket_signup_link"><a href="https://my.livemarket.pub/publication/' . $settings['publication_id'] . '/advertise/" target="_blank">' . $text . '</a></p>';
 	}
 }
 
@@ -120,7 +120,7 @@ if ( !function_exists( 'formatted_livemarket_advertisements' ) ) {
 				} else {
 					$link = rtrim( get_permalink( $settings['livemarket_page'] ), '/' ) . '/' . '?store=' . $advertisement->slug;
 				}
-				$return .= '<p>';
+				$return .= '<p class="livemarket_item">';
 				$return .= '<span class="livemarket_title"><a href="' . $link . '">' . $advertisement->title . '</a></span><br />';
 				$return .= '<span class="livemarket_meta livemarket_companyname">' . __( 'by', 'livemarket' ). ' ' . $advertisement->displayname . '</span> ';
 				$return .= '<span class="livemarket_meta livemarket_date"> - ' . date_i18n( $dateformat, strtotime( get_date_from_gmt( $advertisement->created_at ) ) ) . '</span>';
@@ -130,7 +130,7 @@ if ( !function_exists( 'formatted_livemarket_advertisements' ) ) {
 				livemarket_track_impressions( $track_ids );
 			}
 			
-			$return .= '<p>';
+			$return .= '<p class="livemarket_view_more">';
 			if ( $widget ) {
 				$return .= '<span class="all"><a href="' . get_permalink( $settings['livemarket_page'] ) . '">' . __( 'View All', 'livemarket' ) . '</a></span>';
 			}
