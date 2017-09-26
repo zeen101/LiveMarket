@@ -28,13 +28,14 @@ if ( !function_exists( 'do_livemarket' ) ) {
 			'market_name' => '',
 			'show_signup' => true,
 			'show_more'   => true,
+			'classes'     => '',
 		);
 		$atts = shortcode_atts( $defaults, $atts );
 		
 		$advertisement_slug = get_query_var( 'store' );
 		
 		if ( empty( $advertisement_slug ) ) {	
-			$results  = '<div class="livemarket_list">';
+			$results  = '<div class="livemarket_list ' . $atts['classes'] . '">';
 			$results .= !empty( $atts['market_name'] ) ? '<div class="livemarket_name">' . $atts['market_name'] . '</div>' : '';
 			$results .= shortcode_formatted_livemarket_advertisements( 0, $atts['limit'], $atts['show_more'] ); //Page, Limit, Show View More Link
 			$results .= '</div>';
