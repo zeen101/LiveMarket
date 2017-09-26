@@ -25,16 +25,19 @@ if ( !function_exists( 'do_livemarket' ) ) {
 		
 		$defaults = array(
 			'limit'       => 10,
+			'market_name' => '',
 			'show_signup' => true,
+			'show_more'   => true,
 		);
 		$atts = shortcode_atts( $defaults, $atts );
 		
 		$advertisement_slug = get_query_var( 'store' );
 		
 		if ( empty( $advertisement_slug ) ) {	
-			$results  =  '<div class="livemarket_list">';
-			$results .=  shortcode_formatted_livemarket_advertisements( 0, $atts['limit'] ); //Page, Limit
-			$results .=  '</div>';
+			$results  = '<div class="livemarket_list">';
+			$results .= !empty( $atts['market_name'] ) ? '<div class="livemarket_name">' . $atts['market_name'] . '</div>' : '';
+			$results .= shortcode_formatted_livemarket_advertisements( 0, $atts['limit'], $atts['show_more'] ); //Page, Limit, Show View More Link
+			$results .= '</div>';
 			if ( !empty( $atts['show_signup'] ) ) {
 				$results .=  '<div class="livemarket_signup_link">';
 				$results .= shortcode_formatted_livemarket_advertisement_signup_link();

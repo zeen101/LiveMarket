@@ -76,11 +76,11 @@ if ( !function_exists( 'widget_formatted_livemarket_advertisement_signup_link' )
 
 if ( !function_exists( 'shortcode_formatted_livemarket_advertisements' ) ) {
 	
-	function shortcode_formatted_livemarket_advertisements( $page = 0, $limit = 10 ) {
+	function shortcode_formatted_livemarket_advertisements( $page = 0, $limit = 10, $show_more = true ) {
 		$page = apply_filters( 'livemarket_shortcode_advertisements_page', $page  ); //0 is the first page
 		$limit = apply_filters( 'livemarket_shortcode_advertisements_limit', $limit ); //Get 10 advertisements
 		
-		return formatted_livemarket_advertisements( $page, $limit, false, true );
+		return formatted_livemarket_advertisements( $page, $limit, false, true, $show_more );
 	}
 	
 }
@@ -104,7 +104,7 @@ if ( !function_exists( 'formatted_livemarket_advertisements' ) ) {
 	 *
 	 * @return string new content.
 	 */
-	function formatted_livemarket_advertisements( $page = 0, $limit = 10, $widget = false, $shortcode = false ) {
+	function formatted_livemarket_advertisements( $page = 0, $limit = 10, $widget = false, $shortcode = false, $show_more = true ) {
 		
 		$settings = get_livemarket_settings();
 		$dateformat = get_option( 'date_format' );
@@ -135,7 +135,7 @@ if ( !function_exists( 'formatted_livemarket_advertisements' ) ) {
 				$return .= '<span class="all"><a href="' . get_permalink( $settings['livemarket_page'] ) . '">' . __( 'View All', 'livemarket' ) . '</a></span>';
 			}
 			
-			if ( $shortcode ) {
+			if ( $shortcode && $show_more ) {
 				$next_page = $page + 1;
 				if ( $limit < $advertisements->data->total && ( $next_page * $limit < $advertisements->data->total ) ) {
 					$return .= '<span class="more"><a href="#" data-page="' . $next_page . '" data-limit="' . $limit . '">' . __( 'View More', 'livemarket' ) . '</a></span>';
