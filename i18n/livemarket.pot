@@ -1,0 +1,143 @@
+# Copyright (C) 2017 LiveMarket
+# This file is distributed under the same license as the LiveMarket package.
+msgid ""
+msgstr ""
+"Project-Id-Version: LiveMarket 1.2.0\n"
+"Report-Msgid-Bugs-To: https://wordpress.org/support/plugin/livemarket\n"
+"POT-Creation-Date: 2017-10-17 15:10:13+00:00\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"PO-Revision-Date: 2017-MO-DA HO:MI+ZONE\n"
+"Last-Translator: zeen101 <support@zeen101.com>\n"
+"Language-Team: zeen101 <support@zeen101.com>\n"
+
+#. #-#-#-#-#  livemarket.pot (LiveMarket 1.2.0)  #-#-#-#-#
+#. Plugin Name of the plugin/theme
+#: lm-class.php:77 lm-class.php:220
+msgid "LiveMarket"
+msgstr ""
+
+#: lm-class.php:77
+msgid "Live Market"
+msgstr ""
+
+#: lm-class.php:79
+msgid "Settings"
+msgstr ""
+
+#: lm-class.php:206
+msgid "Settings Updated"
+msgstr ""
+
+#: lm-class.php:228
+msgid "API Settings"
+msgstr ""
+
+#: lm-class.php:235
+msgid "API Token"
+msgstr ""
+
+#: lm-class.php:238
+msgid ""
+"Register or sign into <a href=\"http://my.livemarket.pub\">LiveMarket</a> to "
+"setup your first Publication and get your API key."
+msgstr ""
+
+#: lm-class.php:251
+msgid "LiveMarket Page"
+msgstr ""
+
+#: lm-class.php:253
+msgid "&mdash; Select &mdash;"
+msgstr ""
+
+#: lm-class.php:254
+msgid "Add this shortcode to your LiveMarket page: %s"
+msgstr ""
+
+#: lm-class.php:259
+msgid "LiveMarket Publication"
+msgstr ""
+
+#: lm-class.php:264
+msgid "Select Your Publication"
+msgstr ""
+
+#: lm-class.php:270
+msgid ""
+"Please sign into <a href=\"http://my.livemarket.pub\">LiveMarket</a> to "
+"setup your first Publication."
+msgstr ""
+
+#: lm-class.php:284
+msgid "Save Settings"
+msgstr ""
+
+#: lm-functions.php:72 lm-functions.php:92
+msgid "Advertise Here Today!"
+msgstr ""
+
+#: lm-functions.php:125 lm-shortcodes.php:55
+msgid "by"
+msgstr ""
+
+#: lm-functions.php:135
+msgid "View All"
+msgstr ""
+
+#: lm-functions.php:141
+msgid "View More"
+msgstr ""
+
+#: lm-functions.php:146
+msgid "Unable to find marketplace stores."
+msgstr ""
+
+#: lm-shortcodes.php:23 lm-widgets.php:56 lm-widgets.php:122
+msgid "You Must Enter a Valid LiveMarket API Token in the Live Market Plugin"
+msgstr ""
+
+#: lm-shortcodes.php:58
+msgid "Find Out More"
+msgstr ""
+
+#: lm-shortcodes.php:61
+msgid "Unable to find marketplace store."
+msgstr ""
+
+#: lm-widgets.php:35
+msgid ""
+"Displays a list of Advertisements associated with your LiveMarket publication"
+msgstr ""
+
+#: lm-widgets.php:36
+msgid "LiveMarket Advertisements"
+msgstr ""
+
+#: lm-widgets.php:136
+msgid "Title:"
+msgstr ""
+
+#: lm-widgets.php:140
+msgid "Description:"
+msgstr ""
+
+#: lm-widgets.php:144
+msgid "Limit (50 max):"
+msgstr ""
+
+#: lm-widgets.php:148
+msgid "Show Signup Link:"
+msgstr ""
+
+#. #-#-#-#-#  livemarket.pot (LiveMarket 1.2.0)  #-#-#-#-#
+#. Plugin URI of the plugin/theme
+#. #-#-#-#-#  livemarket.pot (LiveMarket 1.2.0)  #-#-#-#-#
+#. Author URI of the plugin/theme
+msgid "https://livemarket.pub/"
+msgstr ""
+
+#. Author of the plugin/theme
+msgid "zeen101 Development Team"
+msgstr ""
