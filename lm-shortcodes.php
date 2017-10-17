@@ -26,6 +26,7 @@ if ( !function_exists( 'do_livemarket' ) ) {
 		$defaults = array(
 			'limit'       => 10,
 			'market_name' => '',
+			'subtext'     => '',
 			'show_signup' => true,
 			'show_more'   => true,
 			'classes'     => '',
@@ -37,6 +38,7 @@ if ( !function_exists( 'do_livemarket' ) ) {
 		if ( empty( $advertisement_slug ) ) {	
 			$results  = '<div class="livemarket_list ' . $atts['classes'] . '">';
 			$results .= !empty( $atts['market_name'] ) ? '<div class="livemarket_name">' . $atts['market_name'] . '</div>' : '';
+			$results .= !empty( $atts['subtext'] ) ? '<span class="livemarket_subtext">' . $atts['market_name'] . '</span>' : '';
 			$results .= shortcode_formatted_livemarket_advertisements( 0, $atts['limit'], $atts['show_more'] ); //Page, Limit, Show View More Link
 			$results .= '</div>';
 			if ( !empty( $atts['show_signup'] ) ) {

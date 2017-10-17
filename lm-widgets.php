@@ -56,7 +56,13 @@ class LiveMarket_Advertisements extends WP_Widget {
 			return '<h1 class="error">' . __( 'You Must Enter a Valid LiveMarket API Token in the Live Market Plugin', 'livemarket' ) . '</h1>';
 		}
 		
-		$out = widget_formatted_livemarket_advertisements( 0, $instance['limit'] ); //Page, Limit
+		$out = '';
+		
+		if ( !empty( $instance['subtext'] ) ) {
+			$out .= '<span class="livemarket_subtext">' . $instance['subtext'] . '</span>';
+		}
+		
+		$out .= widget_formatted_livemarket_advertisements( 0, $instance['limit'] ); //Page, Limit
 		
 		if ( !empty( $instance['show_signup'] ) ) {
 			$out .= widget_formatted_livemarket_advertisement_signup_link();
@@ -89,6 +95,7 @@ class LiveMarket_Advertisements extends WP_Widget {
 		
 		$instance                = $old_instance;	
 		$instance['title']       = $new_instance['title'];
+		$instance['subtext']     = $new_instance['subtext'];
 		if ( 1 > $new_instance['limit'] ) {
 			$new_instance['limit'] = 1;
 		} else if ( 50 < $new_instance['limit'] ) {
@@ -118,6 +125,7 @@ class LiveMarket_Advertisements extends WP_Widget {
 		//Defaults
 		$defaults = array(
 			'title'       => 'LiveMarket',
+			'subtext'     => '',
 			'limit'       => 10,
 			'show_signup' => true,
 		);
@@ -127,6 +135,10 @@ class LiveMarket_Advertisements extends WP_Widget {
 		<p>
         	<label for="<?php echo $this->get_field_id('title'); ?>"><?php _e( 'Title:', 'livemarket' ); ?></label>
             <input class="widefat" id="<?php echo $this->get_field_id('title'); ?>" name="<?php echo $this->get_field_name('title'); ?>" type="text" value="<?php echo esc_attr( strip_tags( $instance['title'] ) ); ?>" />
+        </p>
+		<p>
+        	<label for="<?php echo $this->get_field_id('subtext'); ?>"><?php _e( 'Description:', 'livemarket' ); ?></label>
+            <input class="widefat" id="<?php echo $this->get_field_id('subtext'); ?>" name="<?php echo $this->get_field_name('subtext'); ?>" type="text" value="<?php echo esc_attr( strip_tags( $instance['subtext'] ) ); ?>" />
         </p>
 		<p>
         	<label for="<?php echo $this->get_field_id('limit'); ?>"><?php _e( 'Limit (50 max):', 'livemarket' ); ?></label>
