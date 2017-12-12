@@ -1,7 +1,7 @@
 === LiveMarket ===
-Description: The hands-off, recurring revenue, live-ad platform for local and niche publishers
 Contributors: zeen101, layotte, pericson, endocreative
 Tags: livemarket, live market, live ads, advertising, recurring revenue, ads, advertisement, advertise
+Description: The hands-off, recurring revenue, live-ad platform for local and niche publishers
 Requires at least: 4.7 
 Tested up to: 4.9
 Stable tag: 1.3.0 
