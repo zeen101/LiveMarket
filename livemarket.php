@@ -11,7 +11,7 @@ Plugin Name: LiveMarket
 Plugin URI: https://livemarket.pub/
 Author: zeen101 Development Team
 Version: 1.3.0
-Author URI: https://livemarket.pub/
+Author URI: https://zeen101.com/
 Tags: livemarket, live market, live ads, advertising, recurring revenue, ads, advertisement, advertise
 Description: The hands-off, recurring revenue, live-ad platform for local and niche publishers
 Text Domain: livemarket
