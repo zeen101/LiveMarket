@@ -296,11 +296,6 @@ if ( ! class_exists( 'LiveMarket' ) ) {
 
             </div>
 
-            </div>
-				<div class="leaky-paywall-sidebar" style="float: right; width: 28%; margin-top: 110px;">
-					<a target="_blank" href="https://anvil.pub/"><img width="300" src="http://howto.pub/wp-content/uploads/2016/08/anvil-sidebar-ad.jpg" alt="Anvil"></a>
-				</div>
-			</div>
 			<?php
 			
 		}
