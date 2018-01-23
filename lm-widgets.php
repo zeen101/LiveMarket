@@ -74,7 +74,7 @@ class LiveMarket_Advertisements extends WP_Widget {
 			if ( $title) {
 				echo $before_title . $title . $after_title;
 			}
-			echo '<div class="livemarket_list">';
+			echo '<div class="livemarket_widget_list">';
 			echo $out;
 			echo '</div>';
 			echo $after_widget;	

@@ -19,10 +19,10 @@ $livemarket_jquery( document ).ready( function($) {
 	    var url = $(this).attr( 'href' ); 
 	    window.open( url, '_blank' );
 	});
-	$( '.livemarket_list' ).on( 'click', '.more a', function(e) {
+	$( '.livemarket_shortcode_list' ).on( 'click', '.more a', function(e) {
 	    e.preventDefault();
 		var data = {
-			'action': 'livemarket_list',
+			'action': 'livemarket_shortcode_list',
 			'nonce': livemarket_ajax.security,
 			'page': $( this ).data( 'page' ),
 			'limit': $( this ).data( 'limit' ),
@@ -32,8 +32,30 @@ $livemarket_jquery( document ).ready( function($) {
 			data: data,
 			dataType: 'JSON',
 			success: function( response ) {
-				$( 'div.livemarket_list .more' ).remove();
-				$( 'div.livemarket_list' ).append( response.data.html );
+				$( 'div.livemarket_shortcode_list .more' ).remove();
+				$( 'div.livemarket_shortcode_list' ).append( response.data.html );
+			},
+			error: function( errorThrown ) {
+				console.log( errorThrown );
+			},
+			method: 'post'
+		});
+	});
+	$( '.livemarket_widget_list' ).on( 'click', '.more a', function(e) {
+	    e.preventDefault();
+		var data = {
+			'action': 'livemarket_widget_list',
+			'nonce': livemarket_ajax.security,
+			'page': $( this ).data( 'page' ),
+			'limit': $( this ).data( 'limit' ),
+		};
+		$.ajax({
+			url: livemarket_ajax.ajax_url, 
+			data: data,
+			dataType: 'JSON',
+			success: function( response ) {
+				$( 'div.livemarket_widget_list .more' ).remove();
+				$( 'div.livemarket_widget_list' ).append( response.data.html );
 			},
 			error: function( errorThrown ) {
 				console.log( errorThrown );
