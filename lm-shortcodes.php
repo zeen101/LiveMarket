@@ -27,6 +27,7 @@ function do_livemarket( $atts ) {
 		'subtext'     => '',
 		'show_signup' => true,
 		'show_more'   => true,
+		'category'    => 0,
 		'classes'     => '',
 	);
 	$atts = shortcode_atts( $defaults, $atts );
@@ -37,7 +38,7 @@ function do_livemarket( $atts ) {
 		$results  = '<div class="livemarket_shortcode_list ' . $atts['classes'] . '">';
 		$results .= !empty( $atts['market_name'] ) ? '<div class="livemarket_name">' . $atts['market_name'] . '</div>' : '';
 		$results .= !empty( $atts['subtext'] ) ? '<span class="livemarket_subtext">' . $atts['market_name'] . '</span>' : '';
-		$results .= shortcode_formatted_livemarket_advertisements( 0, $atts['limit'], $atts['show_more'] ); //Page, Limit, Show View More Link
+		$results .= shortcode_formatted_livemarket_advertisements( 0, $atts['limit'], $atts['show_more'], $atts['category'] ); //Page, Limit, Show View More Link
 		$results .= '</div>';
 		if ( !empty( $atts['show_signup'] ) ) {
 			$results .=  '<div class="livemarket_signup_link">';

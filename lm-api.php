@@ -28,6 +28,29 @@ function get_livemarket_publications() {
 	
 }
 
+/**
+ * zeen101's LiveMarket API for retrieving all the publication's advertisement categories
+ *
+ * @since 1.0.0
+ *
+ * @return mixed Value set for the issuem options.
+ */
+function get_livemarket_advertisement_categories() {
+
+	$settings = get_livemarket_settings();
+	
+	$args = array(
+		'headers' => array(
+			'Authorization' => 'Bearer ' . $settings['api_key'],
+		)
+	);
+
+	$results = wp_remote_get( LIVEMARKET_API_URL . 'publication/' . $settings['publication_id'] . '/categories', $args );
+	$body = wp_remote_retrieve_body( $results );
+	return json_decode( $body );
+	
+}
+
 
 /**
  * zeen101's LiveMarket API for retrieving all a publications advertisements
@@ -36,7 +59,7 @@ function get_livemarket_publications() {
  *
  * @return mixed Value set for the issuem options.
  */
-function get_livemarket_advertisements( $page = 0, $limit = 10 ) {
+function get_livemarket_advertisements( $page = 0, $limit = 10, $category = 0 ) {
 
 	$settings = get_livemarket_settings();
 	
@@ -46,11 +69,13 @@ function get_livemarket_advertisements( $page = 0, $limit = 10 ) {
 		)
 	);
 	$query = array(
-		'page' => $page,
-		'limit' => $limit,
+		'page'     => $page,
+		'limit'    => $limit,
+		'category' => $category,
 	);
 	$query = http_build_query( $query );
-	$results = wp_remote_get( LIVEMARKET_API_URL . 'publication/' . $settings['publication_id'] . '/advertisements?' . $query, $args );		$body = wp_remote_retrieve_body( $results );
+	$results = wp_remote_get( LIVEMARKET_API_URL . 'publication/' . $settings['publication_id'] . '/advertisements?' . $query, $args );
+	$body = wp_remote_retrieve_body( $results );
 	return json_decode( $body );
 	
 }

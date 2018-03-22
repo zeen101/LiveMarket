@@ -62,7 +62,7 @@ class LiveMarket_Advertisements extends WP_Widget {
 			$out .= '<span class="livemarket_subtext">' . $instance['subtext'] . '</span>';
 		}
 		
-		$out .= widget_formatted_livemarket_advertisements( 0, $instance['limit'] ); //Page, Limit
+		$out .= widget_formatted_livemarket_advertisements( 0, $instance['limit'], $instance['category'] ); //Page, Limit
 		
 		if ( !empty( $instance['show_signup'] ) ) {
 			$out .= widget_formatted_livemarket_advertisement_signup_link();
@@ -102,6 +102,7 @@ class LiveMarket_Advertisements extends WP_Widget {
 			$new_instance['limit'] = 50;
 		}
 		$instance['limit']       = $new_instance['limit'];
+		$instance['category']    = $new_instance['category'];
 		$instance['show_signup'] = (bool)$new_instance['show_signup'];
 		return $instance;
 		
@@ -116,7 +117,8 @@ class LiveMarket_Advertisements extends WP_Widget {
 	 */
 	function form( $instance ) {
 	
-		$settings = get_livemarket_settings();
+		$settings   = get_livemarket_settings();
+		$categories = get_livemarket_advertisement_categories();
 		
 		if ( empty( $settings['api_key'] ) ) {
 			echo '<h1 class="error">' . __( 'You Must Enter a Valid LiveMarket API Token in the Live Market Plugin', 'livemarket' ) . '</h1>';
@@ -126,6 +128,7 @@ class LiveMarket_Advertisements extends WP_Widget {
 		$defaults = array(
 			'title'       => 'LiveMarket',
 			'subtext'     => '',
+			'category'    => 0,
 			'limit'       => 10,
 			'show_signup' => true,
 		);
@@ -140,6 +143,17 @@ class LiveMarket_Advertisements extends WP_Widget {
         	<label for="<?php echo $this->get_field_id('subtext'); ?>"><?php _e( 'Description:', 'livemarket' ); ?></label>
             <input class="widefat" id="<?php echo $this->get_field_id('subtext'); ?>" name="<?php echo $this->get_field_name('subtext'); ?>" type="text" value="<?php echo esc_attr( strip_tags( $instance['subtext'] ) ); ?>" />
         </p>
+        <?php if ( !empty( $categories->success ) && !empty( $categories->data ) ) { ?>
+			<p>
+	        	<label for="<?php echo $this->get_field_id('category'); ?>"><?php _e( 'Category:', 'livemarket' ); ?></label>
+	        	<select class="widefat" id="<?php echo $this->get_field_id('category'); ?>" name="<?php echo $this->get_field_name('category'); ?>">
+		        	<option value="0" <?php selected( $instance['category'], 0, true ) ?>><?php _e( 'All Categories', 'livemarket' ); ?></option>
+		        	<?php foreach( $categories->data as $category ) { ?>
+			        	<option value="<?php echo $category->id; ?>" <?php selected( $instance['category'], $category->id, true ) ?>><?php echo $category->name; ?></option>
+				    <?php } ?>
+	        	</select>
+	        </p>
+        <?php } ?>
 		<p>
         	<label for="<?php echo $this->get_field_id('limit'); ?>"><?php _e( 'Limit (50 max):', 'livemarket' ); ?></label>
             <input class="widefat" id="<?php echo $this->get_field_id('limit'); ?>" name="<?php echo $this->get_field_name('limit'); ?>" type="number" value="<?php echo esc_attr( strip_tags( $instance['limit'] ) ); ?>" min="1" max="50" />

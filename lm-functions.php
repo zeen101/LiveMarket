@@ -46,11 +46,12 @@ function default_livemarket_content_filter( $content ) {
 }
 add_filter( 'the_content', 'default_livemarket_content_filter', 5 );
 
-function widget_formatted_livemarket_advertisements( $page = 0, $limit = 10 ) {
-	$page = apply_filters( 'livemarket_widget_advertisements_page', $page ); //0 is the first page
-	$limit = apply_filters( 'livemarket_widget_advertisements_limit', $limit ); //Get 10 advertisements
+function widget_formatted_livemarket_advertisements( $page = 0, $limit = 10, $category = 0 ) {
+	$page     = apply_filters( 'livemarket_widget_advertisements_page', $page ); //0 is the first page
+	$limit    = apply_filters( 'livemarket_widget_advertisements_limit', $limit ); //Get 10 advertisements
+	$category = apply_filters( 'livemarket_widget_advertisements_category', $category ); //Get 10 advertisements
 	
-	return formatted_livemarket_advertisements( $page, $limit, true, false );
+	return formatted_livemarket_advertisements( $page, $limit, true, false, true, $category );
 }
 
 function widget_formatted_livemarket_advertisement_signup_link() {
@@ -59,11 +60,12 @@ function widget_formatted_livemarket_advertisement_signup_link() {
 	return '<p class="livemarket_signup_link"><a href="https://my.livemarket.pub/publication/' . $settings['publication_id'] . '/advertise/" target="_blank">' . $text . '</a></p>';
 }
 
-function shortcode_formatted_livemarket_advertisements( $page = 0, $limit = 10, $show_more = true ) {
+function shortcode_formatted_livemarket_advertisements( $page = 0, $limit = 10, $show_more = true, $category = 0  ) {
 	$page = apply_filters( 'livemarket_shortcode_advertisements_page', $page  ); //0 is the first page
 	$limit = apply_filters( 'livemarket_shortcode_advertisements_limit', $limit ); //Get 10 advertisements
+	$category = apply_filters( 'livemarket_widget_advertisements_category', $category ); //Get 10 advertisements
 	
-	return formatted_livemarket_advertisements( $page, $limit, false, true, $show_more );
+	return formatted_livemarket_advertisements( $page, $limit, false, true, $show_more, $category );
 }
 
 function shortcode_formatted_livemarket_advertisement_signup_link() {
@@ -80,12 +82,12 @@ function shortcode_formatted_livemarket_advertisement_signup_link() {
  *
  * @return string new content.
  */
-function formatted_livemarket_advertisements( $page = 0, $limit = 10, $widget = false, $shortcode = false, $show_more = true ) {
+function formatted_livemarket_advertisements( $page = 0, $limit = 10, $widget = false, $shortcode = false, $show_more = true, $category = 0 ) {
 	
 	$settings = get_livemarket_settings();
 	$dateformat = get_option( 'date_format' );
 	
-	$advertisements = get_livemarket_advertisements( $page, $limit );
+	$advertisements = get_livemarket_advertisements( $page, $limit, $category );
 
 	if ( !empty( $advertisements->success ) && !empty( $advertisements->data ) ) {
 		$return  = '';
