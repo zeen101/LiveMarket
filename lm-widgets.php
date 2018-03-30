@@ -147,9 +147,9 @@ class LiveMarket_Advertisements extends WP_Widget {
 			<p>
 	        	<label for="<?php echo $this->get_field_id('category'); ?>"><?php _e( 'Category:', 'livemarket' ); ?></label>
 	        	<select class="widefat" id="<?php echo $this->get_field_id('category'); ?>" name="<?php echo $this->get_field_name('category'); ?>">
-		        	<option value="0" <?php selected( $instance['category'], 0, true ) ?>><?php _e( 'All Categories', 'livemarket' ); ?></option>
+		        	<option value="" <?php selected( $instance['category'], 0, true ) ?>><?php _e( 'All Categories', 'livemarket' ); ?></option>
 		        	<?php foreach( $categories->data as $category ) { ?>
-			        	<option value="<?php echo $category->id; ?>" <?php selected( $instance['category'], $category->id, true ) ?>><?php echo $category->name; ?></option>
+			        	<option value="<?php echo $category->slug; ?>" <?php selected( $instance['category'], $category->slug, true ) ?>><?php echo $category->name; ?></option>
 				    <?php } ?>
 	        	</select>
 	        </p>

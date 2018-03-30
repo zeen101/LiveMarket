@@ -27,7 +27,7 @@ function do_livemarket( $atts ) {
 		'subtext'     => '',
 		'show_signup' => true,
 		'show_more'   => true,
-		'category'    => 0,
+		'category'    => '',
 		'classes'     => '',
 	);
 	$atts = shortcode_atts( $defaults, $atts );

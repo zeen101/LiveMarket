@@ -59,7 +59,7 @@ function get_livemarket_advertisement_categories() {
  *
  * @return mixed Value set for the issuem options.
  */
-function get_livemarket_advertisements( $page = 0, $limit = 10, $category = 0 ) {
+function get_livemarket_advertisements( $page = 0, $limit = 10, $category = '' ) {
 
 	$settings = get_livemarket_settings();
 	
