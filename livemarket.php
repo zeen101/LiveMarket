@@ -25,7 +25,7 @@ define( 'LIVEMARKET_URL',			plugin_dir_url( __FILE__ ) );
 define( 'LIVEMARKET_PATH', 			plugin_dir_path( __FILE__ ) );
 define( 'LIVEMARKET_BASENAME',		plugin_basename( __FILE__ ) );
 define( 'LIVEMARKET_REL_DIR',		dirname( LIVEMARKET_BASENAME ) );
-define( 'LIVEMARKET_API_URL',		'http://dev.livemarket.pub/api/' );
+define( 'LIVEMARKET_API_URL',		'https://my.livemarket.pub/api/' );
 
 /**
  * Instantiate LiveMarket class, require helper files
