@@ -40,9 +40,9 @@ function do_livemarket( $atts ) {
 	if ( $advertiser = get_query_var( 'contributor' ) ) {
 		$atts['advertiser'] = $advertiser;
 	}
-
-	if ( $store_slug = get_query_var( 'store' ) ) {
-		$advertisement = get_livemarket_advertisement( $store_slug );
+	
+	if ( $offer_slug = get_query_var( 'offer' ) ) {
+		$advertisement = get_livemarket_advertisement( $offer_slug );
 		if ( !empty( $advertisement->success ) && !empty( $advertisement->data ) ) {
 			$return = livemarket_track_view( $advertisement->data->slug );
 			$results  = '<div class="livemarket_content" data-slug="' . $advertisement->data->slug . '">';
@@ -53,7 +53,7 @@ function do_livemarket( $atts ) {
 			$results .= '<p class="livemarket-more-button-wrapper"><a href="' . $advertisement->data->url . '" class="livemarket-more-button">' . __( 'Find Out More', 'livemarket' ) . '</a></p>';
 			$results .= '</div>';
 		} else {
-			return '<h1 class="error">' . __( 'Unable to find marketplace store.', 'livemarket' ) . '</h1>';
+			return '<h1 class="error">' . __( 'Unable to find marketplace offer.', 'livemarket' ) . '</h1>';
 		}
 	} else if ( !empty( $atts['category'] ) ) {
 		$results  = '<div class="livemarket_shortcode_list ' . $atts['classes'] . '">';

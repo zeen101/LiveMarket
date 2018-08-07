@@ -97,14 +97,18 @@ function formatted_livemarket_advertisements( $page = 0, $limit = 10, $widget = 
 		foreach( $advertisements->data->advertisements as $advertisement ) {
 			
 			$track_ids[] = $advertisement->id;
+			
 			if ( get_option( 'permalink_structure' ) ) {
-				$link = $permalink . '/' . $advertisement->slug;
+				$offer_link      = $permalink . '/' . $advertisement->slug;
+				$advertiser_link = $permalink . '/contributor/' . $advertisement->user_id;
 			} else {
-				$link = $permalink . '/' . http_build_query( array( 'store' => $advertisement->slug ) );
+				$offer_link      = $permalink . '/' . http_build_query( array( 'offer' => $advertisement->slug ) );
+				$advertiser_link = $permalink . '/' . http_build_query( array( 'contributor' => $advertisement->user_id ) );
 			}
+			
 			$return .= '<div class="livemarket_item">';
-			$return .= '<h3 class="livemarket_title"><a href="' . $link . '">' . $advertisement->title . '</a></h3>';
-			$return .= '<p class="livemarket_meta_wrap"><span class="livemarket_meta livemarket_companyname">' . __( 'by', 'livemarket' ). ' <a href="' . $permalink . '?contributor=' . $advertisement->user_id . '">' . $advertisement->displayname . '</a></span> ';
+			$return .= '<h3 class="livemarket_title"><a href="' . $offer_link . '">' . $advertisement->title . '</a></h3>';
+			$return .= '<p class="livemarket_meta_wrap"><span class="livemarket_meta livemarket_companyname">' . __( 'by', 'livemarket' ). ' <a href="' . $advertiser_link . '">' . $advertisement->displayname . '</a></span> ';
 			$return .= '<span class="livemarket_meta livemarket_date"> - ' . date_i18n( $dateformat, strtotime( get_date_from_gmt( $advertisement->created_at ) ) ) . '</span></p>';
 			$return .= '</div>';
 		}
@@ -114,10 +118,12 @@ function formatted_livemarket_advertisements( $page = 0, $limit = 10, $widget = 
 		
 		$return .= '<p class="livemarket_view_more">';
 		if ( $widget ) {
-			if ( !empty( $category ) ) {
-				$permalink .= '?' . http_build_query( array( 'category' => $category ) );
+			if ( get_option( 'permalink_structure' ) ) {
+				$category_link = $permalink . '/category/' . $category;
+			} else {
+				$category_link = $permalink . '/' . http_build_query( array( 'category' => $category ) );
 			}
-			$return .= '<span class="all"><a href="' . $permalink . '">' . __( 'View All', 'livemarket' ) . '</a></span>';
+			$return .= '<span class="all"><a href="' . $category_link . '">' . __( 'View All', 'livemarket' ) . '</a></span>';
 		}
 		
 		if ( $shortcode && $show_more ) {
@@ -128,7 +134,7 @@ function formatted_livemarket_advertisements( $page = 0, $limit = 10, $widget = 
 		}
 		$return .= '</p>';
 	} else {
-		$return = '<h1 class="error">' . __( 'Unable to find marketplace stores.', 'livemarket' ) . '</h1>';
+		$return = '<h1 class="error">' . __( 'Unable to find marketplace offers.', 'livemarket' ) . '</h1>';
 	}
 	
 	return $return;

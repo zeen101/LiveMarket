@@ -44,14 +44,16 @@ if ( ! class_exists( 'LiveMarket' ) ) {
 			$settings = $this->get_settings();
 			$rules = get_option( 'rewrite_rules' );
 			$post = get_post( $settings['livemarket_page'] );
-			if ( ! isset( $rules['(' . $post->post_name . ')/(.*)(/.*)?$'] ) ) {
+			if ( ! isset( $rules['(' . $post->post_name . ')/(.*)$'] ) 
+				 || ! isset( $rules['(' . $post->post_name . ')/category/(.*)$'] ) 
+				 || ! isset( $rules['(' . $post->post_name . ')/contributor/(.*)$'] ) ) {
 				global $wp_rewrite;
 			   	$wp_rewrite->flush_rules();
 			}
 		}
 		
 		function query_vars( $vars ) {
-		    array_push( $vars, 'store' );
+		    array_push( $vars, 'offer' );
 		    array_push( $vars, 'category' );
 		    array_push( $vars, 'contributor' );
 		    return $vars;
@@ -61,9 +63,9 @@ if ( ! class_exists( 'LiveMarket' ) ) {
 			$settings = $this->get_settings();
 			$newrules = array();
 			$post = get_post( $settings['livemarket_page'] );
-			$newrules['(' . $post->post_name . ')/(.*)(/.*)?$'] = 'index.php?pagename=$matches[1]&store=$matches[2]';
-			$newrules['(' . $post->post_name . ')/(.*)(/.*)?$'] = 'index.php?pagename=$matches[1]&category=$matches[2]';
-			$newrules['(' . $post->post_name . ')/(.*)(/.*)?$'] = 'index.php?pagename=$matches[1]&contributor=$matches[2]';
+			$newrules['(' . $post->post_name . ')/category/(.*)$']    = 'index.php?pagename=$matches[1]&category=$matches[2]';
+			$newrules['(' . $post->post_name . ')/contributor/(.*)$'] = 'index.php?pagename=$matches[1]&contributor=$matches[2]';
+			$newrules['(' . $post->post_name . ')/(.*)$']             = 'index.php?pagename=$matches[1]&offer=$matches[2]';
 			return $newrules + $rules;
 		}
 		
