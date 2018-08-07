@@ -127,3 +127,113 @@ function formatted_livemarket_advertisements( $page = 0, $limit = 10, $widget = 
 	return $return;
 	
 }
+
+/**
+ * Display latest livemarket item on mobile
+ *
+ * @since 1.4.2
+ *
+ */
+add_action( 'wp_footer', 'livemarket_mobile_display' );
+
+function livemarket_mobile_display() {
+
+	include_once( ABSPATH . 'wp-admin/includes/plugin.php' );
+		
+	if ( is_plugin_active( 'leaky-paywall/leaky-paywall.php') ) {
+
+		$lp_settings = get_leaky_paywall_settings();
+
+		if ( get_the_ID() == $lp_settings['page_for_login'] ) {
+			return;
+		}
+
+		if ( get_the_ID() == $lp_settings['page_for_subscription'] ) {
+			return;
+		}
+
+		if ( get_the_ID() == $lp_settings['page_for_register'] ) {
+			return;
+		}
+	}
+
+	$settings = get_livemarket_settings();
+	$post = get_post( $settings['livemarket_page'] );
+
+	if ( empty( $settings['api_key'] ) ) {
+		return;
+	}
+
+	if ( get_the_ID() == $post->ID ) {
+		return;
+	}
+
+	?>
+		<div class="livemarket-mobile-footer">
+			<span class="close">X</span>
+			<?php echo do_shortcode('[livemarket limit=1 show_more="false"]'); ?>
+		</div>
+
+		<style>
+			.livemarket-mobile-footer {
+				position: fixed;
+				bottom: 0;
+				left: 0;
+				width: 100%;
+				background: #fff;
+				padding: 1em;
+				border-top: 1px solid #ddd;
+				box-sizing: border-box;
+			}
+			.livemarket-mobile-footer .livemarket_title {
+				margin-bottom: .25em;
+				font-size: 1em;
+			}
+			.livemarket-mobile-footer .livemarket_meta_wrap {
+				font-size: .75em;
+				margin-bottom: .5em;
+			}
+			.livemarket-mobile-footer .livemarket_view_more  {
+				display: none;
+			}
+			.livemarket-mobile-footer .livemarket_signup_link {
+				font-size: .75em;
+				margin-bottom: 0;
+			}
+			.close {
+				position: absolute;
+				top: -10px;
+				right: 10px;
+				background: #666;
+				color: #fff;
+				width: 26px;
+				height: 26px;
+				line-height: 26px;
+				text-align: center;
+				border-radius: 50%;
+				font-size: .875em;
+				cursor: pointer;
+			}
+			@media (min-width:600px) {
+			    .livemarket-mobile-footer {
+			        display: none;
+			    }
+			}
+
+		</style>
+		<script>
+			( function( $ )  {
+
+				$(document).ready( function() {
+					
+					$('.livemarket-mobile-footer .close').click(function() {
+						$('.livemarket-mobile-footer').remove();
+					});
+
+				});
+
+			})( jQuery );
+
+		</script>
+	<?php 
+}
