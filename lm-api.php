@@ -59,7 +59,7 @@ function get_livemarket_advertisement_categories() {
  *
  * @return mixed Value set for the issuem options.
  */
-function get_livemarket_advertisements( $page = 0, $limit = 10, $category = '' ) {
+function get_livemarket_advertisements( $page = 0, $limit = 10, $category = '', $advertiser = '' ) {
 
 	$settings = get_livemarket_settings();
 	
@@ -69,9 +69,10 @@ function get_livemarket_advertisements( $page = 0, $limit = 10, $category = '' )
 		)
 	);
 	$query = array(
-		'page'     => $page,
-		'limit'    => $limit,
-		'category' => $category,
+		'page'       => $page,
+		'limit'      => $limit,
+		'category'   => $category,
+		'advertiser' => $advertiser,
 	);
 	$query = http_build_query( $query );
 	$results = wp_remote_get( LIVEMARKET_API_URL . 'publication/' . $settings['publication_id'] . '/advertisements?' . $query, $args );

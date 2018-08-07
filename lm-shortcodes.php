@@ -28,25 +28,21 @@ function do_livemarket( $atts ) {
 		'show_signup' => true,
 		'show_more'   => true,
 		'category'    => '',
+		'advertiser'  => '',
 		'classes'     => '',
 	);
 	$atts = shortcode_atts( $defaults, $atts );
 	
-	$advertisement_slug = get_query_var( 'store' );
+	if ( $category = get_query_var( 'category' ) ) {
+		$atts['category'] = $category;
+	}
 	
-	if ( empty( $advertisement_slug ) ) {	
-		$results  = '<div class="livemarket_shortcode_list ' . $atts['classes'] . '">';
-		$results .= !empty( $atts['market_name'] ) ? '<div class="livemarket_name">' . $atts['market_name'] . '</div>' : '';
-		$results .= !empty( $atts['subtext'] ) ? '<span class="livemarket_subtext">' . $atts['market_name'] . '</span>' : '';
-		$results .= shortcode_formatted_livemarket_advertisements( 0, $atts['limit'], $atts['show_more'], $atts['category'] ); //Page, Limit, Show View More Link
-		$results .= '</div>';
-		if ( !empty( $atts['show_signup'] ) ) {
-			$results .=  '<div class="livemarket_signup_link">';
-			$results .= shortcode_formatted_livemarket_advertisement_signup_link();
-			$results .=  '</div>';
-		}
-	} else {
-		$advertisement = get_livemarket_advertisement( $advertisement_slug );
+	if ( $advertiser = get_query_var( 'contributor' ) ) {
+		$atts['advertiser'] = $advertiser;
+	}
+
+	if ( $store_slug = get_query_var( 'store' ) ) {
+		$advertisement = get_livemarket_advertisement( $store_slug );
 		if ( !empty( $advertisement->success ) && !empty( $advertisement->data ) ) {
 			$return = livemarket_track_view( $advertisement->data->slug );
 			$results  = '<div class="livemarket_content" data-slug="' . $advertisement->data->slug . '">';
@@ -58,6 +54,39 @@ function do_livemarket( $atts ) {
 			$results .= '</div>';
 		} else {
 			return '<h1 class="error">' . __( 'Unable to find marketplace store.', 'livemarket' ) . '</h1>';
+		}
+	} else if ( !empty( $atts['category'] ) ) {
+		$results  = '<div class="livemarket_shortcode_list ' . $atts['classes'] . '">';
+		$results .= !empty( $atts['market_name'] ) ? '<div class="livemarket_name">' . $atts['market_name'] . '</div>' : '';
+		$results .= !empty( $atts['subtext'] ) ? '<span class="livemarket_subtext">' . $atts['market_name'] . '</span>' : '';
+		$results .= shortcode_formatted_livemarket_advertisements( 0, $atts['limit'], $atts['show_more'], $atts['category'] ); //Page, Limit, Show View More Link
+		$results .= '</div>';
+		if ( !empty( $atts['show_signup'] ) ) {
+			$results .=  '<div class="livemarket_signup_link">';
+			$results .= shortcode_formatted_livemarket_advertisement_signup_link();
+			$results .=  '</div>';
+		}
+	}  else if ( !empty( $atts['advertiser'] ) ) {
+		$results  = '<div class="livemarket_shortcode_list ' . $atts['classes'] . '">';
+		$results .= !empty( $atts['market_name'] ) ? '<div class="livemarket_name">' . $atts['market_name'] . '</div>' : '';
+		$results .= !empty( $atts['subtext'] ) ? '<span class="livemarket_subtext">' . $atts['market_name'] . '</span>' : '';
+		$results .= shortcode_formatted_livemarket_advertisements( 0, $atts['limit'], $atts['show_more'], false, $atts['advertiser'] ); //Page, Limit, Show View More Link
+		$results .= '</div>';
+		if ( !empty( $atts['show_signup'] ) ) {
+			$results .=  '<div class="livemarket_signup_link">';
+			$results .= shortcode_formatted_livemarket_advertisement_signup_link();
+			$results .=  '</div>';
+		}
+	} else {
+		$results  = '<div class="livemarket_shortcode_list ' . $atts['classes'] . '">';
+		$results .= !empty( $atts['market_name'] ) ? '<div class="livemarket_name">' . $atts['market_name'] . '</div>' : '';
+		$results .= !empty( $atts['subtext'] ) ? '<span class="livemarket_subtext">' . $atts['market_name'] . '</span>' : '';
+		$results .= shortcode_formatted_livemarket_advertisements( 0, $atts['limit'], $atts['show_more'], false, false ); //Page, Limit, Show View More Link
+		$results .= '</div>';
+		if ( !empty( $atts['show_signup'] ) ) {
+			$results .=  '<div class="livemarket_signup_link">';
+			$results .= shortcode_formatted_livemarket_advertisement_signup_link();
+			$results .=  '</div>';
 		}
 	}
 	
