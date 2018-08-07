@@ -174,53 +174,6 @@ function livemarket_mobile_display() {
 			<?php echo do_shortcode('[livemarket limit=1 show_more="false"]'); ?>
 		</div>
 
-		<style>
-			.livemarket-mobile-footer {
-				position: fixed;
-				bottom: 0;
-				left: 0;
-				width: 100%;
-				background: #fff;
-				padding: 1em;
-				border-top: 1px solid #ddd;
-				box-sizing: border-box;
-			}
-			.livemarket-mobile-footer .livemarket_title {
-				margin-bottom: .25em;
-				font-size: 1em;
-			}
-			.livemarket-mobile-footer .livemarket_meta_wrap {
-				font-size: .75em;
-				margin-bottom: .5em;
-			}
-			.livemarket-mobile-footer .livemarket_view_more  {
-				display: none;
-			}
-			.livemarket-mobile-footer .livemarket_signup_link {
-				font-size: .75em;
-				margin-bottom: 0;
-			}
-			.close {
-				position: absolute;
-				top: -10px;
-				right: 10px;
-				background: #666;
-				color: #fff;
-				width: 26px;
-				height: 26px;
-				line-height: 26px;
-				text-align: center;
-				border-radius: 50%;
-				font-size: .875em;
-				cursor: pointer;
-			}
-			@media (min-width:600px) {
-			    .livemarket-mobile-footer {
-			        display: none;
-			    }
-			}
-
-		</style>
 		<script>
 			( function( $ )  {
 
