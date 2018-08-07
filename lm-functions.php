@@ -140,3 +140,66 @@ function formatted_livemarket_advertisements( $page = 0, $limit = 10, $widget = 
 	return $return;
 	
 }
+
+/**
+ * Display latest livemarket item on mobile
+ *
+ * @since 1.4.2
+ *
+ */
+add_action( 'wp_footer', 'livemarket_mobile_display' );
+
+function livemarket_mobile_display() {
+
+	include_once( ABSPATH . 'wp-admin/includes/plugin.php' );
+		
+	if ( is_plugin_active( 'leaky-paywall/leaky-paywall.php') ) {
+
+		$lp_settings = get_leaky_paywall_settings();
+
+		if ( get_the_ID() == $lp_settings['page_for_login'] ) {
+			return;
+		}
+
+		if ( get_the_ID() == $lp_settings['page_for_subscription'] ) {
+			return;
+		}
+
+		if ( get_the_ID() == $lp_settings['page_for_register'] ) {
+			return;
+		}
+	}
+
+	$settings = get_livemarket_settings();
+	$post = get_post( $settings['livemarket_page'] );
+
+	if ( empty( $settings['api_key'] ) ) {
+		return;
+	}
+
+	if ( get_the_ID() == $post->ID ) {
+		return;
+	}
+
+	?>
+		<div class="livemarket-mobile-footer">
+			<span class="close">X</span>
+			<?php echo do_shortcode('[livemarket limit=1 show_more="false"]'); ?>
+		</div>
+
+		<script>
+			( function( $ )  {
+
+				$(document).ready( function() {
+					
+					$('.livemarket-mobile-footer .close').click(function() {
+						$('.livemarket-mobile-footer').remove();
+					});
+
+				});
+
+			})( jQuery );
+
+		</script>
+	<?php 
+}
