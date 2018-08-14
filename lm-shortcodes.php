@@ -16,6 +16,7 @@ function do_livemarket( $atts ) {
 	
 	$settings = get_livemarket_settings();
 	$dateformat = get_option( 'date_format' );
+	$permalink = rtrim( get_permalink( $settings['livemarket_page'] ), '/' );
 	
 	if ( empty( $settings['api_key'] ) ) {
 		return '<h1 class="error">' . __( 'You Must Enter a Valid LiveMarket API Token in the Live Market Plugin', 'livemarket' ) . '</h1>';
@@ -44,10 +45,17 @@ function do_livemarket( $atts ) {
 	if ( $offer_slug = get_query_var( 'offer' ) ) {
 		$advertisement = get_livemarket_advertisement( $offer_slug );
 		if ( !empty( $advertisement->success ) && !empty( $advertisement->data ) ) {
+			
+			if ( get_option( 'permalink_structure' ) ) {
+				$advertiser_link = $permalink . '/contributor/' . $advertisement->data->user_id;
+			} else {
+				$advertiser_link = $permalink . '/' . http_build_query( array( 'contributor' => $advertisement->data->user_id ) );
+			}
+			
 			$return = livemarket_track_view( $advertisement->data->slug );
 			$results  = '<div class="livemarket_content" data-slug="' . $advertisement->data->slug . '">';
 			$results .= '<h3>' . $advertisement->data->title . '</h3>';
-			$results .= '<p><span class="livemarket_meta livemarket_companyname">' . __( 'by', 'livemarket' ). ' ' . $advertisement->data->displayname . '</span>';
+			$results .= '<p><span class="livemarket_meta livemarket_companyname">' . __( 'by', 'livemarket' ). ' <a href="' . $advertiser_link . '">' . $advertisement->data->displayname . '</a></span>';
 			$results .= '<span class="livemarket_meta livemarket_date"> - ' . date_i18n( $dateformat, strtotime( get_date_from_gmt( $advertisement->data->created_at ) ) ) . '</span></p>';
 			$results .= $advertisement->data->content;
 			$results .= '<p class="livemarket-more-button-wrapper"><a href="' . $advertisement->data->url . '" class="livemarket-more-button">' . __( 'Find Out More', 'livemarket' ) . '</a></p>';
