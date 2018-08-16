@@ -32,8 +32,8 @@ class LiveMarket_Advertisements extends WP_Widget {
 	 */
 	function __construct() {
 		
-		$widget_ops = array( 'classname' => 'livemarket_list_widget', 'description' => __( 'Displays a list of Advertisements associated with your LiveMarket publication', 'issuem' ) );
-		parent::__construct( 'LiveMarket_Advertisements', __( 'LiveMarket Advertisements', 'livemarket' ), $widget_ops );
+		$widget_ops = array( 'classname' => 'livemarket_list_widget', 'description' => __( 'Displays a list of Promotions associated with your LiveMarket publication', 'issuem' ) );
+		parent::__construct( 'LiveMarket_Advertisements', __( 'LiveMarket Promotions', 'livemarket' ), $widget_ops );
 	
 	}
 	
