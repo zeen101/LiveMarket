@@ -77,6 +77,7 @@ function get_livemarket_advertisements( $page = 0, $limit = 10, $category = '', 
 	$query = http_build_query( $query );
 	$results = wp_remote_get( LIVEMARKET_API_URL . 'publication/' . $settings['publication_id'] . '/advertisements?' . $query, $args );
 	$body = wp_remote_retrieve_body( $results );
+	
 	return json_decode( $body );
 	
 }

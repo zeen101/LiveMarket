@@ -95,14 +95,13 @@ function formatted_livemarket_advertisements( $page = 0, $limit = 10, $widget = 
 	if ( !empty( $advertisements->success ) && !empty( $advertisements->data ) ) {
 		$return  = '';
 		
-		if ( !empty( $advertiser ) ) {
-			$advertisement = array_shift( $advertisements->data->advertisements );
-			$return .= '<h3 class="livemarket_contributor_list">All LiveMarket advertisements by ' . $advertisement->displayname . '</h3>';
-		}
-		
 		foreach( $advertisements->data->advertisements as $advertisement ) {
 			
 			$track_ids[] = $advertisement->id;
+			
+			if ( empty( $return ) && !empty( $advertiser ) ) {
+				$return .= '<h3 class="livemarket_contributor_list">All LiveMarket promotions from ' . $advertisement->displayname . '</h3>';
+			}
 			
 			if ( get_option( 'permalink_structure' ) ) {
 				$offer_link      = $permalink . '/' . $advertisement->slug;
