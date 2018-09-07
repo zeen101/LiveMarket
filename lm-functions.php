@@ -57,7 +57,7 @@ function widget_formatted_livemarket_advertisements( $page = 0, $limit = 10, $ca
 
 function widget_formatted_livemarket_advertisement_signup_link() {
 	$settings = get_livemarket_settings();
-	$text = apply_filters( 'livemarket_widget_advertisements_signup_link_text', __( 'Promote Your Business Now!', 'livemarket' ) );
+	$text = apply_filters( 'livemarket_widget_advertisements_signup_link_text', __( 'Promote Your Business - Free Trial!', 'livemarket' ) );
 	return '<p class="livemarket_signup_link"><a href="https://my.livemarket.pub/publication/' . $settings['publication_id'] . '/advertise/" target="_blank">' . $text . '</a></p>';
 }
 
@@ -72,7 +72,7 @@ function shortcode_formatted_livemarket_advertisements( $page = 0, $limit = 10, 
 
 function shortcode_formatted_livemarket_advertisement_signup_link() {
 	$settings = get_livemarket_settings();
-	$text = apply_filters( 'livemarket_shortcode_advertisements_signup_link_text', __( 'Promote Your Business Now!', 'livemarket' ) );
+	$text = apply_filters( 'livemarket_shortcode_advertisements_signup_link_text', __( 'Promote Your Business - Free Trial!', 'livemarket' ) );
 	return '<a href="https://my.livemarket.pub/publication/' . $settings['publication_id'] . '/advertise/" target="_blank">' . $text . '</a>';
 }
 
