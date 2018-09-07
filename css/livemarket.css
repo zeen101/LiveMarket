@@ -78,7 +78,7 @@
   cursor: pointer;
 }
 
-@media (min-width:600px) {
+@media (min-width:769px) {
     .livemarket-mobile-footer {
         display: none;
     }
