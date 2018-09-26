@@ -57,11 +57,11 @@
   margin-bottom: .5em;
 }
 .livemarket-mobile-footer .livemarket_view_more  {
-  display: none;
-}
-.livemarket-mobile-footer .livemarket_signup_link {
   font-size: .75em;
   margin-bottom: 0;
+}
+.livemarket-mobile-footer .livemarket_signup_link {
+  display: none;
 }
 .livemarket-mobile-footer .close {
   position: absolute;

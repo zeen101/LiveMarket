@@ -49,6 +49,10 @@ class LiveMarket_Advertisements extends WP_Widget {
 		
 		extract( $args );
 		extract( $instance );
+		
+		if ( empty( $instance['signup_text'] ) ) {
+			$instance['signup_text'] = __( 'Promote Your Business - Free Trial!', 'livemarket' );
+		}
 	
 		$settings = get_livemarket_settings();
 		
@@ -65,7 +69,7 @@ class LiveMarket_Advertisements extends WP_Widget {
 		$out .= widget_formatted_livemarket_advertisements( 0, $instance['limit'], $instance['category'] ); //Page, Limit
 		
 		if ( !empty( $instance['show_signup'] ) ) {
-			$out .= widget_formatted_livemarket_advertisement_signup_link();
+			$out .= widget_formatted_livemarket_advertisement_signup_link( $instance['signup_text'] );
 		}
 		
 		if ( ! empty( $out ) ) {
@@ -104,6 +108,7 @@ class LiveMarket_Advertisements extends WP_Widget {
 		$instance['limit']       = $new_instance['limit'];
 		$instance['category']    = $new_instance['category'];
 		$instance['show_signup'] = (bool)$new_instance['show_signup'];
+		$instance['signup_text'] = $new_instance['signup_text'];
 		return $instance;
 		
 	}
@@ -131,6 +136,7 @@ class LiveMarket_Advertisements extends WP_Widget {
 			'category'    => 0,
 			'limit'       => 10,
 			'show_signup' => true,
+			'signup_text' => __( 'Promote Your Business - Free Trial!', 'livemarket' ),
 		);
 		$instance = wp_parse_args( $instance, $defaults );
 		
@@ -160,7 +166,11 @@ class LiveMarket_Advertisements extends WP_Widget {
         </p>
 		<p>
         	<label for="<?php echo $this->get_field_id('show_signup'); ?>"><?php _e( 'Show Signup Link:', 'livemarket' ); ?></label>
-            <input id="<?php echo $this->get_field_id('show_signup'); ?>" name="<?php echo $this->get_field_name('show_signup'); ?>" type="checkbox" <?php checked( $instance['show_signup'] ); ?>" />
+            <input id="<?php echo $this->get_field_id('show_signup'); ?>" name="<?php echo $this->get_field_name('show_signup'); ?>" type="checkbox" <?php checked( $instance['show_signup'] ); ?> />
+        </p>
+		<p>
+        	<label for="<?php echo $this->get_field_id('signup_text'); ?>"><?php _e( 'Signup Text:', 'livemarket' ); ?></label>
+            <input class="widefat" id="<?php echo $this->get_field_id('signup_text'); ?>" name="<?php echo $this->get_field_name('signup_text'); ?>" type="text" value="<?php echo esc_attr( strip_tags( $instance['signup_text'] ) ); ?>" />
         </p>
         <?php
 	

@@ -55,10 +55,9 @@ function widget_formatted_livemarket_advertisements( $page = 0, $limit = 10, $ca
 	return formatted_livemarket_advertisements( $page, $limit, true, false, true, $category, $advertiser );
 }
 
-function widget_formatted_livemarket_advertisement_signup_link() {
+function widget_formatted_livemarket_advertisement_signup_link( $signup_text ) {
 	$settings = get_livemarket_settings();
-	$text = apply_filters( 'livemarket_widget_advertisements_signup_link_text', __( 'Promote Your Business - Free Trial!', 'livemarket' ) );
-	return '<p class="livemarket_signup_link"><a href="https://my.livemarket.pub/publication/' . $settings['publication_id'] . '/advertise/" target="_blank">' . $text . '</a></p>';
+	return '<p class="livemarket_signup_link"><a href="https://my.livemarket.pub/publication/' . $settings['publication_id'] . '/advertise/" target="_blank">' . $signup_text . '</a></p>';
 }
 
 function shortcode_formatted_livemarket_advertisements( $page = 0, $limit = 10, $show_more = true, $category = '', $advertiser = '' ) {
@@ -70,10 +69,9 @@ function shortcode_formatted_livemarket_advertisements( $page = 0, $limit = 10, 
 	return formatted_livemarket_advertisements( $page, $limit, false, true, $show_more, $category, $advertiser );
 }
 
-function shortcode_formatted_livemarket_advertisement_signup_link() {
+function shortcode_formatted_livemarket_advertisement_signup_link( $signup_text ) {
 	$settings = get_livemarket_settings();
-	$text = apply_filters( 'livemarket_shortcode_advertisements_signup_link_text', __( 'Promote Your Business - Free Trial!', 'livemarket' ) );
-	return '<a href="https://my.livemarket.pub/publication/' . $settings['publication_id'] . '/advertise/" target="_blank">' . $text . '</a>';
+	return '<a href="https://my.livemarket.pub/publication/' . $settings['publication_id'] . '/advertise/" target="_blank">' . $signup_text . '</a>';
 }
 
 /**
@@ -130,13 +128,13 @@ function formatted_livemarket_advertisements( $page = 0, $limit = 10, $widget = 
 					$permalink .= '/' . http_build_query( array( 'category' => $category ) );
 				}
 			}
-			$return .= '<span class="all"><a href="' . $permalink . '">' . __( 'View All', 'livemarket' ) . '</a></span>';
+			$return .= '<span class="all"><a href="' . $permalink . '">' . __( 'View More Promotions', 'livemarket' ) . '</a></span>';
 		}
 		
 		if ( $shortcode && $show_more ) {
 			$next_page = $page + 1;
 			if ( $limit < $advertisements->data->total && ( $next_page * $limit < $advertisements->data->total ) ) {
-				$return .= '<span class="more"><a href="#" data-page="' . $next_page . '" data-limit="' . $limit . '">' . __( 'View More', 'livemarket' ) . '</a></span>';
+				$return .= '<span class="more"><a href="#" data-page="' . $next_page . '" data-limit="' . $limit . '">' . __( 'View More Promotions', 'livemarket' ) . '</a></span>';
 			}
 		}
 		$return .= '</p>';

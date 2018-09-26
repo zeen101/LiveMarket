@@ -27,6 +27,7 @@ function do_livemarket( $atts ) {
 		'market_name' => '',
 		'subtext'     => '',
 		'show_signup' => true,
+		'signup_text' => __( 'Promote Your Business - Free Trial!', 'livemarket' ),
 		'show_more'   => true,
 		'category'    => '',
 		'advertiser'  => '',
@@ -71,7 +72,7 @@ function do_livemarket( $atts ) {
 		$results .= '</div>';
 		if ( !empty( $atts['show_signup'] ) ) {
 			$results .=  '<div class="livemarket_signup_link">';
-			$results .= shortcode_formatted_livemarket_advertisement_signup_link();
+			$results .= shortcode_formatted_livemarket_advertisement_signup_link( $atts['signup_text'] );
 			$results .=  '</div>';
 		}
 	}  else if ( !empty( $atts['advertiser'] ) ) {
@@ -82,7 +83,7 @@ function do_livemarket( $atts ) {
 		$results .= '</div>';
 		if ( !empty( $atts['show_signup'] ) ) {
 			$results .=  '<div class="livemarket_signup_link">';
-			$results .= shortcode_formatted_livemarket_advertisement_signup_link();
+			$results .= shortcode_formatted_livemarket_advertisement_signup_link( $atts['signup_text'] );
 			$results .=  '</div>';
 		}
 	} else {
@@ -93,7 +94,7 @@ function do_livemarket( $atts ) {
 		$results .= '</div>';
 		if ( !empty( $atts['show_signup'] ) ) {
 			$results .=  '<div class="livemarket_signup_link">';
-			$results .= shortcode_formatted_livemarket_advertisement_signup_link();
+			$results .= shortcode_formatted_livemarket_advertisement_signup_link( $atts['signup_text'] );
 			$results .=  '</div>';
 		}
 	}
