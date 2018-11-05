@@ -150,6 +150,7 @@ if ( ! class_exists( 'LiveMarket' ) ) {
 				'api_key' => '',
 				'livemarket_page' => 0,
 				'publication_id' => 0,
+				'link_color' => '#19236E'
 			);
 		
 			$settings = get_option( 'livemarket' );
@@ -200,6 +201,22 @@ if ( ! class_exists( 'LiveMarket' ) ) {
 					$settings['publication_id'] = trim( $_REQUEST['publication_id'] );
 				} else {
 					$settings['publication_id'] = 0;
+				}
+
+				// Validate Link Color
+				$link_color = trim( $_POST['link_color'] );
+				$link_color = strip_tags( stripslashes( $link_color ) );
+				 
+				// Check if is a valid hex color
+				if( FALSE === $this->check_color( $link_color ) ) {
+					
+					// Get the previous valid value
+					$settings['link_color'] = $settings['link_color'];
+				 
+				} else {
+				 
+					$settings['link_color'] = $link_color;  
+				 
 				}
 				
 				$settings_saved = $this->update_settings( $settings );
@@ -254,7 +271,7 @@ if ( ! class_exists( 'LiveMarket' ) ) {
 		                        ?>
 	                            
 	                        	<tr>
-	                                <th><?php _e( 'LiveMarket Page', 'issuem-leaky-paywall' ); ?></th>
+	                                <th><?php _e( 'LiveMarket Page', 'livemarket' ); ?></th>
 	                                <td>
 									<?php echo wp_dropdown_pages( array( 'name' => 'livemarket_page', 'echo' => 0, 'show_option_none' => __( '&mdash; Select &mdash;' ), 'option_none_value' => '0', 'selected' => $settings['livemarket_page'] ) ); ?>
 	                                <p class="description"><?php printf( __( 'Add this shortcode to your LiveMarket page: %s', 'livemarket' ), '[livemarket]' ); ?></p>
@@ -262,7 +279,7 @@ if ( ! class_exists( 'LiveMarket' ) ) {
 	                            </tr>
 	                            
 	                        	<tr>
-	                                <th><?php _e( 'LiveMarket Publication', 'issuem-leaky-paywall' ); ?></th>
+	                                <th><?php _e( 'LiveMarket Publication', 'livemarket' ); ?></th>
 	                                <td>
 	                                <?php 
 		                                if ( !empty( $publications->data ) ) {
@@ -278,6 +295,16 @@ if ( ! class_exists( 'LiveMarket' ) ) {
 		                            ?>
 	                                </td>
 	                            </tr>
+
+
+								<tr>
+	                                <th><?php _e( 'Link Color', 'livemarket' ); ?></th>
+	                                <td>
+										<input type="text" class="widefat color-field" name="link_color" value="<?php echo esc_attr( $settings['link_color'] ); ?>">
+									
+	                                <p class="description"><?php _e( 'The link color for the LiveMarket widget and shortcodde', 'livemarket' ); ?></p>
+	                                </td>
+	                            </tr>
 	                            
 	                            <?php
 	                        }
@@ -289,6 +316,20 @@ if ( ! class_exists( 'LiveMarket' ) ) {
 	                    <p class="submit">
                             <input class="button-primary" type="submit" name="update_livemarket_settings" value="<?php _e( 'Save Settings', 'livemarket' ) ?>" />
                         </p>
+
+
+						<script>
+
+							( function( $ )  {
+
+								$(document).ready( function() {
+									$('.color-field').wpColorPicker();
+								});
+
+							})( jQuery );
+
+						
+						</script>
                                            
                         </div>
                         
@@ -304,6 +345,18 @@ if ( ! class_exists( 'LiveMarket' ) ) {
 
 			<?php
 			
+		}
+
+		/**
+		 * Function that will check if value is a valid HEX color.
+		 */
+		public function check_color( $value ) { 
+			
+			if ( preg_match( '/^#[a-f0-9]{6}$/i', $value ) ) { // if user insert a HEX color with #     
+				return true;
+			}
+			
+			return false;
 		}
 		
 	}
