@@ -110,7 +110,7 @@ function formatted_livemarket_advertisements( $page = 0, $limit = 10, $widget = 
 				$advertiser_link = $permalink . '/' . http_build_query( array( 'contributor' => $advertisement->user_id ) );
 			}
 
-			if ( $advertisement->id < 2 ) {
+			if ( $advertisement->plan_id > 0 ) {
 				$class = ' premium';
 			} else {
 				$class = '';
@@ -125,7 +125,7 @@ function formatted_livemarket_advertisements( $page = 0, $limit = 10, $widget = 
 			$return .= '<div class="livemarket_item' . $class . '">';
 			$return .= '<h3 class="livemarket_title"><a ' . $link_style . ' href="' . $offer_link . '">' . $advertisement->title . '</a></h3>';
 			$return .= '<p class="livemarket_meta_wrap"><span class="livemarket_meta livemarket_companyname">' . __( 'by', 'livemarket' ). ' <a href="' . $advertiser_link . '">' . $advertisement->displayname . '</a></span> ';
-			$return .= '<span class="livemarket_meta livemarket_date"> - ' . date_i18n( $dateformat, strtotime( get_date_from_gmt( $advertisement->created_at ) ) ) . '</span></p>';
+			$return .= '<span class="livemarket_meta livemarket_date"> - ' . $advertisement->human_readable . '</span></p>';
 			$return .= '</div>';
 		}
 		if ( !empty( $track_ids ) ) {
@@ -154,7 +154,7 @@ function formatted_livemarket_advertisements( $page = 0, $limit = 10, $widget = 
 	} else {
 		$return = '<h1 class="error">' . __( 'Unable to find marketplace offers.', 'livemarket' ) . '</h1>';
 	}
-	
+
 	return $return;
 	
 }
