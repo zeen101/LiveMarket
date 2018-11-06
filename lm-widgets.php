@@ -13,7 +13,7 @@
  */
 function register_livemarket_widgets() {
 	
-	register_widget( 'LiveMarket_Advertisements' );
+	register_widget( 'LiveMarket_Promotions' );
 
 }
 add_action( 'widgets_init', 'register_livemarket_widgets' );
@@ -23,7 +23,7 @@ add_action( 'widgets_init', 'register_livemarket_widgets' );
  *
  * @since 1.0.0
  */
-class LiveMarket_Advertisements extends WP_Widget {
+class LiveMarket_Promotions extends WP_Widget {
 	
 	/**
 	 * Set's widget name and description
@@ -32,8 +32,8 @@ class LiveMarket_Advertisements extends WP_Widget {
 	 */
 	function __construct() {
 		
-		$widget_ops = array( 'classname' => 'livemarket_list_widget', 'description' => __( 'Displays a list of Promotions associated with your LiveMarket publication', 'issuem' ) );
-		parent::__construct( 'LiveMarket_Advertisements', __( 'LiveMarket Promotions', 'livemarket' ), $widget_ops );
+		$widget_ops = array( 'classname' => 'livemarket_list_widget', 'description' => __( 'Displays a list of Promotions associated with your LiveMarket publication', 'livemarket' ) );
+		parent::__construct( 'LiveMarket_Promotions', __( 'LiveMarket Promotions', 'livemarket' ), $widget_ops );
 	
 	}
 	
@@ -51,7 +51,7 @@ class LiveMarket_Advertisements extends WP_Widget {
 		extract( $instance );
 		
 		if ( empty( $instance['signup_text'] ) ) {
-			$instance['signup_text'] = __( 'Promote Your Business - Free Trial!', 'livemarket' );
+			$instance['signup_text'] = __( 'Post Your Promotion Here For Free', 'livemarket' );
 		}
 	
 		$settings = get_livemarket_settings();
@@ -63,7 +63,7 @@ class LiveMarket_Advertisements extends WP_Widget {
 		$out = '';
 		
 		if ( !empty( $instance['subtext'] ) ) {
-			$out .= '<span class="livemarket_subtext">' . $instance['subtext'] . '</span>';
+			$out .= '<p class="livemarket_subtext">' . $instance['subtext'] . '</p>';
 		}
 		
 		$out .= widget_formatted_livemarket_advertisements( 0, $instance['limit'], $instance['category'] ); //Page, Limit
@@ -136,7 +136,7 @@ class LiveMarket_Advertisements extends WP_Widget {
 			'category'    => 0,
 			'limit'       => 10,
 			'show_signup' => true,
-			'signup_text' => __( 'Promote Your Business - Free Trial!', 'livemarket' ),
+			'signup_text' => __( 'Post Your Promotion Here For Free', 'livemarket' ),
 		);
 		$instance = wp_parse_args( $instance, $defaults );
 		

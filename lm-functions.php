@@ -88,6 +88,7 @@ function formatted_livemarket_advertisements( $page = 0, $limit = 10, $widget = 
 	$dateformat = get_option( 'date_format' );
 	
 	$advertisements = get_livemarket_advertisements( $page, $limit, $category, $advertiser );
+
 	$permalink = rtrim( get_permalink( $settings['livemarket_page'] ), '/' );
 
 	if ( !empty( $advertisements->success ) && !empty( $advertisements->data ) ) {
@@ -108,9 +109,21 @@ function formatted_livemarket_advertisements( $page = 0, $limit = 10, $widget = 
 				$offer_link      = $permalink . '/' . http_build_query( array( 'offer' => $advertisement->slug ) );
 				$advertiser_link = $permalink . '/' . http_build_query( array( 'contributor' => $advertisement->user_id ) );
 			}
+
+			if ( $advertisement->id < 2 ) {
+				$class = ' premium';
+			} else {
+				$class = '';
+			}
+
+			if ( $settings['link_color'] ) {
+				$link_style = ' style="color: ' . esc_attr( $settings['link_color'] ) . ';" ';
+			} else {
+				$link_style = '';
+			}
 			
-			$return .= '<div class="livemarket_item">';
-			$return .= '<h3 class="livemarket_title"><a href="' . $offer_link . '">' . $advertisement->title . '</a></h3>';
+			$return .= '<div class="livemarket_item' . $class . '">';
+			$return .= '<h3 class="livemarket_title"><a ' . $link_style . ' href="' . $offer_link . '">' . $advertisement->title . '</a></h3>';
 			$return .= '<p class="livemarket_meta_wrap"><span class="livemarket_meta livemarket_companyname">' . __( 'by', 'livemarket' ). ' <a href="' . $advertiser_link . '">' . $advertisement->displayname . '</a></span> ';
 			$return .= '<span class="livemarket_meta livemarket_date"> - ' . date_i18n( $dateformat, strtotime( get_date_from_gmt( $advertisement->created_at ) ) ) . '</span></p>';
 			$return .= '</div>';
@@ -128,7 +141,7 @@ function formatted_livemarket_advertisements( $page = 0, $limit = 10, $widget = 
 					$permalink .= '/' . http_build_query( array( 'category' => $category ) );
 				}
 			}
-			$return .= '<span class="all"><a href="' . $permalink . '">' . __( 'View More Promotions', 'livemarket' ) . '</a></span>';
+			$return .= '<span class="all"><a href="' . $permalink . '">' . __( 'More Promotions', 'livemarket' ) . '</a></span>';
 		}
 		
 		if ( $shortcode && $show_more ) {
