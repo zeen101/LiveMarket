@@ -47,6 +47,7 @@ function livemarket_plugins_loaded() {
 		require_once( 'lm-api.php' );
 		require_once( 'lm-shortcodes.php' );
 		require_once( 'lm-widgets.php' );
+		require_once( 'lm-flyout.php' );
 
 		//Internationalization
 		load_plugin_textdomain( 'livemarket', false, LIVEMARKET_REL_DIR . '/i18n/' );

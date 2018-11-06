@@ -63,4 +63,18 @@ $livemarket_jquery( document ).ready( function($) {
 			method: 'post'
 		});
 	});
+
+	$('.livemarket-flyout-header-link').click(function(e) {
+		e.preventDefault();
+		$('.livemarket-flyout-header').toggleClass('active');
+		$('.livemarket-flyout-content').toggleClass('active');
+	});
+
+	$('.livemarket-flyout-content-close').click(function(e) {
+		e.preventDefault();
+		$('.livemarket-flyout-header').toggleClass('active');
+		$('.livemarket-flyout-content').toggleClass('active');
+	});
+
+	
 });

@@ -96,6 +96,10 @@
   text-decoration: none;
 }
 
+.livemarket_widget_list .livemarket_view_more a:visited {
+  color: #1F2680;
+}
+
 .livemarket_widget_list .livemarket_view_more a:hover {
   color: #1F2680;
   text-decoration: underline;
@@ -112,7 +116,7 @@
   color: #fff;
   text-decoration: none;
   font-weight: bold;
-  background: #9BB188;
+  background: #7AB872;
   padding: 7px 15px;
   border-radius: 5px;
   letter-spacing: 1px;
