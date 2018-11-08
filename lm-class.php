@@ -80,7 +80,7 @@ if ( ! class_exists( 'LiveMarket' ) ) {
 		 */
 		function admin_menu() {
 					
-			add_menu_page( __( 'LiveMarket', 'livemarket' ), __( 'Live Market', 'livemarket' ), apply_filters( 'manage_livemarket_settings', 'manage_options' ), 'livemarket', array( $this, 'settings_page' ), LIVEMARKET_URL . '/images/livemarket-16x16.png' );
+			add_menu_page( __( 'LiveMarket', 'livemarket' ), __( 'LiveMarket', 'livemarket' ), apply_filters( 'manage_livemarket_settings', 'manage_options' ), 'livemarket', array( $this, 'settings_page' ), LIVEMARKET_URL . '' );
 			
 			add_submenu_page( 'livemarket', __( 'Settings', 'livemarket' ), __( 'Settings', 'livemarket' ), apply_filters( 'manage_livemarket_settings', 'manage_options' ), 'livemarket', array( $this, 'settings_page' ) );			
 		}
@@ -99,13 +99,9 @@ if ( ! class_exists( 'LiveMarket' ) ) {
 		 * @since 1.0.0
 		 */
 		function admin_wp_print_styles() {
-		
-			global $hook_suffix;
 			
-			if ( 'toplevel_page_livemarket' === $hook_suffix ) {
-				wp_enqueue_style( 'livemarket_admin_style', LIVEMARKET_URL . 'css/admin.css', '', LIVEMARKET_VERSION );
-			}
-			
+			wp_enqueue_style( 'livemarket_admin_style', LIVEMARKET_URL . 'css/admin.css', '', LIVEMARKET_VERSION );
+
 		}
 	
 		/**

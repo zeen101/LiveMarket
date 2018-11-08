@@ -3,3 +3,11 @@
     padding: 20px;
     margin-left: -20px;
 }
+
+#toplevel_page_livemarket .wp-menu-image {
+    background: url('../images/LiveMarket_green_v2_hi-2.png') no-repeat;
+    background-size: 24px 35px;
+    background-position: 7px 0;
+    width: 24px;
+    height: 35px;
+}
