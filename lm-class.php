@@ -117,6 +117,7 @@ if ( ! class_exists( 'LiveMarket' ) ) {
 			
 			if ( 'toplevel_page_livemarket' === $hook_suffix ) {
 				wp_enqueue_script( 'livemarket_admin_js', LIVEMARKET_URL . 'js/admin.js', array( 'jquery' ), LIVEMARKET_VERSION );
+				wp_enqueue_style( 'wp-color-picker' ); 
 			}
 						
 		}
