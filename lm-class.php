@@ -263,22 +263,24 @@ if ( ! class_exists( 'LiveMarket' ) ) {
 			
 			// Display HTML form for the options below
 			?>
+
+			<div class="livemarket-settings-header">
+				<img src="<?php echo esc_url( LIVEMARKET_URL ); ?>/images/livemarket-logo.png" alt="LiveMarket">
+			</div>
 			<div class=wrap>
             <div style="width:70%;" class="postbox-container">
             <div class="metabox-holder">	
             <div class="meta-box-sortables ui-sortable">
             
                 <form id="issuem" method="post" action="">
-            
-                    <h1 style='margin-bottom: 2px;' ><?php _e( "LiveMarket", 'livemarket' ); ?></h1>
-  		
+
 					<?php do_action('livemarket_before_settings' ); ?>
                     
                     <div id="modules" class="postbox">
                     
                         <div class="handlediv" title="Click to toggle"><br /></div>
                         
-                        <h3 class="hndle"><span><?php _e( 'API Settings', 'livemarket' ); ?></span></h3>
+                        <h3 class="hndle"><span><?php _e( 'General Settings', 'livemarket' ); ?></span></h3>
                         
                         <div class="inside">
                         
@@ -387,21 +389,7 @@ if ( ! class_exists( 'LiveMarket' ) ) {
 	                    <p class="submit">
                             <input class="button-primary" type="submit" name="update_livemarket_settings" value="<?php _e( 'Save Settings', 'livemarket' ) ?>" />
                         </p>
-
-
-						<script>
-
-							( function( $ )  {
-
-								$(document).ready( function() {
-									$('.color-field').wpColorPicker();
-								});
-
-							})( jQuery );
-
-						
-						</script>
-                                           
+  
                         </div>
                         
                     </div>
@@ -412,7 +400,11 @@ if ( ! class_exists( 'LiveMarket' ) ) {
                 
             </div>
 
-            </div>
+			</div>
+			
+						</div>
+
+						</div>
 
 			<?php
 			
