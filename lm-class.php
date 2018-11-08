@@ -151,7 +151,12 @@ if ( ! class_exists( 'LiveMarket' ) ) {
 				'api_key' => '',
 				'livemarket_page' => 0,
 				'publication_id' => 0,
-				'link_color' => '#19236E'
+				'link_color' => '#19236E',
+				'mobile_promotion' => 'on',
+				'livemarket_flyout' => 'on',
+				'flyout_title'	=> 'Get free promotions for your business!',
+				'flyout_message'	=> 'For a limited time we are giving away a week of unlimited free promotions for your organization. Our new LiveMarket Special Offers, Dining Deals, & Events reach over 30,000 local readers. Click below to get started.',
+				'flyout_button_text'	=> 'Get Free Promo'
 			);
 		
 			$settings = get_option( 'livemarket' );
@@ -202,6 +207,30 @@ if ( ! class_exists( 'LiveMarket' ) ) {
 					$settings['publication_id'] = trim( $_REQUEST['publication_id'] );
 				} else {
 					$settings['publication_id'] = 0;
+				}
+
+				if ( isset( $_POST['mobile_promotion'] ) ) {
+					$settings['mobile_promotion'] = 'on';
+				} else {
+					$settings['mobile_promotion'] = '';
+				}
+
+				if ( isset( $_POST['livemarket_flyout'] ) ) {
+					$settings['livemarket_flyout'] = 'on';
+				} else {
+					$settings['livemarket_flyout'] = '';
+				}
+
+				if ( isset( $_POST['flyout_title'] ) ) {
+					$settings['flyout_title'] = wp_unslash( sanitize_text_field( $_POST['flyout_title'] ) );
+				}
+
+				if ( isset( $_POST['flyout_message'] ) ) {
+					$settings['flyout_message'] = sanitize_text_field( $_POST['flyout_message'] );
+				}
+
+				if ( isset( $_POST['flyout_button_text'] ) ) {
+					$settings['flyout_button_text'] = wp_unslash( sanitize_text_field( $_POST['flyout_button_text'] ) );
 				}
 
 				// Validate Link Color
@@ -305,7 +334,48 @@ if ( ! class_exists( 'LiveMarket' ) ) {
 									
 	                                <p class="description"><?php _e( 'The link color for the LiveMarket widget and shortcodde', 'livemarket' ); ?></p>
 	                                </td>
-	                            </tr>
+								</tr>
+								
+								<tr>
+									<th><?php _e( 'Mobile Promotion', 'livemarket' ); ?></th>
+									<td>
+										<p class="description"><input type="checkbox" id="mobile_promotion" <?php checked( $settings['mobile_promotion'], 'on' ); ?> name="mobile_promotion"  value="<?php echo $settings['mobile_promotion'] ? 'on' : ''; ?>" />
+										<?php _e( 'On mobile devices, display a popup at the bottom of the page with the latest LiveMarket promotion.'); ?></p>
+									</td>
+								</tr>
+
+								<tr>
+									<th><?php _e( 'LiveMarket Flyout', 'livemarket' ); ?></th>
+									<td>
+										<p class="description"><input type="checkbox" id="livemarket_flyout" <?php checked( $settings['livemarket_flyout'], 'on' ); ?> name="livemarket_flyout"  value="<?php echo $settings['livemarket_flyout'] ? 'on' : ''; ?>" />
+										<?php _e( 'Display a flyout encouraging promoters to sign up for LiveMarket.'); ?></p>
+									</td>
+								</tr>
+
+								<tr>
+									<th><?php _e( 'Flyout Title', 'livemarket' ); ?></th>
+									<td>
+										<input type="text" id="flyout_title" class="large-text" name="flyout_title" value="<?php echo esc_attr( $settings['flyout_title'] ); ?>" />
+										<p class="description"></p>
+									</td>
+								</tr>
+
+								<tr>
+									<th><?php _e( 'Flyout Message', 'livemarket' ); ?></th>
+									<td>
+										<textarea id="flyout_message" rows="5" class="large-text" name="flyout_message"><?php echo esc_textarea( $settings['flyout_message'] ); ?></textarea>
+										
+									</td>
+								</tr>
+
+								<tr>
+									<th><?php _e( 'Flyout Button Text', 'livemarket' ); ?></th>
+									<td>
+										<input type="text" id="flyout_button_text" class="large-text" name="flyout_button_text" value="<?php echo esc_html( $settings['flyout_button_text'] ); ?>" />
+										<p class="description"></p>
+										
+									</td>
+								</tr>
 	                            
 	                            <?php
 	                        }

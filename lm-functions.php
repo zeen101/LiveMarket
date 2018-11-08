@@ -195,6 +195,10 @@ function livemarket_mobile_display() {
 		return;
 	}
 
+	if ( $settings['mobile_promotion'] != 'on' ) {
+		return;
+	}
+
 	if ( get_the_ID() == $post->ID ) {
 		return;
 	}

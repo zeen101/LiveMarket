@@ -15,21 +15,27 @@ class LiveMarket_Flyout {
 	 */
 	public function display_flyout() {
 
+        $settings = get_livemarket_settings();
+
+        if ( $settings['livemarket_flyout'] != 'on' ) {
+            return;
+        }
+
         ?>
         <div class="livemarket-flyout-container">
             <div class="livemarket-flyout-header active">
                 <a class="livemarket-flyout-header-link" href="#">
-                    <h3 class="livemarket-flyout-teaser">Get free promotions for your business... for a week!</h3>
+                    <h3 class="livemarket-flyout-teaser"><?php echo esc_attr( $settings['flyout_title'] ); ?></h3>
                 </a>
             </div>
             <div class="livemarket-flyout-content">
                 <span class="livemarket-flyout-content-close">x</span>
-                <h3 class="livemarket-flyout-title">Get free promotions for your business... for a week!</h3>
+                <h3 class="livemarket-flyout-title"><?php echo esc_attr( $settings['flyout_title'] ); ?></h3>
                 <div class="livemarket-flyout-text">
-                    <p>For a limited time we are giving away a week of <strong>unlimited free promotions</strong> for your organization. Our new LiveMarket Special Offers, Dining Deals, & Events reach over 30,000 local readers. Drop your email off below and we will send you what you need to get your promotions live... for free.</p>
+                    <p><?php echo esc_attr( $settings['flyout_message'] ); ?></p>
                 </div>
                 <p class="livemarket-flyout-cta">
-                    <a class="livemarket-flyout-cta-link" href="#">Let's Get Your Promo Going!</a>
+                    <a class="livemarket-flyout-cta-link" target="_blank" href="https://my.livemarket.pub/publication/<?php echo $settings['publication_id']; ?>/advertise/"><?php echo esc_attr( $settings['flyout_button_text'] ); ?></a>
                 </p>
             </div>
         </div>
