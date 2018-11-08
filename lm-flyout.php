@@ -30,9 +30,9 @@ class LiveMarket_Flyout {
             </div>
             <div class="livemarket-flyout-content">
                 <span class="livemarket-flyout-content-close">x</span>
-                <h3 class="livemarket-flyout-title"><?php echo esc_attr( $settings['flyout_title'] ); ?></h3>
+                <h3 class="livemarket-flyout-title"><?php echo esc_html( $settings['flyout_title'] ); ?></h3>
                 <div class="livemarket-flyout-text">
-                    <p><?php echo esc_attr( $settings['flyout_message'] ); ?></p>
+                    <p><?php echo apply_filters( 'the_content', $settings['flyout_message'] ); ?></p>
                 </div>
                 <p class="livemarket-flyout-cta">
                     <a class="livemarket-flyout-cta-link" target="_blank" href="https://my.livemarket.pub/publication/<?php echo $settings['publication_id']; ?>/advertise/"><?php echo esc_attr( $settings['flyout_button_text'] ); ?></a>

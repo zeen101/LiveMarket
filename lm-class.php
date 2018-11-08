@@ -226,7 +226,7 @@ if ( ! class_exists( 'LiveMarket' ) ) {
 				}
 
 				if ( isset( $_POST['flyout_message'] ) ) {
-					$settings['flyout_message'] = sanitize_text_field( $_POST['flyout_message'] );
+					$settings['flyout_message'] = wp_kses_post( $_POST['flyout_message'] );
 				}
 
 				if ( isset( $_POST['flyout_button_text'] ) ) {
@@ -332,7 +332,7 @@ if ( ! class_exists( 'LiveMarket' ) ) {
 	                                <td>
 										<input type="text" class="widefat color-field" name="link_color" value="<?php echo esc_attr( $settings['link_color'] ); ?>">
 									
-	                                <p class="description"><?php _e( 'The link color for the LiveMarket widget and shortcodde', 'livemarket' ); ?></p>
+	                                <p class="description"><?php _e( 'The link color for the LiveMarket widget and shortcode.', 'livemarket' ); ?></p>
 	                                </td>
 								</tr>
 								
