@@ -148,6 +148,7 @@ if ( ! class_exists( 'LiveMarket' ) ) {
 				'livemarket_page' => 0,
 				'publication_id' => 0,
 				'link_color' => '#19236E',
+				'button_bg_color' => '#7AB872',
 				'mobile_promotion' => 'on',
 				'livemarket_flyout' => 'on',
 				'flyout_title'	=> 'Get free promotions for your business!',
@@ -244,6 +245,22 @@ if ( ! class_exists( 'LiveMarket' ) ) {
 					$settings['link_color'] = $link_color;  
 				 
 				}
+
+				// Validate Link Color
+				$button_bg_color = trim( $_POST['button_bg_color'] );
+				$button_bg_color = strip_tags( stripslashes( $button_bg_color ) );
+				 
+				// Check if is a valid hex color
+				if( FALSE === $this->check_color( $button_bg_color ) ) {
+					
+					// Get the previous valid value
+					$settings['button_bg_color'] = $settings['button_bg_color'];
+				 
+				} else {
+				 
+					$settings['button_bg_color'] = $button_bg_color;
+				 
+				}
 				
 				$settings_saved = $this->update_settings( $settings );
 				
@@ -333,6 +350,15 @@ if ( ! class_exists( 'LiveMarket' ) ) {
 	                                <p class="description"><?php _e( 'The link color for the LiveMarket widget and shortcode.', 'livemarket' ); ?></p>
 	                                </td>
 								</tr>
+
+								<tr>
+	                                <th><?php _e( 'Button Background Color', 'livemarket' ); ?></th>
+	                                <td>
+										<input type="text" class="widefat color-field" name="button_bg_color" value="<?php echo esc_attr( $settings['button_bg_color'] ); ?>">
+									
+	                                <p class="description"><?php _e( 'The button background color for the LiveMarket widget and shortcode.', 'livemarket' ); ?></p>
+	                                </td>
+								</tr>
 								
 								<tr>
 									<th><?php _e( 'Mobile Promotion', 'livemarket' ); ?></th>
@@ -348,6 +374,15 @@ if ( ! class_exists( 'LiveMarket' ) ) {
 										<p class="description"><input type="checkbox" id="livemarket_flyout" <?php checked( $settings['livemarket_flyout'], 'on' ); ?> name="livemarket_flyout"  value="<?php echo $settings['livemarket_flyout'] ? 'on' : ''; ?>" />
 										<?php _e( 'Display a flyout encouraging promoters to sign up for LiveMarket.'); ?></p>
 									</td>
+								</tr>
+
+								<tr>
+	                                <th><?php _e( 'Flyout Background Color', 'livemarket' ); ?></th>
+	                                <td>
+										<input type="text" class="widefat color-field" name="flyout_bg_color" value="<?php echo esc_attr( $settings['flyout_bg_color'] ); ?>">
+									
+	                                <p class="description"><?php _e( 'The background color for the LiveMarket flyout.', 'livemarket' ); ?></p>
+	                                </td>
 								</tr>
 
 								<tr>

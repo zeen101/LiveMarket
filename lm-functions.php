@@ -57,7 +57,8 @@ function widget_formatted_livemarket_advertisements( $page = 0, $limit = 10, $ca
 
 function widget_formatted_livemarket_advertisement_signup_link( $signup_text ) {
 	$settings = get_livemarket_settings();
-	return '<p class="livemarket_signup_link"><a href="https://my.livemarket.pub/publication/' . $settings['publication_id'] . '/advertise/" target="_blank">' . $signup_text . '</a></p>';
+	$button_bg_color = $settings['button_bg_color'];
+	return '<p class="livemarket_signup_link"><a style="background: ' . $button_bg_color . ';" href="https://my.livemarket.pub/publication/' . $settings['publication_id'] . '/advertise/" target="_blank">' . $signup_text . '</a></p>';
 }
 
 function shortcode_formatted_livemarket_advertisements( $page = 0, $limit = 10, $show_more = true, $category = '', $advertiser = '' ) {
