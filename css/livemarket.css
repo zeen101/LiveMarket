@@ -200,6 +200,7 @@
   border-radius: 8px 0 0 8px;
   right: 0;
   height: auto;
+  display: none;
 }
 .livemarket-flyout-header.active {
   display: block;
@@ -275,5 +276,8 @@
 @media (min-width:769px) {
     .livemarket-mobile-footer {
         display: none;
+    }
+    .livemarket-flyout-container {
+      display: block;
     }
 }
