@@ -27,7 +27,7 @@ function do_livemarket( $atts ) {
 		'market_name' => '',
 		'subtext'     => '',
 		'show_signup' => true,
-		'signup_text' => __( 'Promote Your Business - Free Trial!', 'livemarket' ),
+		'signup_text' => __( 'Post Your Promotion Here For Free', 'livemarket' ),
 		'show_more'   => true,
 		'category'    => '',
 		'advertiser'  => '',

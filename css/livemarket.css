@@ -164,11 +164,10 @@
   margin-bottom: 0;
 }
 .livemarket-mobile-footer .livemarket_view_more a {
-  border: 1px solid #ddd;
-  border-radius: 3px;
-  padding: 10px 20px;
+  border: 0;
+  padding: 0;
   color: #1F2680;
-  text-decoration: none;
+  text-decoration: underline;
   display: inline-block;
   margin-top: 10px; 
 }

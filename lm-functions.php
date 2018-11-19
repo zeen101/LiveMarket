@@ -190,6 +190,7 @@ function livemarket_mobile_display() {
 
 	$settings = get_livemarket_settings();
 	$post = get_post( $settings['livemarket_page'] );
+	$permalink = rtrim( get_permalink( $settings['livemarket_page'] ), '/' );
 
 	if ( empty( $settings['api_key'] ) ) {
 		return;
