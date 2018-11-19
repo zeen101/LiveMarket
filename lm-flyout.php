@@ -30,12 +30,12 @@ class LiveMarket_Flyout {
             </div>
             <div class="livemarket-flyout-content">
                 <span class="livemarket-flyout-content-close">x</span>
-                <h3 class="livemarket-flyout-title"><?php echo esc_html( $settings['flyout_title'] ); ?></h3>
+                <h3 style="color: <?php echo $settings['flyout_bg_color']; ?>" class="livemarket-flyout-title"><?php echo esc_html( $settings['flyout_title'] ); ?></h3>
                 <div class="livemarket-flyout-text">
                     <p><?php echo wp_kses_post( $settings['flyout_message'] ); ?></p>
                 </div>
                 <p class="livemarket-flyout-cta">
-                    <a class="livemarket-flyout-cta-link" target="_blank" href="https://my.livemarket.pub/publication/<?php echo $settings['publication_id']; ?>/advertise/"><?php echo esc_attr( $settings['flyout_button_text'] ); ?></a>
+                    <a class="livemarket-flyout-cta-link" style="background: <?php echo $settings['flyout_bg_color']; ?>; " target="_blank" href="https://my.livemarket.pub/publication/<?php echo $settings['publication_id']; ?>/advertise/"><?php echo esc_attr( $settings['flyout_button_text'] ); ?></a>
                 </p>
             </div>
         </div>

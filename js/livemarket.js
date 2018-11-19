@@ -76,5 +76,18 @@ $livemarket_jquery( document ).ready( function($) {
 		$('.livemarket-flyout-content').toggleClass('active');
 	});
 
+	setTimeout(
+		function() 
+		{
+
+			if ( $('.livemarket-flyout-content').hasClass('active') ) {
+				
+			} else {
+				$('.livemarket-flyout-header-link').trigger('click');
+			}
+		  
+		}, 
+	10000);
+
 	
 });
