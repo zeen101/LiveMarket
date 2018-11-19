@@ -65,12 +65,12 @@ class LiveMarket_Promotions extends WP_Widget {
 		if ( !empty( $instance['subtext'] ) ) {
 			$out .= '<p class="livemarket_subtext">' . $instance['subtext'] . '</p>';
 		}
-		
-		$out .= widget_formatted_livemarket_advertisements( 0, $instance['limit'], $instance['category'] ); //Page, Limit
-		
+
 		if ( !empty( $instance['show_signup'] ) ) {
 			$out .= widget_formatted_livemarket_advertisement_signup_link( $instance['signup_text'] );
 		}
+		
+		$out .= widget_formatted_livemarket_advertisements( 0, $instance['limit'], $instance['category'] ); //Page, Limit
 		
 		if ( ! empty( $out ) ) {
 			
