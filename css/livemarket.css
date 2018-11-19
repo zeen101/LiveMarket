@@ -151,6 +151,10 @@
   box-sizing: border-box;
   z-index: 9999;
 }
+
+.livemarket-mobile-footer .livemarket_shortcode_list .livemarket_item {
+  margin-bottom: 20px;
+}
 .livemarket-mobile-footer .livemarket_title {
   margin-bottom: .25em;
   font-size: 1.125em;
@@ -169,7 +173,7 @@
   color: #1F2680;
   text-decoration: underline;
   display: inline-block;
-  margin-top: 10px; 
+  margin-top: 0; 
 }
 .livemarket-mobile-footer .livemarket_signup_link {
   display: none;

@@ -74,6 +74,7 @@ $livemarket_jquery( document ).ready( function($) {
 		e.preventDefault();
 		$('.livemarket-flyout-header').toggleClass('active');
 		$('.livemarket-flyout-content').toggleClass('active');
+		$('.livemarket-flyout-container').remove();
 	});
 
 	setTimeout(
