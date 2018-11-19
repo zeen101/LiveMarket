@@ -4,7 +4,7 @@ Tags: livemarket, live market, live ads, advertising, recurring revenue, ads, ad
 Description: The hands-off, recurring revenue, live-ad platform for local and niche publishers
 Requires at least: 4.7 
 Tested up to: 4.10.0
-Stable tag: 1.6.0
+Stable tag: 1.6.1
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
 
@@ -55,6 +55,12 @@ You must have:
 == Screenshots ==
 
 == Changelog ==
+
+= 1.6.1 =
+* Add new settings for colors
+* Hide flyout on mobile
+* Move post new promotion link to top of widget
+* Display flyout content after 10 seconds if it has not been clicked
 
 = 1.6.0 =
 * Release for new LiveMarket updates, Freemium and Premium styles, Flyouts, and more!
