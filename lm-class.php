@@ -149,6 +149,7 @@ if ( ! class_exists( 'LiveMarket' ) ) {
 				'publication_id' => 0,
 				'link_color' => '#19236E',
 				'button_bg_color' => '#7AB872',
+				'flyout_bg_color' => '#7AB872',
 				'mobile_promotion' => 'on',
 				'livemarket_flyout' => 'on',
 				'flyout_title'	=> 'Get free promotions for your business!',
@@ -259,6 +260,22 @@ if ( ! class_exists( 'LiveMarket' ) ) {
 				} else {
 				 
 					$settings['button_bg_color'] = $button_bg_color;
+				 
+				}
+
+				// Validate Link Color
+				$flyout_bg_color = trim( $_POST['flyout_bg_color'] );
+				$flyout_bg_color = strip_tags( stripslashes( $flyout_bg_color ) );
+				 
+				// Check if is a valid hex color
+				if( FALSE === $this->check_color( $flyout_bg_color ) ) {
+					
+					// Get the previous valid value
+					$settings['flyout_bg_color'] = $settings['flyout_bg_color'];
+				 
+				} else {
+				 
+					$settings['flyout_bg_color'] = $flyout_bg_color;
 				 
 				}
 				

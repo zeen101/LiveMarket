@@ -23,7 +23,7 @@ class LiveMarket_Flyout {
 
         ?>
         <div class="livemarket-flyout-container">
-            <div class="livemarket-flyout-header active">
+            <div class="livemarket-flyout-header active" style="background: <?php echo $settings['flyout_bg_color']; ?>;">
                 <a class="livemarket-flyout-header-link" href="#">
                     <h3 class="livemarket-flyout-teaser"><?php echo esc_attr( $settings['flyout_title'] ); ?></h3>
                 </a>
