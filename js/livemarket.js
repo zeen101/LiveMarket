@@ -64,6 +64,18 @@ $livemarket_jquery( document ).ready( function($) {
 		});
 	});
 
+	if ( $('.livemarket-flyout-container').length > 0 ) {
+		if (document.cookie.split(';').filter(function(item) {
+		    return item.indexOf('lmhideflyout=') >= 0
+		}).length) {
+			$('.livemarket-flyout-container').remove();
+		} else {
+			$('.livemarket-flyout-header').toggleClass('active');
+		}
+	}
+
+	
+
 	$('.livemarket-flyout-header-link').click(function(e) {
 		e.preventDefault();
 		$('.livemarket-flyout-header').toggleClass('active');
@@ -75,6 +87,9 @@ $livemarket_jquery( document ).ready( function($) {
 		$('.livemarket-flyout-header').toggleClass('active');
 		$('.livemarket-flyout-content').toggleClass('active');
 		$('.livemarket-flyout-container').remove();
+		// set cookie not to show it
+		document.cookie = "lmhideflyout=true; path=/";
+
 	});
 
 	setTimeout(
