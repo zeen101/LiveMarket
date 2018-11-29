@@ -236,6 +236,7 @@
 .livemarket-flyout-content {
   padding: 20px;
   display: none;
+  text-align: left;
 }
 .livemarket-flyout-content.active {
   display: block;
