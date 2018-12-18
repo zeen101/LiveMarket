@@ -142,13 +142,13 @@ function formatted_livemarket_advertisements( $page = 0, $limit = 10, $widget = 
 					$permalink .= '/' . http_build_query( array( 'category' => $category ) );
 				}
 			}
-			$return .= '<span class="all"><a href="' . $permalink . '">' . __( 'More Promotions', 'livemarket' ) . '</a></span>';
+			$return .= '<span class="all"><a href="' . $permalink . '">' . __( 'View More', 'livemarket' ) . '</a></span>';
 		}
 		
 		if ( $shortcode && $show_more ) {
 			$next_page = $page + 1;
 			if ( $limit < $advertisements->data->total && ( $next_page * $limit < $advertisements->data->total ) ) {
-				$return .= '<span class="more"><a href="#" data-page="' . $next_page . '" data-limit="' . $limit . '">' . __( 'View More Promotions', 'livemarket' ) . '</a></span>';
+				$return .= '<span class="more"><a href="#" data-page="' . $next_page . '" data-limit="' . $limit . '">' . __( 'View More', 'livemarket' ) . '</a></span>';
 			}
 		}
 		$return .= '</p>';
