@@ -95,6 +95,7 @@ function formatted_livemarket_advertisements( $page = 0, $limit = 10, $widget = 
 	if ( !empty( $advertisements->success ) && !empty( $advertisements->data ) ) {
 		$return  = '';
 		
+		$i = 1;
 		foreach( $advertisements->data->advertisements as $advertisement ) {
 			
 			$track_ids[] = $advertisement->id;
@@ -111,7 +112,7 @@ function formatted_livemarket_advertisements( $page = 0, $limit = 10, $widget = 
 				$advertiser_link = $permalink . '/' . http_build_query( array( 'contributor' => $advertisement->user_id ) );
 			}
 
-			if ( $advertisement->plan_id > 0 ) {
+			if ( $i == 1 || $i == 2 ) {
 				$class = ' premium';
 			} else {
 				$class = '';
@@ -125,9 +126,16 @@ function formatted_livemarket_advertisements( $page = 0, $limit = 10, $widget = 
 			
 			$return .= '<div class="livemarket_item' . $class . '">';
 			$return .= '<h3 class="livemarket_title"><a ' . $link_style . ' href="' . $offer_link . '">' . $advertisement->title . '</a></h3>';
+			
+			if ( $advertisement->display_phone > 0 ) {
+				$return .= '<p class="livemarket_companyphone">' . livemarket_format_phone( $advertisement->phone ) . '</p>';
+			}
+
 			$return .= '<p class="livemarket_meta_wrap"><span class="livemarket_meta livemarket_companyname">' . __( 'by', 'livemarket' ). ' <a href="' . $advertiser_link . '">' . $advertisement->displayname . '</a></span> ';
 			$return .= '<span class="livemarket_meta livemarket_date"> - ' . $advertisement->human_readable . '</span></p>';
 			$return .= '</div>';
+
+			$i++;
 		}
 		if ( !empty( $track_ids ) ) {
 			livemarket_track_impressions( $track_ids );
@@ -157,6 +165,23 @@ function formatted_livemarket_advertisements( $page = 0, $limit = 10, $widget = 
 	}
 
 	return $return;
+	
+}
+
+/**
+ * Format phone number for display
+ *
+ * @since 1.4.2
+ *
+ */
+function livemarket_format_phone( $phone ) {
+
+	$clean_phone = trim( absint( $phone ) );
+	$area_code = substr( $clean_phone, 0, 3 );
+	$first_three = substr( $clean_phone, 3, 3 );
+	$last_four = substr( $clean_phone, 6, 4 );
+	
+	return '(' . $area_code . ') ' . $first_three . '-' . $last_four; 
 	
 }
 

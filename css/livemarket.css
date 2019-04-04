@@ -89,6 +89,10 @@
   color: #666;
 }
 
+.livemarket_widget_list p.livemarket_companyphone {
+  margin-bottom: 0;
+}
+
 .livemarket_widget_list p.livemarket_view_more {
   font-size: 14px;
   margin-bottom: 20px;
@@ -164,6 +168,11 @@
   font-size: .875em;
   margin-bottom: .5em;
 }
+
+.livemarket-mobile-footer .livemarket_shortcode_list .livemarket_companyphone {
+  margin: 5px 0;
+}
+
 .livemarket-mobile-footer .livemarket_view_more  {
   font-size: .75em;
   margin-bottom: 0;
