@@ -176,7 +176,19 @@ function formatted_livemarket_advertisements( $page = 0, $limit = 10, $widget = 
  */
 function livemarket_format_phone( $phone ) {
 
-	$clean_phone = trim( absint( $phone ) );
+	$clean_phone = trim( $phone );
+
+	// if its longer than 11, then its international and just return it
+	if ( strlen( $phone ) > 11 ) {
+		return $clean_phone;
+	}
+
+	// if it starts with 1, remove it first
+	$first_num = substr( $clean_phone, 0, 1 );
+	if ( $first_num == '1' ) {
+		$clean_phone = substr( $clean_phone, 1, 10 );
+	}
+
 	$area_code = substr( $clean_phone, 0, 3 );
 	$first_three = substr( $clean_phone, 3, 3 );
 	$last_four = substr( $clean_phone, 6, 4 );

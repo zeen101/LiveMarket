@@ -48,7 +48,7 @@
 
 .livemarket_widget_list .livemarket_item .livemarket_title {
   font-size: 16px;
-  margin-bottom: 5px;
+  margin-bottom: 0px;
   margin-top: 0;
   line-height: 1;
   font-weight: normal;
@@ -67,6 +67,7 @@
 
 .livemarket_widget_list .livemarket_item .livemarket_meta_wrap {
   margin-bottom: 0;
+  margin-top: 5px;
 }
 
 .livemarket_widget_list .livemarket_item .livemarket_meta_wrap {
@@ -91,6 +92,8 @@
 
 .livemarket_widget_list p.livemarket_companyphone {
   margin-bottom: 0;
+  font-size: 14px;
+  margin-top: 2px;
 }
 
 .livemarket_widget_list p.livemarket_view_more {
@@ -150,9 +153,9 @@
   bottom: 0;
   left: 0;
   width: 100%;
-  background: #fff;
+  background: #F3F3F3;
   padding: 1em;
-  border-top: 1px solid #ddd;
+  border-top: 1px solid #aaa;
   box-sizing: border-box;
   z-index: 9999;
 }
@@ -164,9 +167,18 @@
   margin-bottom: .25em;
   font-size: 1.125em;
 }
+.livemarket-mobile-footer .livemarket_title a {
+  text-decoration: none;
+}
 .livemarket-mobile-footer .livemarket_meta_wrap {
   font-size: .875em;
-  margin-bottom: .5em;
+  margin-bottom: 5px;
+  margin-top: 5px;
+}
+.livemarket-mobile-footer .livemarket_meta_wrap .livemarket_companyname a {
+  color: #000;
+  font-weight: bold;
+  text-decoration: none;
 }
 
 .livemarket-mobile-footer .livemarket_shortcode_list .livemarket_companyphone {
@@ -194,13 +206,14 @@
   right: 10px;
   background: #666;
   color: #fff;
-  width: 26px;
-  height: 26px;
-  line-height: 26px;
+  width: 30px;
+  height: 30px;
+  line-height: 30px;
   text-align: center;
   border-radius: 50%;
   font-size: .875em;
   cursor: pointer;
+  font-weight: bold;
 }
 
 .livemarket-flyout-container {
