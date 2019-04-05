@@ -71,7 +71,7 @@ function do_livemarket( $atts ) {
 		$results .= shortcode_formatted_livemarket_advertisements( 0, $atts['limit'], $atts['show_more'], $atts['category'] ); //Page, Limit, Show View More Link
 		$results .= '</div>';
 		if ( !empty( $atts['show_signup'] ) ) {
-			$results .=  '<div class="livemarket_signup_link">';
+			$results .=  '<div class="livemarket_signup_link livemarket_shortcode">';
 			$results .= shortcode_formatted_livemarket_advertisement_signup_link( $atts['signup_text'] );
 			$results .=  '</div>';
 		}
@@ -82,7 +82,7 @@ function do_livemarket( $atts ) {
 		$results .= shortcode_formatted_livemarket_advertisements( 0, $atts['limit'], $atts['show_more'], false, $atts['advertiser'] ); //Page, Limit, Show View More Link
 		$results .= '</div>';
 		if ( !empty( $atts['show_signup'] ) ) {
-			$results .=  '<div class="livemarket_signup_link">';
+			$results .=  '<div class="livemarket_signup_link livemarket_shortcode">';
 			$results .= shortcode_formatted_livemarket_advertisement_signup_link( $atts['signup_text'] );
 			$results .=  '</div>';
 		}
@@ -93,7 +93,7 @@ function do_livemarket( $atts ) {
 		$results .= shortcode_formatted_livemarket_advertisements( 0, $atts['limit'], $atts['show_more'], false, false ); //Page, Limit, Show View More Link
 		$results .= '</div>';
 		if ( !empty( $atts['show_signup'] ) ) {
-			$results .=  '<div class="livemarket_signup_link">';
+			$results .=  '<div class="livemarket_signup_link livemarket_shortcode">';
 			$results .= shortcode_formatted_livemarket_advertisement_signup_link( $atts['signup_text'] );
 			$results .=  '</div>';
 		}

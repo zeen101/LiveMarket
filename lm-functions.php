@@ -245,7 +245,69 @@ function livemarket_mobile_display() {
 	?>
 		<div class="livemarket-mobile-footer">
 			<span class="close">X</span>
-			<?php echo do_shortcode('[livemarket limit=1 show_more="false"]'); ?>
+			<?php 
+				$advertisements = get_livemarket_advertisements( 0, 1 );
+
+				$permalink = rtrim( get_permalink( $settings['livemarket_page'] ), '/' );
+
+				if ( !empty( $advertisements->success ) && !empty( $advertisements->data ) ) {
+					$return  = '';
+					
+					
+					foreach( $advertisements->data->advertisements as $advertisement ) {
+
+						$track_ids[] = $advertisement->id;
+						
+						if ( get_option( 'permalink_structure' ) ) {
+							$offer_link      = $permalink . '/' . $advertisement->slug;
+							$advertiser_link = $permalink . '/contributor/' . $advertisement->user_id;
+						} else {
+							$offer_link      = $permalink . '/' . http_build_query( array( 'offer' => $advertisement->slug ) );
+							$advertiser_link = $permalink . '/' . http_build_query( array( 'contributor' => $advertisement->user_id ) );
+						}
+
+						if ( $settings['link_color'] ) {
+							$link_style = ' style="color: ' . esc_attr( $settings['link_color'] ) . ';" ';
+						} else {
+							$link_style = '';
+						}
+						
+						echo '<div class="livemarket_item">';
+						echo '<h3 class="livemarket_title"><a ' . $link_style . ' href="' . $offer_link . '">' . $advertisement->title . '</a></h3>';
+						
+						if ( $advertisement->display_phone > 0 ) {
+							echo '<p class="livemarket_companyphone">' . livemarket_format_phone( $advertisement->phone ) . '</p>';
+						}
+
+						echo '<p class="livemarket_meta_wrap"><span class="livemarket_meta livemarket_companyname">' . __( 'by', 'livemarket' ). ' <a href="' . $advertiser_link . '">' . $advertisement->displayname . '</a></span> ';
+						echo '<span class="livemarket_meta livemarket_date"> - ' . $advertisement->human_readable . '</span></p>';
+						echo '</div>';
+
+						
+					}
+
+					if ( !empty( $track_ids ) ) {
+						livemarket_track_impressions( $track_ids );
+					}
+
+					echo '<p class="livemarket_view_more">';
+					
+					if ( !empty( $category ) ) {
+						if ( get_option( 'permalink_structure' ) ) {
+							$permalink .= '/category/' . $category;
+						} else {
+							$permalink .= '/' . http_build_query( array( 'category' => $category ) );
+						}
+					}
+
+					echo '<span class="all"><a href="' . $permalink . '">' . __( 'View More', 'livemarket' ) . '</a></span>';
+					echo '</p>';
+
+				}
+
+				
+			?>
+			<?php // echo do_shortcode('[livemarket limit=1 show_more="false"]'); ?>
 		</div>
 
 		<script>

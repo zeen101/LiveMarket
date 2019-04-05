@@ -160,7 +160,7 @@
   z-index: 9999;
 }
 
-.livemarket-mobile-footer .livemarket_shortcode_list .livemarket_item {
+.livemarket-mobile-footer .livemarket_item {
   margin-bottom: 20px;
 }
 .livemarket-mobile-footer .livemarket_title {
@@ -181,21 +181,26 @@
   text-decoration: none;
 }
 
-.livemarket-mobile-footer .livemarket_shortcode_list .livemarket_companyphone {
-  margin: 5px 0;
+.livemarket-mobile-footer .livemarket_companyphone {
+  margin: 7px 0;
+  font-size: 14px;
+  color: #666;
+  line-height: 1;
 }
 
 .livemarket-mobile-footer .livemarket_view_more  {
-  font-size: .75em;
+  font-size: 13px;
   margin-bottom: 0;
+  margin-top: 10px;
 }
 .livemarket-mobile-footer .livemarket_view_more a {
   border: 0;
   padding: 0;
-  color: #1F2680;
-  text-decoration: underline;
+  color: #000;
+  text-decoration: none;
   display: inline-block;
   margin-top: 0; 
+  font-weight: bold;
 }
 .livemarket-mobile-footer .livemarket_signup_link {
   display: none;
@@ -298,6 +303,52 @@
   font-weight: bold;
   font-size: 22px;
   cursor: pointer;
+}
+
+.livemarket_shortcode_list {
+
+}
+
+.livemarket_shortcode_list .livemarket_item {
+
+}
+
+.livemarket_shortcode_list .livemarket_item .livemarket_title {
+  margin-bottom: 3px;
+}
+
+.livemarket_shortcode_list .livemarket_item .livemarket_companyphone {
+  margin-bottom: 0;
+}
+
+.livemarket_shortcode_list .livemarket_item .livemarket_meta_wrap {
+
+}
+
+
+.livemarket_shortcode.livemarket_signup_link {
+  line-height: 1.2;
+}
+
+.livemarket_shortcode.livemarket_signup_link a {
+  display: block;
+  font-size: 14px;
+  text-align: center;
+  color: #fff;
+  text-decoration: none;
+  font-weight: bold;
+  background: #7AB872;
+  padding: 7px 15px;
+  border-radius: 5px;
+  letter-spacing: 1px;
+}
+
+.livemarket_shortcode.livemarket_signup_link a:hover {
+  text-decoration: underline;
+}
+
+.livemarket_shortcode.livemarket_signup_link a:visited {
+  color: #fff;
 }
 
 @media (min-width:769px) {
