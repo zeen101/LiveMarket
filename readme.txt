@@ -3,8 +3,8 @@ Contributors: zeen101, layotte, pericson, endocreative
 Tags: livemarket, live market, live ads, advertising, recurring revenue, ads, advertisement, advertise
 Description: The hands-off, recurring revenue, live-ad platform for local and niche publishers
 Requires at least: 4.7 
-Tested up to: 4.10.0
-Stable tag: 1.6.2
+Tested up to: 5.1.1
+Stable tag: 1.6.3
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
 
@@ -55,6 +55,11 @@ You must have:
 == Screenshots ==
 
 == Changelog ==
+
+= 1.6.3 =
+* Update styles of widget
+* Display phone in livemarket premium item
+* Add styles to flyout
 
 = 1.6.2 =
 * Remove flyout for remainder of session if the X is clicked
