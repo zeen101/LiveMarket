@@ -275,7 +275,7 @@ function livemarket_mobile_display() {
 						echo '<div class="livemarket_item">';
 						echo '<h3 class="livemarket_title"><a ' . $link_style . ' href="' . $offer_link . '">' . $advertisement->title . '</a></h3>';
 						
-						if ( $advertisement->display_phone > 0 ) {
+						if ( $advertisement->display_phone > 0 && !empty( $advertisement->phone ) ) {
 							echo '<p class="livemarket_companyphone">' . livemarket_format_phone( $advertisement->phone ) . '</p>';
 						}
 
