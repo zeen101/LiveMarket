@@ -4,7 +4,7 @@ Tags: livemarket, live market, live ads, advertising, recurring revenue, ads, ad
 Description: The hands-off, recurring revenue, live-ad platform for local and niche publishers
 Requires at least: 4.7 
 Tested up to: 5.3
-Stable tag: 1.6.4
+Stable tag: 1.6.5
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
 
@@ -55,6 +55,9 @@ You must have:
 == Screenshots ==
 
 == Changelog ==
+
+= 1.6.5 =
+* Change advertisement date to human readable
 
 = 1.6.4 =
 * Fix bug with phone being displayed when it's not set properly
