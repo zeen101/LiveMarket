@@ -57,7 +57,7 @@ function do_livemarket( $atts ) {
 			$results  = '<div class="livemarket_content" data-slug="' . $advertisement->data->slug . '">';
 			$results .= '<h3>' . $advertisement->data->title . '</h3>';
 			$results .= '<p><span class="livemarket_meta livemarket_companyname">' . __( 'by', 'livemarket' ). ' <a href="' . $advertiser_link . '">' . $advertisement->data->displayname . '</a></span>';
-			$results .= '<span class="livemarket_meta livemarket_date"> - ' . date_i18n( $dateformat, strtotime( get_date_from_gmt( $advertisement->data->created_at ) ) ) . '</span></p>';
+			$results .= '<span class="livemarket_meta livemarket_date"> - ' . $advertisement->data->human_readable . '</span></p>';
 			$results .= $advertisement->data->content;
 			$results .= '<p class="livemarket-more-button-wrapper"><a href="' . $advertisement->data->url . '" class="livemarket-more-button">' . __( 'Find Out More', 'livemarket' ) . '</a></p>';
 			$results .= '</div>';
