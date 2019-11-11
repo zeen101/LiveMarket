@@ -131,7 +131,7 @@ function formatted_livemarket_advertisements( $page = 0, $limit = 10, $widget = 
 				$return .= '<p class="livemarket_companyphone">' . livemarket_format_phone( $advertisement->phone ) . '</p>';
 			}
 
-			$return .= '<p class="livemarket_meta_wrap"><span class="livemarket_meta livemarket_companyname">' . __( 'by', 'livemarket' ). ' <a href="' . $advertiser_link . '">' . $advertisement->displayname . '</a></span> ';
+			$return .= '<p class="livemarket_meta_wrap"><span class="livemarket_meta livemarket_companyname">' . __( 'more from', 'livemarket' ). ' <a href="' . $advertiser_link . '">' . $advertisement->displayname . '</a></span> ';
 			$return .= '<span class="livemarket_meta livemarket_date"> - ' . $advertisement->human_readable . '</span></p>';
 			$return .= '</div>';
 
@@ -279,7 +279,7 @@ function livemarket_mobile_display() {
 							echo '<p class="livemarket_companyphone">' . livemarket_format_phone( $advertisement->phone ) . '</p>';
 						}
 
-						echo '<p class="livemarket_meta_wrap"><span class="livemarket_meta livemarket_companyname">' . __( 'by', 'livemarket' ). ' <a href="' . $advertiser_link . '">' . $advertisement->displayname . '</a></span> ';
+						echo '<p class="livemarket_meta_wrap"><span class="livemarket_meta livemarket_companyname">' . __( 'more from', 'livemarket' ). ' <a href="' . $advertiser_link . '">' . $advertisement->displayname . '</a></span> ';
 						echo '<span class="livemarket_meta livemarket_date"> - ' . $advertisement->human_readable . '</span></p>';
 						echo '</div>';
 
