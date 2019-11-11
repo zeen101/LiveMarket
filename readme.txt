@@ -3,8 +3,8 @@ Contributors: zeen101, layotte, pericson, endocreative
 Tags: livemarket, live market, live ads, advertising, recurring revenue, ads, advertisement, advertise
 Description: The hands-off, recurring revenue, live-ad platform for local and niche publishers
 Requires at least: 4.7 
-Tested up to: 5.3
-Stable tag: 1.6.6
+Tested up to: 5.4
+Stable tag: 1.6.7
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
 
@@ -55,6 +55,9 @@ You must have:
 == Screenshots ==
 
 == Changelog ==
+
+= 1.6.7 =
+* Copy updates
 
 = 1.6.6 =
 * Do not show date for premium spot in promo listing
