@@ -320,7 +320,7 @@ if ( ! class_exists( 'LiveMarket' ) ) {
                                 <th><?php _e( 'API Token', 'livemarket' ); ?></th>
                                 <td>
 	                                <input type="text" id="api_key" class="large-text" name="api_key" value="<?php echo htmlspecialchars( stripcslashes( $settings['api_key'] ) ); ?>" />
-	                                <p class="description"><?php printf( __( 'Register or sign into <a href="http://my.livemarket.pub">LiveMarket</a> to setup your first Publication and get your API key.', 'livemarket' ), '[livemarket]' ); ?></p>
+	                                <p class="description"><?php printf( __( 'Register or sign into <a target="_blank" href="https://my.livemarket.pub">LiveMarket</a> to setup your first Publication and get your API key.', 'livemarket' ), '[livemarket]' ); ?></p>
                                 </td>
                             </tr>
                             

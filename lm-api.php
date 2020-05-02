@@ -62,23 +62,32 @@ function get_livemarket_advertisement_categories() {
 function get_livemarket_advertisements( $page = 0, $limit = 10, $category = '', $advertiser = '' ) {
 
 	$settings = get_livemarket_settings();
+
+	$cache_key = 'livemarket_advertisements';
+
+	if ( false === ( $advertisements = get_transient( $cache_key ) ) ) {
+
+		$args = array(
+			'headers' => array(
+				'Authorization' => 'Bearer ' . $settings['api_key'],
+			)
+		);
+		$query = array(
+			'page'       => $page,
+			'limit'      => $limit,
+			'category'   => $category,
+			'advertiser' => $advertiser,
+		);
+		$query = http_build_query( $query );
+		$results = wp_remote_get( LIVEMARKET_API_URL . 'publication/' . $settings['publication_id'] . '/advertisements?' . $query, $args );
+		$body = wp_remote_retrieve_body( $results );
+
+		$advertisements = json_decode( $body );
+
+		set_transient( $cache_key, $advertisements, 300 );
+	}
 	
-	$args = array(
-		'headers' => array(
-			'Authorization' => 'Bearer ' . $settings['api_key'],
-		)
-	);
-	$query = array(
-		'page'       => $page,
-		'limit'      => $limit,
-		'category'   => $category,
-		'advertiser' => $advertiser,
-	);
-	$query = http_build_query( $query );
-	$results = wp_remote_get( LIVEMARKET_API_URL . 'publication/' . $settings['publication_id'] . '/advertisements?' . $query, $args );
-	$body = wp_remote_retrieve_body( $results );
-	
-	return json_decode( $body );
+	return $advertisements;
 	
 }
 
