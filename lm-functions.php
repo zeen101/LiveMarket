@@ -325,6 +325,13 @@ function livemarket_mobile_display() {
 						$('.livemarket-mobile-footer').remove();
 					});
 
+					$(window).scroll(function(){
+						if ( $(document).scrollTop() >= 50 ) {
+							$('.livemarket-mobile-footer .livemarket_view_more').hide();
+							$('.livemarket-mobile-footer .livemarket_meta_wrap').hide();
+						}
+					});
+
 				});
 
 			})( jQuery );
