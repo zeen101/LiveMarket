@@ -246,15 +246,21 @@ function livemarket_mobile_display() {
 		<div class="livemarket-mobile-footer">
 			<span class="close">X</span>
 			<?php 
-				$advertisements = get_livemarket_advertisements( 0, 1 );
+				$advertisements = get_livemarket_advertisements();
 
 				$permalink = rtrim( get_permalink( $settings['livemarket_page'] ), '/' );
 
 				if ( !empty( $advertisements->success ) && !empty( $advertisements->data ) ) {
 					$return  = '';
+
+					$rand_key = wp_rand( 1, 5 );
 					
-					
-					foreach( $advertisements->data->advertisements as $advertisement ) {
+					foreach( $advertisements->data->advertisements as $key => $advertisement ) {
+
+						// randomly show one of the last 5 advertisements
+						if ( $key != $rand_key ) {
+							continue;
+						}
 
 						$track_ids[] = $advertisement->id;
 						
@@ -283,7 +289,7 @@ function livemarket_mobile_display() {
 						echo '<span class="livemarket_meta livemarket_date"> - ' . $advertisement->human_readable . '</span></p>';
 						echo '</div>';
 
-						
+						break; // only show 1 advertisement in footer
 					}
 
 					if ( !empty( $track_ids ) ) {
