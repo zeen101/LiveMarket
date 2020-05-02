@@ -83,8 +83,9 @@ function get_livemarket_advertisements( $page = 0, $limit = 10, $category = '', 
 		$body = wp_remote_retrieve_body( $results );
 
 		$advertisements = json_decode( $body );
+		$expires = apply_filters( 'livemarket_advertisements_expires', 300 );
 
-		set_transient( $cache_key, $advertisements, 300 );
+		set_transient( $cache_key, $advertisements, $expires );
 	}
 	
 	return $advertisements;
