@@ -187,6 +187,10 @@ if ( ! class_exists( 'LiveMarket' ) ) {
 			$settings = $this->get_settings();
 			$settings_saved = false;
 
+			if ( isset( $_GET['refresh_advertisements'] ) ) {
+				delete_transient( 'livemarket_advertisements' );
+			}
+
 			if ( !empty( $_REQUEST['update_livemarket_settings'] ) ) {
 
 				if ( !empty( $_REQUEST['api_key'] ) ) {
@@ -436,6 +440,10 @@ if ( ! class_exists( 'LiveMarket' ) ) {
 	                        
 	                    <p class="submit">
                             <input class="button-primary" type="submit" name="update_livemarket_settings" value="<?php _e( 'Save Settings', 'livemarket' ) ?>" />
+                        </p>
+
+                        <p>
+                        	<a class="button-secondary" href="<?php echo admin_url('admin.php'); ?>?page=livemarket&refresh_advertisements=true">Refresh Advertisements</a>
                         </p>
   
                         </div>
