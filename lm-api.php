@@ -63,7 +63,7 @@ function get_livemarket_advertisements( $page = 0, $limit = 10, $category = '', 
 
 	$settings = get_livemarket_settings();
 
-	$cache_key = 'livemarket_advertisements';
+	$cache_key = 'livemarket_advertisements_' . $limit . $category;
 
 	if ( false === ( $advertisements = get_transient( $cache_key ) ) ) {
 

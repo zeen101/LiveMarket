@@ -188,7 +188,9 @@ if ( ! class_exists( 'LiveMarket' ) ) {
 			$settings_saved = false;
 
 			if ( isset( $_GET['refresh_advertisements'] ) ) {
-				delete_transient( 'livemarket_advertisements' );
+				for ($x = 0; $x <= 10; $x++) {
+				    delete_transient( 'livemarket_advertisements_' . $x );
+				}
 			}
 
 			if ( !empty( $_REQUEST['update_livemarket_settings'] ) ) {
