@@ -63,7 +63,7 @@ function get_livemarket_advertisements( $page = 0, $limit = 10, $category = '', 
 
 	$settings = get_livemarket_settings();
 
-	$cache_key = 'livemarket_advertisements_' . $limit . $category;
+	$cache_key = 'livemarket_advertisements_' . $limit . $category . $advertiser;
 
 	if ( false === ( $advertisements = get_transient( $cache_key ) ) ) {
 
@@ -156,9 +156,6 @@ function livemarket_track_view( $advertisement_slug, $data = array() ) {
 	);
 	$results = wp_remote_post( LIVEMARKET_API_URL . 'publication/' . $settings['publication_id'] . '/advertisement/' . $advertisement_slug . '/view', $args );
 	$body = wp_remote_retrieve_body( $results );
-	$f = fopen( 'output.txt', 'w' );
-	fwrite( $f, $body );
-	fclose( $f );
 	return json_decode( $body );
 	
 }
