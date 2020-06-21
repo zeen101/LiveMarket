@@ -187,12 +187,6 @@ if ( ! class_exists( 'LiveMarket' ) ) {
 			$settings = $this->get_settings();
 			$settings_saved = false;
 
-			if ( isset( $_GET['refresh_advertisements'] ) ) {
-				for ($x = 0; $x <= 10; $x++) {
-				    delete_transient( 'livemarket_advertisements_' . $x );
-				}
-			}
-
 			if ( !empty( $_REQUEST['update_livemarket_settings'] ) ) {
 
 				if ( !empty( $_REQUEST['api_key'] ) ) {
@@ -445,7 +439,7 @@ if ( ! class_exists( 'LiveMarket' ) ) {
                         </p>
 
                         <p>
-                        	<a class="button-secondary" href="<?php echo admin_url('admin.php'); ?>?page=livemarket&refresh_advertisements=true">Refresh Advertisements</a>
+                        	<a class="button-secondary" href="<?php echo admin_url('admin.php'); ?>?page=livemarket&clear_livemarket_cache=true">Refresh Advertisements</a>
                         </p>
   
                         </div>

@@ -7,7 +7,7 @@
  */
 
 /**
- * Helper function to get zeen101's Leaky Paywall settings for current site
+ * Helper function to get Live Market's settings for current site
  *
  * @since 1.0.0
  *
@@ -19,6 +19,21 @@ function get_livemarket_settings() {
 	
 	return $livemarket->get_settings();
 	
+}
+
+/**
+ * Helper function to clear Live Market's transient cache
+ *
+ * @since 1.0.0
+ *
+ * @return mixed Value set for the issuem options.
+ */
+function clear_livemarket_cache() {
+
+	global $wpdb;
+	
+	$wpdb->query( 'DELETE FROM ' . $wpdb->options . ' WHERE option_name like "%_livemarket_advertisements_%"' );
+
 }
 
 /**
@@ -131,7 +146,7 @@ function formatted_livemarket_advertisements( $page = 0, $limit = 10, $widget = 
 				$return .= '<p class="livemarket_companyphone">' . livemarket_format_phone( $advertisement->phone ) . '</p>';
 			}
 
-			$return .= '<p class="livemarket_meta_wrap"><span class="livemarket_meta livemarket_companyname">' . __( 'more from', 'livemarket' ). ' <a href="' . $advertiser_link . '">' . $advertisement->displayname . '</a></span> ';
+			$return .= '<p class="livemarket_meta_wrap"><span class="livemarket_meta livemarket_companyname">' . __( 'by', 'livemarket' ). ' <a href="' . $advertiser_link . '">' . $advertisement->displayname . '</a></span> ';
 			$return .= '<span class="livemarket_meta livemarket_date"> - ' . $advertisement->human_readable . '</span></p>';
 			$return .= '</div>';
 
@@ -285,7 +300,7 @@ function livemarket_mobile_display() {
 							echo '<p class="livemarket_companyphone">' . livemarket_format_phone( $advertisement->phone ) . '</p>';
 						}
 
-						echo '<p class="livemarket_meta_wrap"><span class="livemarket_meta livemarket_companyname">' . __( 'more from', 'livemarket' ). ' <a href="' . $advertiser_link . '">' . $advertisement->displayname . '</a></span> ';
+						echo '<p class="livemarket_meta_wrap"><span class="livemarket_meta livemarket_companyname">' . __( 'by', 'livemarket' ). ' <a href="' . $advertiser_link . '">' . $advertisement->displayname . '</a></span> ';
 						echo '<span class="livemarket_meta livemarket_date"> - ' . $advertisement->human_readable . '</span></p>';
 						echo '</div>';
 

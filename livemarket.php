@@ -48,6 +48,12 @@ function livemarket_plugins_loaded() {
 		require_once( 'lm-shortcodes.php' );
 		require_once( 'lm-widgets.php' );
 		require_once( 'lm-flyout.php' );
+		
+		if ( isset( $_GET['clear_livemarket_cache'] ) ) {
+			
+			clear_livemarket_cache();
+			
+		}
 
 		//Internationalization
 		load_plugin_textdomain( 'livemarket', false, LIVEMARKET_REL_DIR . '/i18n/' );
