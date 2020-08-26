@@ -16,6 +16,26 @@
   display: inline-block;
 }
 
+.livemarket-fullwidth {
+	width: 100%;
+	display: block;
+}
+
+.livemarket-halfwidth {
+	width: 50%;
+	display: block;
+}
+
+.livemarket-left {
+	float: left;
+	padding-right: 20px;
+}
+
+.livemarket-right {
+	float: right;
+	padding-left: 20px;
+}
+
 .livemarket-more-button-wrapper .livemarket-more-button:hover {
   background: #3cb0fd;
   background-image: -webkit-linear-gradient(top, #3cb0fd, #3498db);
@@ -362,4 +382,8 @@
     .livemarket-flyout-container {
       display: block;
     }
+}
+
+.livemarket-business-logo {
+	max-width: 500px;
 }

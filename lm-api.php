@@ -92,6 +92,40 @@ function get_livemarket_advertisements( $page = 0, $limit = 10, $category = '', 
 	
 }
 
+
+/**
+ * zeen101's LiveMarket API for retrieving advertiser details
+ *
+ * @since 1.7.0
+ *
+ * @return mixed Value set for the issuem options.
+ */
+function get_livemarket_advertiser( $advertiser ) {
+
+	$settings = get_livemarket_settings();
+
+	$cache_key = 'livemarket_advertiser_' . $advertiser;
+
+	if ( true ) {
+
+		$args = array(
+			'headers' => array(
+				'Authorization' => 'Bearer ' . $settings['api_key'],
+			)
+		);
+		$results = wp_remote_get( LIVEMARKET_API_URL . 'publication/' . $settings['publication_id'] . '/advertiser/' . $advertiser, $args );
+		$body = wp_remote_retrieve_body( $results );
+
+		$advertiser = json_decode( $body );
+		$expires = apply_filters( 'livemarket_advertiser_expires', 300 );
+
+		set_transient( $cache_key, $advertiser, $expires );
+	}
+	
+	return $advertiser;
+	
+}
+
 /**
  * zeen101's LiveMarket API for retrieving a specific advertisement
  *
