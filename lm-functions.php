@@ -124,9 +124,11 @@ function formatted_livemarket_advertisements( $page = 0, $limit = 10, $widget = 
 			}
 			if ( !empty( $advertiser_data->data->address1 ) ) {
 				$business_details .= '<p class="livemarket-business-address">';
+				$business_details .= '<a href="https://maps.google.com?' . http_build_query( array( 'q' => $advertiser_data->data->address1 . ' ' . $advertiser_data->data->address2 . ' ' . $advertiser_data->data->city . ' ' . $advertiser_data->data->state . ' ' . $advertiser_data->data->postal ) ) . '" target="_blank">';
 				$business_details .= $advertiser_data->data->address1  . '<br/>';
 				$business_details .= !empty( $advertiser_data->data->address2 ) ?  $advertiser_data->data->address2  . '<br/>' : '';
 				$business_details .= $advertiser_data->data->city . ', ' . $advertiser_data->data->state . ' ' . $advertiser_data->data->postal;
+				$business_details .= '</a>';
 				$business_details .= '</p>';
 			}
 			if ( !empty( $advertiser_data->data->phone ) ) {
