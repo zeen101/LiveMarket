@@ -120,12 +120,12 @@ function formatted_livemarket_advertisements( $page = 0, $limit = 10, $widget = 
 			$return .= '<div class="livemarket-fullwidth">';
 			$business_details = '<div class="livemarket-left livemarket-halfwidth livemarket-business-details">';
 			if ( !empty( $advertiser_data->data->logo ) ) {
-				$business_details .= '<p><img class="livemarket-business-logo" src="' . LIVEMARKET_SITE_URL . 'business-logos/' . $advertiser_data->data->logo . '" /></p>';
+				$business_details .= '<p class="livemarket-business-logo"><img src="' . LIVEMARKET_SITE_URL . 'business-logos/' . $advertiser_data->data->logo . '" /></p>';
 			}
 			if ( !empty( $advertiser_data->data->address1 ) ) {
-				$business_details .= '<p>Address:<br/>';
-				$business_details .= $advertiser_data->data->address1 . '<br/>';
-				$business_details .= $advertiser_data->data->address2 . '<br/>';
+				$business_details .= '<p class="livemarket-business-address">';
+				$business_details .= $advertiser_data->data->address1  . '<br/>';
+				$business_details .= !empty( $advertiser_data->data->address2 ) ?  $advertiser_data->data->address2  . '<br/>' : '';
 				$business_details .= $advertiser_data->data->city . ', ' . $advertiser_data->data->state . ' ' . $advertiser_data->data->postal;
 				$business_details .= '</p>';
 			}
@@ -133,14 +133,16 @@ function formatted_livemarket_advertisements( $page = 0, $limit = 10, $widget = 
 				$business_details .= '<p>Phone: <a href="tel:' . $advertiser_data->data->phone . '">' . $advertiser_data->data->phone . '</a></p>';
 			}
 			if ( !empty( $advertiser_data->data->url ) ) {
-				$business_details .= '<p>Website: <a href="' . $advertiser_data->data->url . '">' . $advertiser_data->data->url . '</a></p>';
+				$business_details .= '<p><a href="' . $advertiser_data->data->url . '">Website</a></p>';
 			}
 			$business_details .= '</div>';
 			
 			$return .= apply_filters( 'livemarket_business_details', $business_details, $advertiser_data );
 			
-			$return .= '</div>';
+			
 			$return .= '<div class="livemarket-right livemarket-halfwidth livemarket-business-promotions">';
+
+			
 		}	
 			
 		$i = 1;

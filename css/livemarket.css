@@ -19,21 +19,22 @@
 .livemarket-fullwidth {
 	width: 100%;
 	display: block;
+  overflow: hidden;
 }
 
 .livemarket-halfwidth {
-	width: 50%;
+	width: 48%;
 	display: block;
 }
 
 .livemarket-left {
 	float: left;
-	padding-right: 20px;
+	width: 35%;
 }
 
 .livemarket-right {
 	float: right;
-	padding-left: 20px;
+	width: 60%;
 }
 
 .livemarket-more-button-wrapper .livemarket-more-button:hover {
@@ -352,6 +353,7 @@
 
 .livemarket_shortcode.livemarket_signup_link {
   line-height: 1.2;
+  clear: both;
 }
 
 .livemarket_shortcode.livemarket_signup_link a {
