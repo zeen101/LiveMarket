@@ -106,7 +106,7 @@ function get_livemarket_advertiser( $advertiser ) {
 
 	$cache_key = 'livemarket_advertiser_' . $advertiser;
 
-	if ( true ) {
+	if ( false === ( $advertiser = get_transient( $cache_key ) ) ) {
 
 		$args = array(
 			'headers' => array(
