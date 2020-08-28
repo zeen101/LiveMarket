@@ -4,7 +4,7 @@ Tags: livemarket, live market, live ads, advertising, recurring revenue, ads, ad
 Description: Create a new ad revenue stream with promotions your audience actually wants to see 
 Requires at least: 4.7 
 Tested up to: 5.5 
-Stable tag: 1.7.1
+Stable tag: 1.7.2
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
 
@@ -55,6 +55,9 @@ You must have:
 == Screenshots ==
 
 == Changelog ==
+
+= 1.7.2 =
+* Bug fix: Duplicate variable use in Advertiser API
 
 = 1.7.1 =
 * Bug fix: Advertiser API caching
