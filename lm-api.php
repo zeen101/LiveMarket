@@ -106,7 +106,7 @@ function get_livemarket_advertiser( $advertiser ) {
 
 	$cache_key = 'livemarket_advertiser_' . $advertiser;
 
-	if ( false === ( $advertiser = get_transient( $cache_key ) ) ) {
+	if ( false === ( $business_data = get_transient( $cache_key ) ) ) {
 
 		$args = array(
 			'headers' => array(
@@ -116,13 +116,13 @@ function get_livemarket_advertiser( $advertiser ) {
 		$results = wp_remote_get( LIVEMARKET_API_URL . 'publication/' . $settings['publication_id'] . '/advertiser/' . $advertiser, $args );
 		$body = wp_remote_retrieve_body( $results );
 
-		$advertiser = json_decode( $body );
+		$business_data = json_decode( $body );
 		$expires = apply_filters( 'livemarket_advertiser_expires', 300 );
 
-		set_transient( $cache_key, $advertiser, $expires );
+		set_transient( $cache_key, $business_data, $expires );
 	}
 	
-	return $advertiser;
+	return $business_data;
 	
 }
 
