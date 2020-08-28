@@ -4,7 +4,7 @@ Tags: livemarket, live market, live ads, advertising, recurring revenue, ads, ad
 Description: The hands-off, recurring revenue, live-ad platform for local and niche publishers
 Requires at least: 4.7 
 Tested up to: 5.5 
-Stable tag: 1.6.10
+Stable tag: 1.7.0
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
 
@@ -55,6 +55,9 @@ You must have:
 == Screenshots ==
 
 == Changelog ==
+
+= 1.7.0 =
+* Introducing Business Pages
 
 = 1.6.10 =
 * Clear Cache as a Webhook
