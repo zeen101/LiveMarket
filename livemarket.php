@@ -13,7 +13,7 @@ Author: ZEEN101
 Version: 1.7.1
 Author URI: https://zeen101.com/
 Tags: livemarket, live market, live ads, advertising, recurring revenue, ads, advertisement, advertise
-Description: The hands-off, recurring revenue, live-ad platform for local and niche publishers
+Description: Create a new ad revenue stream with promotions your audience actually wants to see 
 Text Domain: livemarket
 */
 	
