@@ -3,8 +3,8 @@ Contributors: zeen101, layotte, pericson, endocreative
 Tags: livemarket, live market, live ads, advertising, recurring revenue, ads, advertisement, advertise
 Description: Create a new ad revenue stream with promotions your audience actually wants to see 
 Requires at least: 4.7 
-Tested up to: 5.5 
-Stable tag: 1.7.2
+Tested up to: 5.6
+Stable tag: 1.7.3
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
 
@@ -55,6 +55,9 @@ You must have:
 == Screenshots ==
 
 == Changelog ==
+
+= 1.7.3 =
+* Feature Update: A handful of other plugins try to double or triple load shortcodes (who knows why), but doing this causes the 'interested customer' count to be off. This update fixes that so we don't rely on the shortcode loading, but instead the actual page loading.
 
 = 1.7.2 =
 * Bug fix: Duplicate variable use in Advertiser API
