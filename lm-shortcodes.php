@@ -53,7 +53,6 @@ function do_livemarket( $atts ) {
 				$advertiser_link = $permalink . '/' . http_build_query( array( 'contributor' => $advertisement->data->user_id ) );
 			}
 			
-			$return = livemarket_track_view( $advertisement->data->slug );
 			$results  = '<div class="livemarket_content" data-slug="' . $advertisement->data->slug . '">';
 			$results .= '<h3>' . $advertisement->data->title . '</h3>';
 			$results .= '<p><span class="livemarket_meta livemarket_companyname">' . __( 'by', 'livemarket' ). ' <a href="' . $advertiser_link . '">' . $advertisement->data->displayname . '</a></span>';

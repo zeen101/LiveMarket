@@ -1,6 +1,22 @@
 var $livemarket_jquery = jQuery.noConflict();
 
 $livemarket_jquery( document ).ready( function($) {
+	if ( $( '.livemarket_content' ).length ) {
+		var data = {
+			'action': 'livemarket_track_view',
+			'nonce': livemarket_ajax.security,
+			'slug': $( '.livemarket_content' ).data( 'slug' ),
+			'target': $( this ).attr( 'href' ),
+			'anchor': $( this ).text()
+		};
+		$.ajax({
+			url: livemarket_ajax.ajax_url, 
+			data: data,
+			dataType: 'JSON',
+			method: 'post'
+		});
+	}
+	
 	$( '.livemarket_content' ).on( 'click', 'a', function(e) {
 	    e.preventDefault();
 		var data = {
@@ -19,6 +35,7 @@ $livemarket_jquery( document ).ready( function($) {
 	    var url = $(this).attr( 'href' ); 
 	    window.open( url, '_blank' );
 	});
+	
 	$( '.livemarket_shortcode_list' ).on( 'click', '.more a', function(e) {
 	    e.preventDefault();
 		var data = {
@@ -41,6 +58,7 @@ $livemarket_jquery( document ).ready( function($) {
 			method: 'post'
 		});
 	});
+	
 	$( '.livemarket_widget_list' ).on( 'click', '.more a', function(e) {
 	    e.preventDefault();
 		var data = {
@@ -73,8 +91,6 @@ $livemarket_jquery( document ).ready( function($) {
 			$('.livemarket-flyout-header').toggleClass('active');
 		}
 	}
-
-	
 
 	$('.livemarket-flyout-header-link').click(function(e) {
 		e.preventDefault();

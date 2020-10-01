@@ -36,6 +36,17 @@ function ajax_get_livemarket_widget_advertisements() {
 add_action( 'wp_ajax_livemarket_widget_list', 'ajax_get_livemarket_widget_advertisements' );
 add_action( 'wp_ajax_nopriv_livemarket_widget_list', 'ajax_get_livemarket_widget_advertisements' );
  
+function ajax_livemarket_track_view() {
+	check_ajax_referer( 'livemarket-nonce', 'nonce' );
+
+	$slug = sanitize_text_field( $_REQUEST['slug'] );
+	
+	$return = livemarket_track_view( $slug );
+	wp_send_json_success();
+}
+add_action( 'wp_ajax_livemarket_track_view', 'ajax_livemarket_track_view' );
+add_action( 'wp_ajax_nopriv_livemarket_track_view', 'ajax_livemarket_track_view' );
+ 
 function ajax_livemarket_track_click() {
 	check_ajax_referer( 'livemarket-nonce', 'nonce' );
 
